@@ -8,21 +8,20 @@
 
 	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
 	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
-        <link id="data-uikit-theme" rel="stylesheet" href="css/uikit.css">
-
+     <link rel="stylesheet" href="css/uikit.docs.min.css" />
+    <link rel="stylesheet" href="http://getuikit.com/vendor/highlight/highlight.css"> 
         <script src="js/jquery.js"></script>
         <script src="js/uikit.js"></script>
 	<script src="js/components/sticky.js"></script>
 	<script src="js/components/grid.js"></script>
-	<script src="js/components/slideset.js"></script>
+
 <script src="smooth-scroll.min.js"></script>
 	<script src="js/core/scrollspy.js"></script>
-	<!-- <script src="js/bix-slideshow.js"></script> -->
-      <script src="js/slideshow.js"></script>
-        <script src="js/slideshow-fx.js"></script>
 
-        <script src="http://imagesloaded.desandro.com/imagesloaded.pkgd.min.js"></script>
-<script src="http://cdnjs.cloudflare.com/ajax/libs/masonry/3.2.2/masonry.pkgd.min.js"></script>
+	 <script src="http://getuikit.com/vendor/holder.js"></script>
+  <script src="js/components/slideset.js"></script>
+
+
 
 	<style>
 
@@ -41,11 +40,15 @@ padding-left:0px;
 		background-size: cover;
 
 	}
-	.slideshow {
-height: 200px;		
-height: 150px;
-overflow: hidden;
-	}
+
+.stills {
+		
+	max-width: 700px;
+}
+
+.stills li {
+	padding: 3px;
+}
 .antidote {
 	padding: 50px 50px 50px 50px;	
 	background-image: url(images/mykonos-biennale-2015-antidote-invite.jpg);
@@ -533,14 +536,38 @@ and of the island and at the important Gryparion center. </p>
 		</div>
 	</div>	
 
-	<div data-uk-slideset="{default: 4}">
-    <ul class="uk-slideset">
-        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Branches/mykonos-biennale-2015-Film-Festivale-branches%20promo%20still%201.jpg" style="max-height:100px;"  alt=""></li>
-        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/En%20mi%20recuerdo%20siempre%20estar%C3%A1s/mykonos-biennale-2015-Film-Festivale-En%20mi%20recuerdo%20siempre%20estar%C3%A1s-poster.jpg" style="max-height:100px;" alt=""></li>
-        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Ona%20Meta/mykonos-biennale-2015-Film-Festivale-Ona-Meta-poster.jpg" style="max-height:100px;" alt=""></li>
-        <li><img  src="http://org.mykonosbiennale.2015.s3.amazonaws.com/submitions/2015-0012-Gripes,%20Grudges,%20and%20Grace/Screen%20Shot%202015-03-10%20at%202.14.23%20PM.png" style="max-height:100px;" alt=""></li>
-    </ul>
-</div>
+<div class="uk-grid" data-uk-grid-margin>
+          
+                <div class="uk-width-medium-1-1 uk-text-justify uk-container-center  stills">
+
+                    <article class="uk-article">     
+
+                        <div class="uk-margin" data-uk-slideset="{small: 2, medium: 3, large: 4}">
+                            <div class="uk-slidenav-position uk-margin">
+                                <ul class="uk-slideset uk-grid uk-flex-center">
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/The%20Loyalist/mykonos-biennale-2015-Film-Festivale-The%20Loyalist.jpg" width="600" height="400" alt="">
+                                    <h6>The Loyalist</h6></li>
+                                    <li><img src="http://heliothefilm.com/wp-content/uploads/2014/09/marketplace_reaction_2-941x519.jpg" width="600" height="400" alt="">
+                                    <h6>Marketplace Reaction</h6></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Branches/mykonos-biennale-2015-Film-Festivale-branches%20promo%20still%201.jpg" width="600" height="400" alt=""><h6>Branches</h6></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Bread%20or%20Blood/mykonos-biennale-2015-Film-Festivale-Bread%20or%20Blood-eyes%20unit%20windshield%20text.jpg" width="600" height="400" alt=""><h6>Bread or Blood</h6></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/submitions/2015-0012-Gripes,%20Grudges,%20and%20Grace/Screen%20Shot%202015-03-10%20at%202.14.23%20PM.png" width="600" height="400" alt=""><h6>Gripes, Grudes &amp; Graces</h6></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/I%20was%20born%20in%201985/mykonos-biennale-2015-Film-Festivale-I%20was%20born%20in%201985-1.jpeg" width="600" height="400" alt=""><h6>I was Born in 1985</h6></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/The%20Tree%20of%20Numbers/mykonos-biennale-2015-Film-Festivale-tree%20Of%20Number%203289390.jpg" width="600" height="400" alt=""><h6>Tree of Numbers</h6></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Ona%20Meta/mykonos-biennale-2015-Film-Festivale-Ona%20Meta.jpg" width="600" height="400" alt=""></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/En%20mi%20recuerdo%20siempre%20estar%C3%A1s/mykonos-biennale-2015-Film-Festivale-En%20mi%20recuerdo%201.jpg" width="600" height="400" alt=""></li>
+                                    <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Helio/mykonos-biennale-2015-Film-Festivale-Helio-boots_outside_window_full.jpg" width="600" height="400" alt=""></li>
+                                </ul>
+                                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+                                <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideset-item="next"></a>
+                            </div>
+                        </div>
+
+                       
+                    </article>
+
+                </div>
+            </div>
 
 
 
@@ -686,7 +713,57 @@ $('[data-uk-scrollspy]').on('inview.uk.scrollspy', function(){
 
 </script>
 
-
+ <div id="offcanvas" class="uk-offcanvas">
+	<div class="uk-offcanvas-bar">
+		<ul class="uk-nav uk-nav-offcanvas">
+			<li class="uk-parent" data-uk-dropdown="">
+			<a href="mykonos_biennale.html" >Mykonos Biennale</a>
+			<ul class="uk-nav-sub">
+				<li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
+				<li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
+				<li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
+				<li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
+				<li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
+				<li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
+			</ul>
+		</li>
+<li class="uk-parent" data-uk-dropdown="" >
+	<a href="index.html" data-uk-smooth-scroll="{offset: 90}" style="color: magenta;">2015 Antidote</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav-sub">
+			<li><a href="index.html#2015-antidote" data-uk-smooth-scroll="{offset: 90}">Antidote</a></li>
+			<li><a href="index.html#2015-statement" data-uk-smooth-scroll="{offset: 90}">Statement</a></li>
+			<li><a href="index.html#2015-kite-festival" data-uk-smooth-scroll="{offset: 90}">Kite Festival</a></li>
+			<li><a href="index.html#2015-treasue-hunt" data-uk-smooth-scroll="{offset: 90}">Treasue Hunt</a><li>
+			<li> <a href="index.html#2015-weaving-conspiracy" data-uk-smooth-scroll="{offset: 90}">Weaving Conspiracy</a></li>
+			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+			<li><a href="index.html#2015-video-graffiti" data-uk-smooth-scroll="{offset: 90}">Video Graffiti</a></li>
+			<li><a href="index.html#2015-dramatic-nights" data-uk-smooth-scroll="{offset: 90}">Dramatic Nights</a></li>
+			<li class="uk-nav-header" >Dance</li>
+			<li><a href="index.html#2015-pigeage" data-uk-smooth-scroll="{offset: 90}">Pigeage</a></li>
+		</ul>
+	</div>
+</li>
+<li class="uk-parent" data-uk-dropdown="">
+	<a href="2013-Crises-and-Paganism.html" >2013 Crises &amp; Paganism</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav-sub">
+			<li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-statement" >Statement</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-events" >Events</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-venues" >Venues</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-artists" >Artists</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-press" >Press</a></li>
+			<li class="uk-nav-header" >Credits</li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-team" >Team</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-sponsors" >Sponsors</a></li>
+			
+		</ul>
+	</div>
+</li>
+				</ul>
+    </div>
+        </div>
 
 </body>
 
