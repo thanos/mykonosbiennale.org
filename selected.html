@@ -79,13 +79,15 @@
 						  <% if (film.composers) { %>  <dt>Composers</dt><dd> <%= film.composers %></dd> <% } %>
 						</dl>
 					<hr class="uk-article-divider">
-					<ul class="uk-list">
-								<% _.each(film.filmfestival_image_related ,function( image ){ 
-									var image_url = image.image.split('?')[0];
-									%>
-									<li><a href="<%= image_url %>"><img src="<%= image_url %>"  alt="" style="height:150px;"></a></li>
-								<% }); %>
-					</ul>
+					<div class="uk-grid">
+	<% _.each(film.filmfestival_image_related ,function( image ){ 
+		var image_url = image.image.split('?')[0];
+	%>	
+    <div class="uk-width-1-<%= film.filmfestival_image_related.length %>"><a href="<%= image_url %>"><img src="<%= image_url %>"  alt="" style="height:150px;"></a></div>
+    <% }); %>
+</div>
+
+			
 					 <% if (film.screenings ) { %>
 					 		<hr class="uk-article-divider">
 			     			<h3> Screenings </h3>
