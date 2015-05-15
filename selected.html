@@ -113,7 +113,7 @@
 
 <script src="http://underscorejs.org/underscore-min.js"></script>
 <script type="text/javascript">
-var url = "http://chrome-baby-16-171552.usw1.nitrousbox.com:8080/api/films&pagesize=1?callback=?&format=jsonp";
+var url = "http://chrome-baby-16-171552.usw1.nitrousbox.com:8080/api/films&callback=?&format=jsonp";
   $.getJSON(url, function(data){
 	var film_list = _.template($( "#film_template").html())(data);
     $("#film_list").html(film_list);
