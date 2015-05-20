@@ -1,7 +1,10 @@
 <!DOCTYPE html>
-<html lang="en-gb" dir="ltr">
+<html class="uk-notouch uk-height-1-1" dir="ltr" lang="en-gb">
 
-    <head>
+<head>
+
+
+
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -18,110 +21,178 @@
         <meta name="twitter:description" content="" >
         <meta name="twitter:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"> 
    
-        <title>Slideset component - UIkit documentation</title>
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
-        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
-        <link id="data-uikit-theme" rel="stylesheet" href="/static/css/uikit.min.css">
-        <link rel="stylesheet" href="/static/css/film_detail.css">
-        <link rel="stylesheet" href="http://getuikit.com/vendor/highlight/highlight.css">'
-               <link rel="stylesheet" href="/static/css/film_detail.css">
-        <script src="http://getuikit.com/vendor/jquery.js"></script>
-        <script src="/static/js/uikit.min.js"></script>
-        <script src="http://getuikit.com/vendor/highlight/highlight.js"></script>
-        <script src="/static/js/holder.js"></script>
-        <script src="http://getuikit.com/docs/js/docs.js"></script>
-        <script src="/static/js/components/slideset.js"></script>
-<style>
-    .uk-panel {
-        padding: 50px;
+        
+    <title>2013 Mykonos Biennale - Crisis and Paganism</title>
+
+    <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link id="data-uikit-theme" rel="stylesheet" href="css/uikit.css">
+
+        <script src="js/jquery.js"></script>
+        <script src="js/uikit.js"></script>
+    <script src="js/components/sticky.js"></script>
+    <script src="js/components/grid.js"></script>
+
+    <script src="smooth-scroll.min.js"></script>
+    <!-- <script src="js/bix-slideshow.js"></script> -->
+      <script src="js/slideshow.js"></script>
+        <script src="js/slideshow-fx.js"></script>
+    <style>
+
+
+.menu {
+max-width: 700px;
+padding-left:0px;
+
+
     }
-        </style>
-    </head>
+.page {
+        min-height: 700px;
+        max-width: 700px;
+        background-position: 100% 100%; 
+        background-repeat: no-repeat;
+        background-size: cover;
+        padding: 50px 50px 50px 50px;   
+    }
+
+.crises_paganism {
+    background-position: 0% 0%;
+  
+}
+
+
+.crises_paganism h1 {
+    font-size: 48px;
+    color: white;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+
+}
+
+
+
+
+.crises_paganism h2 {
+    
+    font-size: 36px;
+    color: magenta;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+
+}
+
+
+ .crises_paganism h3 {
+    padding-top: 450px;
+    font-size: 28px;
+    color: magenta;
+    font-weight: bold;
+    text-shadow: 2px 2px #000000;
+
+}
+
+
+
+
+
+
+
+.uk-container {
+    padding: 0px 0px;
+
+}
+
+.uk-navbar {
+
+    background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+}
+
+
+ li.uk-active>a {
+    color: magenta!important;
+ }
+
+    </style>
+</head>
+
+
+
 
 <body class="uk-height-1-1"  id="invite">
 
 <div class="uk-container uk-height-1-1" >
-<div class="uk-grid mark_red" style="z-index:4;">
-	<div class="uk-width-medium-1-1  uk-container-center uk-cover-background menu " >
-		<div class="uk-sticky-init " data-uk-sticky >
-			<nav class="uk-navbar  uk-navbar-attached" style="" >
-				<a class="uk-navbar-brand uk-hidden-small uk-align-right" href="index.html" style="z-index:14;" ><img alt = "mykonos biennale logo" width="100" src="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"></a> 
-				<ul class="uk-navbar-nav uk-hidden-small">
+<div class="uk-grid mark_red" >
+    <div class="uk-width-medium-1-1  uk-container-center uk-cover-background menu " >
+        <div class="uk-sticky-init " data-uk-sticky style="z-index:4;  ">
+            <nav class="uk-navbar  uk-navbar-attached" style="background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);" >
+                <a class="uk-navbar-brand uk-hidden-small uk-align-right" href="index.html" style="z-index:14;" ><img alt = "mykonos biennale logo" width="100" src="images/mykonos-biennale-logo.png"></a> 
+                <ul class="uk-navbar-nav uk-hidden-small">
 <li class="uk-parent" data-uk-dropdown="">
-	<a href="mykonos_biennale.html" >Mykonos Biennale</a>
-	<div style="" class="uk-dropdown uk-dropdown-navbar">
-		<ul class="uk-nav uk-nav-navbar">
-			<li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
-			<li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
-			<li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
-			<li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
-			<li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
-			<li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
-		</ul>
-	</div>
+    <a href="mykonos_biennale.html" >Mykonos Biennale</a>
+    <div style="" class="uk-dropdown uk-dropdown-navbar">
+        <ul class="uk-nav uk-nav-navbar">
+            <li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
+            <li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
+            <li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
+            <li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
+            <li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
+            <li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
+        </ul>
+    </div>
 </li>
 <li class="uk-parent" data-uk-dropdown="" >
-	<a href="index.html" data-uk-smooth-scroll="{offset: 90}" style="color: magenta;">2015 Antidote</a>
-	<div style="" class="uk-dropdown uk-dropdown-navbar">
-		<ul class="uk-nav uk-nav-navbar">
-			<li><a href="index.html#2015-antidote" data-uk-smooth-scroll="{offset: 90}">Antidote</a></li>
-			<li><a href="index.html#2015-statement" data-uk-smooth-scroll="{offset: 90}">Statement</a></li>
-			<li><a href="index.html#2015-kite-festival" data-uk-smooth-scroll="{offset: 90}">Kite Festival</a></li>
-			<li><a href="index.html#2015-treasue-hunt" data-uk-smooth-scroll="{offset: 90}">Treasue Hunt</a><li>
-			<li> <a href="index.html#2015-weaving-conspiracy" data-uk-smooth-scroll="{offset: 90}">Weaving Conspiracy</a></li>
-			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
-			<li><a href="index.html#2015-video-graffiti" data-uk-smooth-scroll="{offset: 90}">Video Graffiti</a></li>
-            <li><a href="/filmfestival/video-graffiti/">Video Graffiti - Official Selection</a></li>
-			<li><a href="index.html#2015-dramatic-nights" data-uk-smooth-scroll="{offset: 90}">Dramatic Nights</a></li>
-            <li><a href="/filmfestival/video-graffiti/">Dramatic Nights - Official Selection</a></li>
-            <li><a href="/filmfestival/documentaries/">Documentary Toughts - Official Selection</a></li>
-			<li class="uk-nav-header" >Dance</li>
-			<li><a href="index.html#2015-pigeage" data-uk-smooth-scroll="{offset: 90}">Pigeage</a></li>
-		</ul>
-	</div>
+    <a href="index.html">2015 Antidote</a>
+    <div style="" class="uk-dropdown uk-dropdown-navbar">
+        <ul class="uk-nav uk-nav-navbar">
+            <li > <a href="index.html#2015-antidote" >Antidote</a></li>
+            <li> <a href="index.html#2015-statement" >Statement</a></li>
+            <li > <a href="index.html#2015-kite-festival" >Kite Festival</a></li>
+            <li><a href="index.html#2015-treasue-hunt" >Treasue Hunt</a><li>
+            <li> <a href="index.html#2015-weaving-residency" >Weaving Residency</a></li>
+            <li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+            <li><a href="index.html#2015-video-graffiti" >Video Graffiti</a></li>
+            <li><a href="index.html#2015-dramatic-nights" >Dramatic Nights</a></li>
+            <li class="uk-nav-header" >Dance</li>
+            <li><a href="index.html#2015-pigeage" >Pigeage</a></li>
+        </ul>
+    </div>
 </li>
 <li class="uk-parent" data-uk-dropdown="">
-	<a href="2013-Crises-and-Paganism.html" >2013 Crises &amp; Paganism</a>
-	<div style="" class="uk-dropdown uk-dropdown-navbar">
-		<ul class="uk-nav uk-nav-navbar">
-			<li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-statement" >Statement</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-events" >Events</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-venues" >Venues</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-artists" >Artists</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-press" >Press</a></li>
-			<li class="uk-nav-header" >Credits</li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-team" >Team</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-sponsors" >Sponsors</a></li>
-			
-		</ul>
-	</div>
+    <a href="2013-Crises-and-Paganism.html" style="color:magenta;"  data-uk-smooth-scroll="{offset: 90}">2013 Crises &amp; Paganism</a>
+    <div style="" class="uk-dropdown uk-dropdown-navbar">
+        <ul class="uk-nav uk-nav-navbar">
+            <li> <a href="2013-Crises-and-Paganism.html#2013-invite" data-uk-smooth-scroll="{offset: 90}">Crises &amp; Paganism</a></li>
+            <li> <a href="2013-Crises-and-Paganism.html#2013-statement" data-uk-smooth-scroll="{offset: 90}">Statement</a></li>
+            <li><a href="2013-Crises-and-Paganism.html#2013-events" data-uk-smooth-scroll="{offset: 90}">Events</a></li>
+            <li><a href="2013-Crises-and-Paganism.html#2013-venues" data-uk-smooth-scroll="{offset: 90}">Venues</a></li>
+            <li><a href="2013-Crises-and-Paganism.html#2013-artists" data-uk-smooth-scroll="{offset: 90}">Artists</a></li>
+            <li><a href="2013-Crises-and-Paganism.html#2013-press" data-uk-smooth-scroll="{offset: 90}">Press</a></li>
+            <li class="uk-nav-header" >Credits</li>
+            <li><a href="2013-Crises-and-Paganism.html#2013-team" data-uk-smooth-scroll="{offset: 90}">Team</a></li>
+            <li><a href="2013-Crises-and-Paganism.html#2013-sponsors" data-uk-smooth-scroll="{offset: 90}">Main Sponsors</a></li>
+            
+        </ul>
+    </div>
 </li>
-				</ul>
-				<a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas>x</a>
-				<div class="uk-navbar-brand uk-navbar-center uk-visible-small">2015 Antidote</div>
-			</nav>
-		</div>
-	</div>
-</div
+                </ul>
+                <a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas>x</a>
+                <div class="uk-navbar-brand uk-navbar-center uk-visible-small">2015 Antidote</div>
+            </nav>
+        </div>
+    </div>
+</div>
 
 
 
 
-<div class="uk-grid mark_red"  id="film">
-		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
-
-
-
-
-
-
-
-
-
-             
         
-             <article class="uk-comment">
+        
+    <div class="uk-grid mark_red"  id="2013-statement">
+        <div class="uk-width-medium-1-1 uk-text-justify uk-container-center page statement ">
+
+<h1>Dramatic Nights</h1>
+               
+  <article class="uk-comment">
     <header class="uk-comment-header">
      
         <h4 class="uk-comment-title"><a href="/filmfestival/film/355/">1-0</a></h4>
@@ -150,7 +221,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-8-aranas-daniel-lecanda-poster.jpg" style="height:150px;"  alt="8 Arañas Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-8-aranas-daniel-lecanda-poster/c46a1fe3bf530c6ae2a24cdf12622937.jpg?Signature=nnWZL6VupZnF55VzwzJVi2xXFlg%3D&amp;Expires=1432084671&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="225"  alt="8 Arañas Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/335/">8 Arañas</a></h4>
             <div class="uk-comment-meta">dir. by Daniel Lecanda, 13 minutes, Mexico</div>
@@ -165,7 +236,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-athanasios-alexi-papalexopoulos-poster.jpg" style="height:150px;"  alt="ATHANASIOS Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-athanasios-alexi-papalexopoulos-poster/9bcf18151873f0a9a7ca24cb31ae7963.jpg?Signature=6PXQWYcehOKbo0HzWUHPSFlgxfs%3D&amp;Expires=1432084672&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="188"  alt="ATHANASIOS Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/385/">Athanasios</a></h4>
             <div class="uk-comment-meta">dir. by Alexi Papalexopoulos, 8 minutes, USA</div>
@@ -193,7 +264,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-butterfly-poster.jpeg" style="height:150px;"  alt="BUTTERFLY Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-butterfly-poster/2b6bf4b2987999ca399ceefcb7fac190.jpeg?Signature=eSWzNg6QO60J2eaMDS%2B7j%2BCWJTM%3D&amp;Expires=1432084673&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="214"  alt="BUTTERFLY Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/318/">Butterfly</a></h4>
             <div class="uk-comment-meta">dir. by Yianna Dellatolla, 20 minutes, Greece</div>
@@ -208,7 +279,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-before-the-full-moon-returns-danliewen-lu-poster.jpg" style="height:150px;"  alt="Before The Full Moon Returns Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-before-the-full-moon-returns-danliewen-lu-poster/b4afad1c0978c9ecf6db2b06e32c3559.jpg?Signature=1HJS0WKbXbR85j0GckPCr2ohXuQ%3D&amp;Expires=1432084674&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="225"  alt="Before The Full Moon Returns Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/380/">Before The Full Moon Returns</a></h4>
             <div class="uk-comment-meta">dir. by Danliewen Lu, 20 minutes, China</div>
@@ -223,7 +294,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-ceaseless-daniel-bloch-poster.jpg" style="height:150px;"  alt="Ceaseless Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-ceaseless-daniel-bloch-poster/4caca8c739c5d6b1792d852b4e641a8e.jpg?Signature=NN5UIGglIMUz3YoqjMoQgn%2BPH3Y%3D&amp;Expires=1432084674&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="212"  alt="Ceaseless Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/279/">Ceaseless</a></h4>
             <div class="uk-comment-meta">dir. by Daniel Bloch, 7 minutes, Australia</div>
@@ -264,7 +335,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-eschers-taxi-aleksei-abib-poster.jpg" style="height:150px;"  alt="Escher&#39;s Taxi Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-eschers-taxi-aleksei-abib-poster/ee39153830b009145bbd21dbe2f20e99.jpg?Signature=if1Tj7CEXWJtUOZgEhuYMf%2FTmoQ%3D&amp;Expires=1432084675&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="212"  alt="Escher&#39;s Taxi Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/389/">Escher&#39;s Taxi</a></h4>
             <div class="uk-comment-meta">dir. by Aleksei Abib, 16 minutes, Brazil</div>
@@ -279,7 +350,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-hear-me-out-andronikos-konstantinos-dimopoulos-poster.jpg" style="height:150px;"  alt="Hear me out (Άκουσέ με) Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-hear-me-out-andronikos-konstantinos-dimopoulos-poster/64bd30d98e8fcbb611cf2bd929c4d364.jpg?Signature=Z14n7QYXOWswhTT197tASChLBE0%3D&amp;Expires=1432084676&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="205"  alt="Hear me out (Άκουσέ με) Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/388/">Hear Me Out (Άκουσέ Με)</a></h4>
             <div class="uk-comment-meta">dir. by Andronikos - Konstantinos Dimopoulos, 20 minutes, Greece</div>
@@ -294,7 +365,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-helio-poster.png" style="height:150px;"  alt="Helio Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-helio-poster/3060f51dd53d047e2c203da9e5ddf894.jpg?Signature=vbqmsasADvFpCdo8yq1RIwYgwUE%3D&amp;Expires=1432084677&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="207"  alt="Helio Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/379/">Helio</a></h4>
             <div class="uk-comment-meta">dir. by Teddy Cecil, 20 minutes, USA</div>
@@ -309,7 +380,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-in-overtime-rami-yasin-poster.jpg" style="height:150px;"  alt="In Overtime Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-in-overtime-rami-yasin-poster/12f56cc1450bcd11ed192394e5023847.jpg?Signature=KVPZ7W6RV4wb3SLtwWy0BrYgG7M%3D&amp;Expires=1432084677&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="100"  alt="In Overtime Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/339/">In Overtime</a></h4>
             <div class="uk-comment-meta">dir. by Rami Yasin, 13 minutes, Jordan</div>
@@ -350,7 +421,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-judgment-elizabeth-kedrick-poster.jpg" style="height:150px;"  alt="Judgment Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-judgment-elizabeth-kedrick-poster/5b5274ea393e659b88d526c297be8ad2.jpg?Signature=Acyxjd9WQw336%2F9Exs9WUM1KhFA%3D&amp;Expires=1432084678&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="84"  alt="Judgment Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/375/">Judgment</a></h4>
             <div class="uk-comment-meta">dir. by Elizabeth Kedrick, 7 minutes, USA</div>
@@ -378,7 +449,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-klei-ruud-matthijssen-poster.png" style="height:150px;"  alt="Klei Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-klei-ruud-matthijssen-poster/8e690280c4ab6e8fed3b4766a219ea10.jpg?Signature=9XrYyGVgJn8ig0SGm1YJ2Ms7hP8%3D&amp;Expires=1432084679&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="100"  alt="Klei Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/357/">Klei</a></h4>
             <div class="uk-comment-meta">dir. by Ruud Matthijssen, 28 minutes, Netherlands</div>
@@ -393,7 +464,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-la-fin-hugo-hubert-poster.png" style="height:150px;"  alt="La Fin Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-la-fin-hugo-hubert-poster/fa95a1cd196dc372c984e6a8df0c3c0c.jpg?Signature=FXBl1Lex9rqMVagjmJN8UiTL0K4%3D&amp;Expires=1432084679&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="199"  alt="La Fin Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/293/">La Fin</a></h4>
             <div class="uk-comment-meta">dir. by Hugo Hubert, 19 minutes, France</div>
@@ -408,8 +479,6 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-noise-paul-surety-poster.jpg" style="height:150px;"  alt="Noise Poster">
-           
         <h4 class="uk-comment-title"><a href="/filmfestival/film/381/">Noise</a></h4>
             <div class="uk-comment-meta">dir. by Paul Surety, 6 minutes, United Kingdom</div>
         <div class="uk-comment-body">&#39;Noise&#39; is a film that uses clever sound design to show the liberating effects of dance.It shows the world from the perspective of a withdrawn and lonely girl surrounded by arguing or hectoring adults. The film has a cold, austere feel. Instead of dialogue the film is filled with cacophonous noise.</div>
@@ -423,7 +492,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-ona-meta-poster.jpg" style="height:150px;"  alt="ONA META Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-ona-meta-poster/e835a222e127c3a3f76b81a40ba1ebdd.jpg?Signature=ZG0Tag3Z6MKO9sBD%2F6EtX2JMJas%3D&amp;Expires=1432084680&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="210"  alt="ONA META Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/303/">Ona Meta</a></h4>
             <div class="uk-comment-meta">dir. by Elinor Nechemya, 28 minutes, Israel</div>
@@ -438,7 +507,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-olivia-martha-ilse-sophia-kiapos-poster.jpg" style="height:150px;"  alt="Olivia Martha Ilse Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-olivia-martha-ilse-sophia-kiapos-poster/398fe008f8999db8ee40ec4955e44aa9.jpg?Signature=a8kGJIHomFcHv9yWRQfVSfp9S7M%3D&amp;Expires=1432084681&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="222"  alt="Olivia Martha Ilse Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/374/">Olivia Martha Ilse</a></h4>
             <div class="uk-comment-meta">dir. by Sophia Kiapos, 14 minutes, USA</div>
@@ -466,7 +535,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-scrabble-cristian-sulser-poster.jpg" style="height:150px;"  alt="SCRABBLE Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-scrabble-cristian-sulser-poster/39bf7980ed82b341fee36ba6c171c943.jpg?Signature=uEoKCl64mcvaqbU6lo06mZJ0f9A%3D&amp;Expires=1432084681&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="211"  alt="SCRABBLE Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/276/">Scrabble</a></h4>
             <div class="uk-comment-meta">dir. by Cristian Sulser, 12 minutes, Switzerland</div>
@@ -494,8 +563,6 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-strawberries-paul-surety-poster.jpg" style="height:150px;"  alt="Strawberries Poster">
-           
         <h4 class="uk-comment-title"><a href="/filmfestival/film/338/">Strawberries</a></h4>
             <div class="uk-comment-meta">dir. by Paul Surety, 12 minutes, United Kingdom</div>
         <div class="uk-comment-body">Alex, a middle-aged married man, is having an affair with Alma, his much younger lover. The couple meet regularly to indulge their passion, but their latest rented love nest is full of surprises. The weekend goes well until a strange presence that emanates from a mysterious locked cupboard unnerves them both, creating paranoia and casting a malevolent spell over their relationship.</div>
@@ -509,7 +576,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-test-jay-lifton-poster.jpg" style="height:150px;"  alt="TEST Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-test-jay-lifton-poster/dfefbc8527be6fb7a8e868f4bc0e66aa.jpg?Signature=Q8w5sGiagbWLhBXPiV3mgmV7GTg%3D&amp;Expires=1432084682&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="222"  alt="TEST Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/294/">Test</a></h4>
             <div class="uk-comment-meta">dir. by Jay Lifton, 10 minutes, USA</div>
@@ -524,7 +591,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-the-loyalist-poster.png" style="height:150px;"  alt="THE LOYALIST Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-the-loyalist-poster/6d2924d0e7b1487b8893a3e20b38efc9.jpg?Signature=V8Q1t6cakOLNoFUqEMr%2B4XXs7NQ%3D&amp;Expires=1432084683&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="218"  alt="THE LOYALIST Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/360/">The Loyalist</a></h4>
             <div class="uk-comment-meta">dir. by Minji Kang, 20 minutes, South Korea</div>
@@ -539,7 +606,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-the-cursed-days-emilija-gasic-poster.jpg" style="height:150px;"  alt="The Cursed Days (Некрштени дани) Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-the-cursed-days-emilija-gasic-poster/a92cdce7b9335c7849cf11683876b550.jpg?Signature=NAzWMJH8CyZiF8cVTflctdozJIs%3D&amp;Expires=1432084684&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="84"  alt="The Cursed Days (Некрштени дани) Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/286/">The Cursed Days (Некрштени Дани)</a></h4>
             <div class="uk-comment-meta">dir. by Emilija Gasic, 17 minutes, Serbia/Montenegro</div>
@@ -567,8 +634,6 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-the-tree-of-numbers-poster.jpg" style="height:150px;"  alt="The Tree of Numbers Poster">
-           
         <h4 class="uk-comment-title"><a href="/filmfestival/film/290/">The Tree Of Numbers</a></h4>
             <div class="uk-comment-meta">dir. by Isis Kiwen, 15 minutes, Mexico</div>
         <div class="uk-comment-body">A little girl who is ostracized by her town is vindicated through her numbers.</div>
@@ -582,7 +647,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-the-west-begins-at-fifth-avenue-kryssa-schemmerling-donald-gray-poster.jpg" style="height:150px;"  alt="The West Begins at Fifth Avenue Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-the-west-begins-at-fifth-avenue-kryssa-schemmerling-donald-gray-poster/2ae99c4ce2c67d653b647c33b4c65a31.jpg?Signature=VOoU1WSdUbnkGjctqI%2F%2FtHJaDc4%3D&amp;Expires=1432084685&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="118"  alt="The West Begins at Fifth Avenue Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/281/">The West Begins At Fifth Avenue</a></h4>
             <div class="uk-comment-meta">dir. by Kryssa Schemmerling, Donald  Gray, 17 minutes, USA</div>
@@ -597,7 +662,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-the-outcasts-of-the-calatrava-bridge-dimitris-panakis-poster.jpg" style="height:150px;"  alt="The outcasts of the Calatrava Bridge Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-the-outcasts-of-the-calatrava-bridge-dimitris-panakis-poster/38942225d09a89cfef69f5bb998795dd.jpg?Signature=Aoo5fJqdflTZSXje5VmgQ3z5ZP8%3D&amp;Expires=1432084686&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="79"  alt="The outcasts of the Calatrava Bridge Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/291/">The Outcasts Of The Calatrava Bridge</a></h4>
             <div class="uk-comment-meta">dir. by Dimitris Panakis, 8 minutes, Greece</div>
@@ -612,7 +677,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-woman-konstantinos-chaliasas-poster.jpg" style="height:150px;"  alt="Woman Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-woman-konstantinos-chaliasas-poster/f41b5e3993c651ca2ca9397c4fee9c03.jpg?Signature=dqcjAVTf5azaI9rfTZVn2TNLuEg%3D&amp;Expires=1432084686&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="234"  alt="Woman Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/317/">Woman</a></h4>
             <div class="uk-comment-meta">dir. by Konstantinos Chaliasas, 15 minutes, Greece</div>
@@ -640,7 +705,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-junk-girl-mohammad-zare-poster.jpg" style="height:150px;"  alt="junk girl Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival-junk-girl-mohammad-zare-poster/fb973d40c383bfcbddcd174da6ca8200.jpg?Signature=K0yi2SWfY10IitWEYRq3KDLuBFU%3D&amp;Expires=1432084687&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="217"  alt="junk girl Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/361/">Junk Girl</a></h4>
             <div class="uk-comment-meta">dir. by Mohammad Zare, 17 minutes, Iran</div>
@@ -655,7 +720,7 @@
              <article class="uk-comment">
     <header class="uk-comment-header">
      
-        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival--bahar-spring-ali-pour-issa-poster.jpg" style="height:150px;"  alt="بهار - Bahar (Spring) Poster">
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/CACHE/images/images/mykonos-biennale-2015-film-festival--bahar-spring-ali-pour-issa-poster/c72df77d9fafd8d230d44d9097c4f9b2.jpg?Signature=Q35%2FQAq%2FjXuST58SxjRnXWoz3V8%3D&amp;Expires=1432084688&amp;AWSAccessKeyId=AKIAIMB277P23WWWAVAQ"    width="150" height="215"  alt="بهار - Bahar (Spring) Poster">
            
         <h4 class="uk-comment-title"><a href="/filmfestival/film/289/">بهار - Bahar (Spring)</a></h4>
             <div class="uk-comment-meta">dir. by Ali Pour Issa, 23 minutes, Iran</div>
@@ -663,71 +728,104 @@
     </header>
     
 </article>
-             
 
-
-
-
-
-
-
-             
-
-      
+        
         </div>
-     </div>
-     </div>
+    </div>
+        
+        
+
+
+        
     
 
 
 
 
+
+
+  
+
+
+
+
+
+
+<!-- <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> -->
+    <footer class="footie uk-hidden-small">
+        <div class="uk-container uk-container-center">
+            <div class="uk-clearfixc">
+                <div class="uk-align-medium-left">
+                    <div class="uk-panel widget_text">Copyright  © Mykonos Biennale 2013,14,15</div>
+                </div>
+                <div class="uk-align-medium-right">
+                    <div class="uk-panel widget_text">
+                        <a href="#" class="uk-icon-small uk-icon-twitter uk-margin-right"></a>
+                        <a href="#" class="uk-icon-small uk-icon-facebook uk-margin-right"></a>
+                        <a href="#" class="uk-icon-small uk-icon-pinterest"></a>
+                    </div>
+                </div>
+                <a class="tm-totop-scroller uk-text-center" data-uk-smooth-scroll="" href="#"></a>
+            </div>
+        </div>
+    </footer>   
+<!-- </div> -->
+
+    </div>
+
+<script>
     
-    <div id="offcanvas" class="uk-offcanvas">
-	<div class="uk-offcanvas-bar">
+
+
+
+
+
+</script>
+
+ <div id="offcanvas" class="uk-offcanvas">
+    <div class="uk-offcanvas-bar">
 
                                     <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
-   
 
                                         <li class="uk-parent">
                                             <a href="#" >Mykonos Biennale</a>
                                             <ul class="uk-nav-sub">
-												<li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
-												<li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
-												<li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
-												<li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
-												<li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
-												<li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
+                                                <li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
+                                                <li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
+                                                <li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
+                                                <li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
+                                                <li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
+                                                <li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
                                             </ul>
                                         </li>
 
-                                        <li class="uk-parent uk-active">
-                                            <a href="#"  style="color: magenta;">2015 Antidote</a>
+                                        <li class="uk-parent">
+                                            <a href="#"  >2015 Antidote</a>
                                             <ul class="uk-nav-sub">
-			<li><a href="index.html#2015-antidote" >Antidote</a></li>
-			<li><a href="index.html#2015-statement" >Statement</a></li>
-			<li><a href="index.html#2015-kite-festival" >Kite Festival</a></li>
-			<li><a href="index.html#2015-treasue-hunt" >Treasue Hunt</a><li>
-			<li> <a href="index.html#2015-weaving-conspiracy" >Weaving Conspiracy</a></li>
-			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
-			<li><a href="index.html#2015-video-graffiti" >Video Graffiti</a></li>
-			<li><a href="index.html#2015-dramatic-nights" >Dramatic Nights</a></li> 
-			<li class="uk-nav-header" >Dance</li>
-			<li><a href="index.html#2015-pigeage" >Pigeage</a></li>
+            <li><a href="index.html#2015-antidote" >Antidote</a></li>
+            <li><a href="index.html#2015-statement" >Statement</a></li>
+            <li><a href="index.html#2015-kite-festival" >Kite Festival</a></li>
+            <li><a href="index.html#2015-treasue-hunt" >Treasue Hunt</a><li>
+            <li> <a href="index.html#2015-weaving-residency" >Weaving Residency</a></li>
+            <li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+            <li><a href="index.html#2015-video-graffiti" >Video Graffiti</a></li>
+            <li><a href="index.html#2015-dramatic-nights" >Dramatic Nights</a></li>
+            <li class="uk-nav-header" >Dance</li>
+            <li><a href="index.html#2015-pigeage" >Pigeage</a></li>
                                             </ul>
                                         </li>
-<li class="uk-parent">
-                                            	<a href="#" >2013 Crises &amp; Paganism</a>
+<li class="uk-parent  uk-active">
+                                                <a href="#" >2013 Crises &amp; Paganism</a>
                                             <ul class="uk-nav-sub">
-							<li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-statement" >Statement</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-events" >Events</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-venues" >Venues</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-artists" >Artists</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-press" >Press</a></li>
-			<li class="uk-nav-header" >Credits</li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-team" >Team</a></li>
-			<li><a href="2013-Crises-and-Paganism.html#2013-sponsors" >Sponsors</a></li>
+                            <li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
+            <li><a href="#2013-statement" >Statement</a></li>
+            <li><a href="#2013-events" >Events</a></li>
+            <li><a href="#2013-venues" >Venues</a></li>
+            <li><a href="#2013-artists" >Artists</a></li>
+            <li><a href="#2013-press" >Press</a></li>
+            <li class="uk-nav-header" >Credits</li>
+            <li><a href="#2013-team" >Team</a></li>
+            <li><a href="#2013-sponsors" >Sponsors</a></li>
                                             </ul>
                                         </li>
                                     </ul>
@@ -735,9 +833,16 @@
                                 </div>
 
         </div>
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
 
-    
-    
-    
-    </body>
+  ga('create', 'UA-38396033-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
 </html>
