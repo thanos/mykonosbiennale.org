@@ -1,0 +1,781 @@
+{% extends "site_base.html" %}
+{% load staticfiles %}
+{% load pipeline %}
+    
+{% block title %}<title>2013 Mykonos Biennale - Crisis and Paganism</title>{% endblock %}
+{% block meta %}
+<meta name=”description” content="Home page of the 2013 Mykonos Biennale  whose theme was Crisis and Paganism">
+<meta property=”og:title” content="2013 Mykonos Biennale - Crisis and Paganism"/>
+<meta property="og:type" content="website"/>
+        <meta property="og:image" content="http://www.mykonosbiennale.org/images/mykonos-biennale-logo.png" />
+        <meta property="og:url" content="http://www.mykonosbiennale.org/2013-Crises-and-Paganism.html" />
+        <meta property=”og:description” content="Home page of the 2013 Mykonos Biennale  whose theme was Crisis and Paganism" />
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="http://www.mykonosbiennale.org/2013-Crises-and-Paganism.html">
+        <meta name=”twitter:title” content="2013 Mykonos Biennale - Crisis and Paganism">
+        <meta name="twitter:description" content="Home page of the 2013 Mykonos Biennale  whose theme was Crisis and Paganism" >
+        <meta name="twitter:image" content="http://www.mykonosbiennale.org/images/mykonos-biennale-logo.png"> 
+{% endblock %}
+{% block page_css %}
+<style>
+.menu {
+max-width: 700px;
+padding-left:0px;
+
+
+	}
+.page {
+		min-height: 700px;
+		max-width: 700px;
+		background-position: 100% 100%; 
+		background-repeat: no-repeat;
+		background-size: cover;
+		padding: 50px 50px 50px 50px;	
+	}
+
+.crises_paganism {
+	background-position: 0% 0%;
+	background-image: url("images/mykonos-biennale-2013-crisis-and-paganism.jpg");
+}
+
+
+.crises_paganism h1 {
+	font-size: 48px;
+	color: white;
+	font-weight: bold;
+	text-shadow: 2px 2px #000000;
+
+}
+
+
+
+
+.crises_paganism h2 {
+	
+	font-size: 36px;
+	color: magenta;
+	font-weight: bold;
+	text-shadow: 2px 2px #000000;
+
+}
+
+
+ .crises_paganism h3 {
+ 	padding-top: 450px;
+	font-size: 28px;
+	color: magenta;
+	font-weight: bold;
+	text-shadow: 2px 2px #000000;
+
+}
+
+
+
+
+.statement {
+
+	min-height: 900px;
+	color: red;
+	/* text-shadow: 3px 3px 9px rgba(255, 237, 0, 1); */
+	background-image: url(images/mykonos-biennale-2013-statement.jpg);
+}
+
+.statement p {
+		
+	font-size: 110%;
+}
+
+.statement h1 {
+	font-weight: bold;
+	color: red;
+		/* text-shadow: 3px 3px 9px rgba(255, 237, 0, 1);	*/
+}
+
+.events  {
+background-color: black;
+color: white;
+}
+
+.events h2, .events h1 {
+	font-weight: bold;
+	color: white;
+}
+
+.venues {
+background-image: url(images/mykonos-biennale-2013-crisis-and-paganism-venues.jpg);
+color: white;
+}
+.venues h2, .venues h1 {
+	font-weight: bold;
+	color: white;
+}
+.artists {
+	padding: 0px;
+
+}
+
+.press {
+background-color: black;
+color: white;
+
+}
+.press h2, .press h1 {
+	color: white;
+}
+
+
+.team {
+background-color: black;
+color: white;
+
+}
+.team h1 { color: white; }
+.team h3  {
+	font-size: 120%;
+	color: white;
+}
+
+.sponsors {
+
+}
+.sponsors h1 {
+color: black;
+}
+.sponsors h2 { 
+	font-size: 120%;
+	color: black;
+}
+
+
+.uk-container {
+	padding: 0px 0px;
+
+}
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+}
+
+
+ li.uk-active>a {
+ 	color: magenta!important;
+ }
+
+	</style>
+{% endblock %}
+
+
+
+                    {% block menu_2013 %}
+<li class="uk-parent" data-uk-dropdown="">
+	<a href="#"  data-uk-smooth-scroll="{offset: 90}">2013 Crises &amp; Paganism</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="#2013-invite"  data-uk-smooth-scroll="{offset: 90}">Crises &amp; Paganism</a></li>
+			<li><a href="#2013-statement"  data-uk-smooth-scroll="{offset: 90}">Statement</a></li>
+			<li><a href="#2013-events"  data-uk-smooth-scroll="{offset: 90}">Events</a></li>
+			<li><a href="#2013-venues"  data-uk-smooth-scroll="{offset: 90}">Venues</a></li>
+			<li><a href="#2013-artists"  data-uk-smooth-scroll="{offset: 90}">Artists</a></li>
+			<li><a href="#2013-press"  data-uk-smooth-scroll="{offset: 90}">Press</a></li>
+			<li class="uk-nav-header"  data-uk-smooth-scroll="{offset: 90}">Credits</li>
+			<li><a href="#2013-team"  data-uk-smooth-scroll="{offset: 90}">Team</a></li>
+			<li><a href="#2013-sponsors"  data-uk-smooth-scroll="{offset: 90}">Sponsors</a></li>
+			
+		</ul>
+	</div>
+</li>
+                     {% endblock %}
+
+
+
+
+{% block body_base %}
+<div class="uk-container uk-height-1-1" >		
+	<div class="uk-grid mark_red"  id="2013-invite">
+		<div class="uk-width-medium-1-1 uk-container-center page crises_paganism ">
+		
+				<!-- <div class="uk-vertical-align-bottom uk-text-justify uk-text-large uk-text-contrast" style = "">	 -->
+
+   <h1>MYKONOS BIENNALE</h1>
+    <h2>Crises &amp; Paganism</h2>
+    <h3>21-23 June 2013</h3>
+
+				
+				
+					
+				<!-- </div> -->
+		
+		</div>
+	</div>
+
+		
+		
+	<div class="uk-grid mark_red"  id="2013-statement">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page statement ">
+
+<h1>Statement</h1>
+				<p>The theme of the 2013 Mykonos Biennale is a parody of the Crisis Industry’s choice of Greece as a main protagonist in their current financial disaster scenario.
+The Crisis punishes in an exemplary way paganistic Greece, who is idly dancing and drinking as the “southern latino lover”, the grasshopper of Aesop’s story.
+Greece as the juvenile Pinocchio is persuaded by the cat and the fox, the northern rich buddies, to sell his books to join their party  while the old Geppetto  must sell his coat to pay the bills. With the broken Geppettos, the uprooted forests of Chalkidiki, the blackened valleys of solar panels, Greece is depressed  and bullied by the global media.
+“Idleness is the mother of evil” and Greece is unemployed. 17 million tourists want to see her swim, sing and dance because, oh what a coincidence! It’s summer,  Adonis with Persephone are back on earth feasting together  with the guitar playing  grasshopper.
+Is belly dancing considered a legitimate job? And if yes, when do the people qualify for their pension? Is retirement obligatory? Can the hungry bear cubs dance? Can old men dance? Was the empress Theodora the daughter of a bear tamer?
+Was emperor Justinian the nephew of an Albanian immigrant? What connects Europe with the Holy Alliance? Has the age of the empire returned? If money is the Crisis and Nature is paganism, is this relationship an oxymoron? As both Annas in Brecht’s Seven Deadly Sins, the role of morality change at the beat of global hypocrisy. As the birds sing, the waves unravel and Pinocchio’s fairy is disguised as Art and wrestles with Aladdin’s genie and the three consumer wishes. To be continued in alternative Mykonos where the renowned nudist emperor will visit with his new clothes.</p>
+	
+		
+		</div>
+	</div>
+		
+		
+
+
+	<div class="uk-grid mark_red"  id="2013-events">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page  events">
+
+<h1>Events</h1>
+<div class="uk-grid  mark_red ">
+					<div class="uk-width-medium-1-2  uk-container-center ">
+						<h2>
+						 <a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_The_Mystic_Party.html">20th June 2013</a>
+						</h2>
+						<a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_The_Mystic_Party.html"><img class="uk-responsive-width" alt ="Mykonos Biennale 2013 , The Mystic Party, photo by Tassos Vrettos"
+						src ="images/mykonos-biennale-2013-mystic-party-photo_by-Tassos_Vrettos-02a.jpg"></a>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<h2>
+						 <a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_21st_June.html">21st June 2013</a>
+						</h2>
+						<a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_21st_June.html"><img class="uk-responsive-width"  alt="mykonos biennale 2013 21st June - at the windmills" src ="images/mykonos-biennale-2013-21st-June.jpg"></a>
+					</div>
+				</div>
+				<div class="uk-grid  mark_red">
+					<div class="uk-width-medium-1-2">
+						<h2>
+						 <a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_22nd_June.html">22nd June 2013</a>
+						</h2>
+						<a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_22nd_June.html"><img class="uk-responsive-width"  alt="mykonos biennale 2013 In front Venieri mansion 22th june" src ="images/mykonos-biennale-2013-In-front-venieri-mansion-22th-june.jpg"></a>
+					</div>
+					<div class="uk-width-medium-1-2">
+						<h2>
+						 <a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_23rd_June.html">23rd June 2013</a>
+						</h2>
+						<a href="http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_23rd_June.html"><img class="uk-responsive-width"  alt="mykonos biennale 2013, lydia venieri and dimitris vassilakis on delos - 23rd june"   src ="images/mykonos-biennale-2013-lydia-venieri-dimitris-vassilakis-delos-23rd-june.jpg"></a>
+					</div>
+				</div>
+		</div>
+	</div>
+		
+	<div class="uk-grid mark_red"  id="2013-venues">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page venues">
+					<h1>Venues</h1>
+					<p>
+					The venues of the Mykonos Biennale are located in many 
+										strategic points to initiate the visitor into the  
+										cultural inheritance of the island. The  contemporary and 
+										international art works will blend with traditional culture in a 
+										haunted dialog hosted by the ghost of the past creating together 
+										Historical Time.
+					</p>
+					<h2>Town Hall  (The Russian House)</h2>
+					<p>
+						Then the art installation Rendez-vous was presented, 
+						followed by the   Flower Project Part 2 by the «Flower Girls» Anna 
+						Pangalou sing the aria John Cage from the main balcony of Town Hall.
+										</p>
+					<h2>Old Port</h2>
+					<p>The Sylvia Macci dance group presented "Yaloudes" a work inspired by 
+						Mykonian sea ghosts.</p>
+
+					<h2>The Windmills</h2>
+					<p>Nobuhiro Ishihara - Installation: Dragon is reborn as a Cetus κητος from the Japanese to the Greek mythology.
+					Lucas Samaras - Video installation in the windmill.</p>
+
+					<h2>The Archeological Museum</h2>
+					<p>Takis &amp; Lydia Venieri</p>
+
+					<h2>Big White Gallery</h2>
+					<p>Yiannis Gazetopoulos, Alexis Fidetzis, Olga Goulandris, Patrick Swirc, 
+						Robert Flynt, Lydia  Andrioti, Lydia Venieri, Christos Markogiannakis,
+						Antonis Volanakis,Theodoulos Gregoriou, Fotis Sagona, Thomas Stavropoulos.</p>
+
+					<h2>Delos</h2>
+					<p>Alternative Baptism, a performance by Lydia Venieri and Adonis Volanakis accompanied by the music of Dimitris Vassilakis and the Sylvia Macci Dance Group.
+						Lydia Venieri performed Words about Women by Betty Tompkins.</p>
+
+					<h2>The Folklore Museum (The house of the Pirate Mermelakas)</h2>
+										<p>Pato Hebert, Aleta Lee, John Henry, Dean Monogenis, Camila Santin.</p>
+
+					<h2>Kouseyares church</h2>
+										<p>Shashpour Pouyan  &amp; Pedro Tyler.</p>
+
+					<h2>Lena's House</h2>
+					<p>Andonis Volanakis, Pepa Prieto, Anita King, Manos Pontikakis, Rafaele Shirley.</p>
+					<h2>School of Fine Arts</h2>
+					<p>Works by Liana Anastasiadis, Lydia Andrioti, Panagiota Apostolopoulos,  Leonidas Chalepas, Mark Hadjipateras, Marie Jacotey, Anita King, Esther Lemi, Christos Markogiannakis, Maria Nymfiadi,  Costas Picadas,  Fotis Sagonas, Cam Santin, Katerina Skassi,  Alice Skoulikidis, Lydia Venieri, Iria Vrettos, Tassos Vrettos, Cindy Tower.
+					The festivals inauguration ceremony was opened by the children's choir of the Music School "George Axiotis," conducted by Tina Psalida.
+					
+										</p>
+
+					<h2>Venieri Mansion, Matoyanis, Mykonos Town</h2>
+					<p>Anna Pangalos, Antonis Volanakis and Din Heagney perfom the poetry of Kurt Schwitters, Henry Miller and John Ashbery  respectively.
+					</p>
+
+					<h2>Venieri House, Ano Mera</h2>
+					<p>The Mystic Party with music by  MICHALIS KOUNENIS and LEFTERIS SIKINIOTIS, 
+						and dance performances: The Last Supper by Lydia Venieri  performed by 
+						the THE DANCE GROUP OF SYLVIA MACCI and Manage á Trois performed by Andonis V
+						olonakis and the Flower Girls.</p>
+
+					<h2>Municipal Gallery</h2> 
+										<p>Delos Revisited  -A mosaic workshop for children was held by Irini Sirianou.</p>
+
+					<h2>The Organic Vinyards of Paraportianos</h2>
+					<p>Among the ancient vines of his organic vineyard, Paraportiani, Mr Nikos Asimomytis hosted a Dionysian feast for biennale. 
+						Dimitris Vassilakis his music for the ancient vines.</p>
+					<h2>Cine Mando (Open air Cinema)</h2>
+					<p>The Mykonos Biennale Art Video Film Festival.</p>		
+		</div>
+	</div>
+		
+	
+
+		<div class="uk-grid mark_red"  id="2013-artists">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page artists" >
+
+					<img alt="mykonos biennale 2013 - crisis and paganism - artists page - dorothea- mecuri, katerina skassi, andonis rousunellos"
+							src="images/mykonos-biennale-2013-crisis-and-paganism-artists-page-dorothea-mecuri-katerina-skassi-andonis-rousunellos.jpg">
+					<h1>Artists</h1>
+					<div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-5 uk-grid-width-large-1-8" data-uk-grid="{gutter: 20}" style="color:black;">
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Nikos_Alexiou.html">Nikos Alexiou</a></div>
+						<div><a href="#XXX">Liana Anastasiadi</a></div>
+						<div><a href="#XXX">Lydia Andrioti</a></div>
+						<div><a href="http://web.me.com/venieri/Site/Stephen_Antonakos.html">Stephen Antonakos</a></div>
+						<div><a href="#XXX">Panagiota Apostolopoulou</a></div>
+						<div><a href="#XXX"> Avgi-Maria Atmatzidou</a></div>
+						<div><a href="#XXX">Jan Baracz</a></div>
+						<div><a href="#XXX">Pierrot Carillero</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Leonidas_Chalepas.html"> Leonidas Chalepas</a></div>
+						<div><a href="#XXX">Manolis Charos</a></div>
+						<div><a href="#XXX">Stanislav Chertenkov</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Kristina_Colovic.html">Kristina Colovic</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/LYDIA_DAMBASSINA.html">Lydia Dambassina</a></div>
+						<div><a href="#XXX">Venia Dimitrakopoulou</a></div>
+						<div><a href="#XXX">[dNASAb]</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Alexis_Fidetzis.html">Alexis Fidetzis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Karen_Finley.html">Karen Finley</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Robert_Flynt.html">Robert Flynt</a></div>
+						<div><a href="#XXX">Yannis Gazetopoulos</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Peter_Gerakaris.html">Peter Gerakaris</a></div>
+						<div><a href="#XXX">Giullia Ghiani</a></div>
+						<div><a href="#XXX">Theodoulos Gregoriou</a></div>
+						<div><a href="#XXX">Dimosthenis Grivas</a></div>
+						<div><a href="#XXX">Rosalinda Gonzalez</a></div>
+						<div><a href="#XXX">Shalom Gorewitz</a></div>
+						<div><a href="#XXX">Olga Goulandris</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Mark_Hadjipateras.html">Mark Hadjipateras</a> &amp; <br/><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Christina_Katsari.html">Christina Katsari</a></div>
+						<div><a href="#XXX">Gregory de la Haba</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Pato_Hebert.html">Heide Hatry</a></div>
+						<div><a href="#XXX">Pato Hebert</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Jon_Henry.html">Jon Henry</a></div>
+						<div><a href="#XXX">Gary Indiana</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Nobuhiro_Ishihara.html">Nobuhiro Ishihara</a></div>
+						<div><a href="#XXX">Marie Voyatzis Jacotey</a></div>
+						<div><a href="#XXX">Brad Kahlhamer</a></div>
+						<div><a href="#XXX">Jason Karaindros</a></div>
+						<div><a href="#XXX">Danai Katopodi</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Anita_King.html">Anita King</a></div>
+						<div><a href="#XXX">Andonis Kioukas</a></div>
+						<div><a href="#XXX">Dimitra Kondilatou</div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Panos_Kouros.html">Panos Kouros</div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Tao_Kulczycki.html">Tao Kulczycki</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Nicaela_Callimanopulos.html">Nicaella Kallimenopoulos</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Esmeralda_Kosmatopoulos.html">Esmeralda Kosmatopoulos</a></div>
+						<div><a href="#XXX">Harris Kondosphyris</a></div>
+						<div><a href="#XXX">Panos Kostouros</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Tyrone_Lebon.html">Tyrone Lebon</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Aleta_Lee.html">Aleta Lee</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Esthir_Lemi.html">Esthir Lemi</a></div>
+						<div><a href="#XXX">Colette Lumiere</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Christos_Markogiannakis.html">Christos Markogiannakis</a></div>
+						<div><a href="#XXX">Silvia Macci and Synergy of art</a></div>
+						<div><a href="#XXX">Marjan Moghaddam</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Dean_Monogenis.html">Dean Monogenis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Trine_Lise_Nedreaas.html">Trine Nedreas</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Melina_Nicolaides.html">Melina Nicolaides</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Maria_Nymfiadi.html">Maria Nymfiadi</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/ORLAN.html">ORLAN</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Aga_Ousseinov.html">Aga Ousseinov</a></div>
+						<div><a href="#XXX">Anna Pagalou</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Maria_Papadimitriou.html">Maria Papadimitriou</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Richard_Pasquarelli.html">Richard Pasquarelli</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Ben_Patton.html">Ben Patton</a></div>
+						<div><a href="#XXX">Katie Peyton</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Costas_Picadas.html">Kostas Picadas</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Mano_Pontikakis.html">Mano Pontikakis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Shahpour_Pouyan.html">Shashpour Pouyan</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Pepa_Prieto.html">Pepa Prieto</a></div>
+						<div><a href="#XXX">Marianna Sangita Røe</a></div>
+						<div><a href="#XXX">Mary Reid Kelly</a></div>
+						<div><a href="#XXX">Konstantinos Rigos</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Alfredo_Romano.html">Alfredo Romano</a></div>
+						<div><a href="#XXX">Fotis Sagonas</a></div>
+						<div><a href="#XXX">Lucas Samaras</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Camila_Santin.html">Camila Santin</a></div>
+						<div><a href="#XXX">Katerina Skassi</a></div>
+						<div><a href="#XXX">Aliki Skoulikidi</a></div>
+						<div><a href="#XXX">Thomas Stavropoulos</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Swirc_Patrick.html">Patrick Swirc</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Raphaele_Shirley.html">Raphaele Shirley</a></div>
+						<div><a href="#XXX">Takis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Philip_Tsiaras.html">Philip Tsiaras</a></div>
+						<div><a href="#XXX">Betty Tompkins</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Cindy_Tower.html">Cindy Tower</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/trap_e_zen.html">trapέζῆν collective</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/George_Tsokopoulos.html">George Tsokopoulos</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Pedro_Tyler.html">Pedro Tyler</a></div>
+						<div><a href="#XXX">Dimitris Vassilakis</a></div>
+						<div><a href="#XXX">George Vdokakis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Lydia_Venieri.html">Lydia Venieri</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Theodoras_Vogiatzidis.html">Theodoras Vogiatzidis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Adonis_Volanakis.html">Adonis Volanakis</a></div>
+						<div><a href="#XXX">Iria Vrettou</a></div>
+						<div><a href="#XXX">Tassos Vrettos</a></div>
+						<div><a href="#XXX">Lee Wells</a></div>
+						<div><a href="#XXX">Alison Williams</a></div>
+						<div><a href="#XXX">Phyllis Yampolsky</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Theodoros_Zafeiropoulos.html">Theodoros Zafeiropoulos</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Emmanouil_Zacharioudakis.html">Manolis Zaharioudakis</a></div>
+						<div><a href="#XXX">O Zhang</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Agni_Zotis.html">Agni Zotis</a></div>
+						<div><a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/Vanessa_Zouganeli.html">Vanessa Zouganeli</a></div>
+					</div>
+		</div>
+	</div>	
+
+
+
+		<div class="uk-grid mark_red"  id="2013-press">
+		<div class="uk-width-medium-1-1 uk-container-center page press">
+			
+					<h1>Press</h1>	
+
+					<div class="item">
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-Marie_Claire-June_2013-x.pdf"><img height="300" 
+						alt="mykonos beinnale 2013  - press -  Marie Claire"
+							src ="images/mykonos-beinnale-2013-Marie-Claire.png"></a>
+					<h3>
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-Marie_Claire-June_2013-x.pdf">Marie Claire July, 2013</a>
+						</h3>
+					</div>
+						<div class="item">
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennal-lofficiel_october_2013-x.pdf"><img height="300" 
+						alt="mykonos biennale 2013  - press - l'officiel, october 2013"
+							src ="images/mykonos-biennale-2013-lofficiel_october_2013_0.jpg"></a>
+					<h3>
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennal-lofficiel_october_2013-x.pdf">L’Officiel October, 2013</a>
+						</h3>
+					</div>
+		
+			<div class="item">
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-Marie_Claire-June_2013-x.pdf"><img  height="300" 
+						alt="mykonos biennale 2013  - press - Athens Press" src ="images/mykonos-biennale-2013-Athens-Press.png"></a>
+					<h3>
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-Marie_Claire-June_2013-x.pdf">Athens Press, June 2013</a>
+						</h3>
+					</div>
+		
+			<div class="item">
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennal-LOfficiel_Levant-October_2013-x.pdf"><img   height="300" 
+							alt="mykonos biennale 2013 - press - L'Officiel October" src ="images/mykonos-biennale-2013-LOfficiel-October.jpg"></a>
+					<h3>
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennal-LOfficiel_Levant-October_2013-x.pdf">L’Officiel Levant, October Issue 39</a>
+						</h3>
+					</div>
+		
+		
+			<div class="item">
+						<a href="http://issuu.com/lofficiel_levant/docs/ol39?e=0/5207988"><img   height="300" 
+							alt="mykonos biennale 2013 - press - eleupherotypia 19 July 2013" src ="images/mykonos-biennale-eleupherotypia-19-July-2013.jpg"></a>
+					<h3>
+						<a href="http://issuu.com/lofficiel_levant/docs/ol39?e=0/5207988">Athens Voice, June 2013</a>
+						</h3>
+					</div>
+		
+		
+			<div class="item">
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-Marie_Claire-June_2013-x.pdf"><img  height="300" 
+							alt="mykonos beinnale 2013 - press - athens voice" src ="images/mykonos-beinnale-press-athens-voice.jpg"></a>
+					<h3>
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-Marie_Claire-June_2013-x.pdf">Eleupherotypia, 19 July 2013</a>
+						</h3>
+					</div>
+		
+		
+			<div class="item">
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-cassaviva-august_2013.pdf"><img  height="300"
+							alt="mykonos biennale 2013 - press - cassaviva august"  src ="images/mykonos-biennale-2013-press-cassaviva.jpg"></a>
+					<h3>
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-cassaviva-august_2013.pdf">Casaviva, June 2013</a>
+						</h3>
+					</div>
+		
+			<div class="item">
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennal-proto_thema_30_6_2013-fx.pdf"><img height="300"  
+							alt="mykonos biennal 2013 - press - proto thema 30-6-2013" src ="images/mykonos-biennale-2013-press-proto-thema.jpg"></a>
+					<h3>
+						<a href="https://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennal-proto_thema_30_6_2013-fx.pdf">Proto Thema, 30th June 2013</a>
+						</h3>
+					</div>
+		
+			<div class="item">
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-REAL_NEWS-30_%CE%99%CE%BF%CF%85%CE%BD_2013-x.pdf"><img   height="300" 
+							alt="mykonos biennale 2013 - press - REAL NEWS 30-6-2013" src ="images/mykonos-biennale-2013-REAL-NEWS-30-6-2013.jpg"></a>
+					<h3>
+						<a href="http://s3.amazonaws.com/mykonos_beinnale/Press/mykonos_biennale-REAL_NEWS-30_%CE%99%CE%BF%CF%85%CE%BD_2013-x.pdf">Real News, 30th June 2013</a>
+						</h3>
+					</div>
+					
+					
+	
+	
+
+		</div>
+	</div>
+
+
+
+
+
+	<div class="uk-grid mark_red"  id="2013-team">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page  team" >
+
+					<h1>Team</h1>	
+	<div class="uk-grid-width-small-1-3 uk-grid-width-medium-1-5" data-uk-grid="{gutter: 10}"  >
+					<div class="item">
+						<a href="http://www.venieri.com/"><img  alt="" src ="images/mykonos-biennale-2013-Lydia-Venieri.jpg"></a>
+					<h2 class="uk-h3 team_member"><a href="http://www.venieri.com/">Lydia<br/>Venieri</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class=""    alt="" src ="images/mykonos-biennale-2013-Andonis-Kioukas.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Andonis<br/>Kioukas</a></h2>
+					</div>
+						<div class="item">
+						<a href="http://www.avionfilms.gr/"><img class=""    alt="" src ="images/mykonos-biennale-2013-George-Tsokopoulos.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.avionfilms.gr/">George<br/>Tsokopoulos</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://ark-aw.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Maria-Papadaki.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://ark-aw.com/">Maria<br/>Papadaki</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://adonisvolanakis.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-team-Adonis-Volanakis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://adonisvolanakis.com/">Adonis<br/>Volanakis</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.dimitriosvassilakis.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Dimitris-Vassilakis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.dimitriosvassilakis.com/">Dimitris<br/>Vassilakis</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.annapangalou.net/en/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Ana-Pangalou.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.annapangalou.net/en/">Ana<br/>Pangalou</a></h2>
+						</div>
+					<div class="item">
+						<a href="http://www.studiovrettos.gr/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Tassos-Verttos.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.studiovrettos.gr/">Tassos<br/>Verttos</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Sylvia-Macci-Varotsos.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Sylvia<br/>Macci-Varotsos</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Michael-Skafidas.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Michael<br/>Skafidas</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.fotissagonas.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Fotis-Sagonas.jpg"></a>
+					<h2 class="uk-h4 team_member"><a href="http://www.fotissagonas.com/">Fotis<br/>Sagonas</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Elefteria-Kotzaki.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Elefteria<br/>Kotzaki</a></h2>	
+					</div>
+						<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Christina-Spanos.jpg">
+					<h2 class="uk-h4 team_member"><a href="#XXX">Christina<br/>Spanos</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Demeter-Stamatopoulou.jpg"></a>
+					<h2 class="uk-h4 team_member"><a href="#XXX">Demeter<br/>Stamatopoulou</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://alexisfidetzis.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Alexis-Fideztis.jpg"></a>
+					<h2 class="uk-h4 team_member"><a href="http://alexisfidetzis.com/">Alexis<br/>Fideztis</a></h2>
+					</div>
+				<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Yannis-Voliotis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Yannis<br/>Voliotis</a></h2>	
+				</div>
+					<div class="item">
+						<a href="http://lydiaandrioti.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Lydia-Andrioti.jpg"></a>
+					<h2 class="uk-h4 team_member"><a href="http://lydiaandrioti.com/">Lydia<br/>Andrioti</a></h2>
+					</div>
+						<div class="item">
+						<a href="http://www.panoskostouros.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Panos-Kostouros.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.panoskostouros.com/">Panos<br/>Kostouros</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Annable-Aronis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Annable<br/>Aronis</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.mykonos-wines.gr/en.html"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Nikos-Asimomytis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.mykonos-wines.gr/en.html">Nikos<br/>Asimomytis</a></h2>
+					</div>
+				<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Thanos-Vassilakis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Thanos<br/>Vassilakis</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.katiepeyton.com/"><img class="uk-responsive-width" alt="" src ="images/Mykonos-Biennale-2013-Katie-Peyton.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.katiepeyton.com/">Katie<br/>Peyton</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.leewells.org/"><img class="uk-responsive-width" alt="" src ="images/Mykonos-Biennale-2013-Lee-Wells.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="http://www.leewells.org/">Lee<br/>Wells</a></h2>
+					</div>
+					<div class="item">
+						<a href="https://www.facebook.com/tina.psalida"><img class="uk-responsive-width" alt="" src ="images/Mykonos-Biennale-2013-Tina-Psalida.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="https://www.facebook.com/tina.psalida">Tina<br/>Psalida</a></h2>
+					</div>
+					<div class="item">
+						<a href="#XXXX99"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-Babis-Amoiridis.jpg"></a>
+						<h2 class="uk-h4 team_member"><a href="#XXX">Babis<br/>Amoiridis</a></h2>
+					</div>
+			</div>
+
+		</div>
+	</div>	
+
+
+		<div class="uk-grid mark_red"  id="2013-sponsors">
+		<div class="uk-width-medium-1-1  uk-container-center page sponsors">
+			
+<h1>Main Sponsors</h1>	
+	<div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-3" data-uk-grid="{gutter: 20}"  >
+					<div class="item">
+						<a href="http://www.mykonos.gr/"><img  alt="" src ="images/mykonos-biennale-2013-sponsor-municipality-of-mykonos.jpg">
+						<h2><a href="http://www.mykonos.gr/">MUNICIPALITY OF MYKONOS</a></h2>
+					</div>
+					<div class="item">
+						<a href="http://www.asfa.gr/"><img class=""    alt="" src ="images/mykonos-biennale-2013-sponsor-school-of-fine-arts.jpg"></a>
+						<h2>
+							<a href="http://www.asfa.gr/">SCHOOL OF FINE ARTS</a> 
+						</h2>
+					</div>
+						<div class="item">
+						<a href="http://www.cinemanto.gr/"><img class=""    alt="" src ="images/mykonos-biennale-2013-sponsor-cine-manto.jpg"></a>
+						<h2>
+							<a href="http://www.cinemanto.gr/">CINE MANTO</a> 
+							</h2>
+					</div>
+					<div class="item">
+						<a href="http://www.avionfilms.gr/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-sponsor-avion-films.jpg">
+						<h2>
+							<a href="http://www.avionfilms.gr/">AVION FILMS</a> 
+						</h2>
+					</div>
+					<div class="item">
+						<a href="http://www.aphrodite-mykonos.gr/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-sponsor-aphroditi-beach-hotel.jpg">
+					<h2>
+						<a href="http://www.aphrodite-mykonos.gr/">AΦRODITE MYKONOS BEACH HOTEL</a>
+						</h2>
+					</div>
+					<div class="item">
+						<a href="http://www.hellenicseaways.gr/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-sponsor-hellenic-seaways.jpg">
+						<h2>
+							<a href="http://www.hellenicseaways.gr/">HELLENIC SEAWAYS</a> 
+						</h2>
+					</div>
+					<div class="item">
+						<a href="http://www.qatarairways.com/"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-sponsor-qatar-airways.jpg"></a>
+						<h2>
+					<a href="http://www.qatarairways.com/">QATAR AIRWAYS</a>
+						</h2>
+					</div>
+						<div class="item">
+						<a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/2013_Credits_files/2007399E-LOGO%20AFSKT%20Q.jpg"><img class="uk-responsive-width" alt="" src ="images/mykonos-biennale-2013-sponsor-air-france.jpg"></a>
+							<h2>
+					<a href="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/2013_Credits_files/2007399E-LOGO%20AFSKT%20Q.jpg">AIRFRANCE</a>
+						</h2>
+					</div>
+					<div class="item">
+						<a href="http://www.mykonos-wines.gr/en.html"><img class="uk-responsive-width" src ="images/mykonos-biennale-2013-sponsor-PARAPORTIANI_VINEYARDS.jpg"
+						alt="mykonos biennale 2013 sponsor: PARAPORTIANI VINEYARDS"></a>
+											<h2>
+					<a href="http://www.mykonos-wines.gr/en.html">PARAPORTIANI VINEYARDS</a>
+						</h2>
+						</div>
+					<div class="item">
+						<a href="4444"><img class="uk-responsive-width" alt=""  src ="images/mykonos_biennale-2013-sponsor-Andronikos-Hotel-Mykonos.jpg"></a>
+					</div>
+	<div class="item">
+						<a href="http://www.loyachting.com/"><img class="uk-responsive-width" src ="images/mykonos_biennale-2013-sponsor-Lo-Yatching.jpg"
+							alt="mykonos biennale 2013 sponsor: Lo Yatching" ></a>
+							<h2>
+					<a href="http://www.loyachting.com/">LO YATCHING</a>
+						</h2>
+					</div>
+
+						<div class="item">
+						<a href="http://www.andronikos.gr/"><img class="uk-responsive-width" src ="http://www.mykonosbiennale.com/Mykonos_Biennale_2015/2013_Credits_files/mykonos_biennale-Andronikos_Hotel_Mykonos.jpg"
+							alt="mykonos biennale 2013 sponsor: Lo Yatching" ></a>
+							<h2>
+					<a href="http://www.andronikos.gr/">Andronikos Hotel</a>
+						</h2>
+					</div>
+
+			
+					<div class="item">
+							<h2>
+					<a href="4444">ByteEasy</a>
+						</h2>
+					</div>
+
+						<div class="item">
+			
+							<h2>
+					<a href="4444">Syntazo</a>
+						</h2>
+					</div>	
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+<!-- <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> -->
+	<footer class="footie uk-hidden-small">
+		<div class="uk-container uk-container-center">
+			<div class="uk-clearfixc">
+				<div class="uk-align-medium-left">
+					<div class="uk-panel widget_text">Copyright  © Mykonos Biennale 2013,14,15</div>
+				</div>
+				<div class="uk-align-medium-right">
+					<div class="uk-panel widget_text">
+						<a href="#" class="uk-icon-small uk-icon-twitter uk-margin-right"></a>
+						<a href="#" class="uk-icon-small uk-icon-facebook uk-margin-right"></a>
+						<a href="#" class="uk-icon-small uk-icon-pinterest"></a>
+					</div>
+				</div>
+				<a class="tm-totop-scroller uk-text-center" data-uk-smooth-scroll="" href="#"></a>
+			</div>
+		</div>
+	</footer>	
+<!-- </div> -->
+
+	</div>
+
+
+{% endblock %}

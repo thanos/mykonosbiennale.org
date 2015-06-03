@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html class="uk-notouch uk-height-1-1" dir="ltr" lang="en-gb">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<title>Mykonos Biennale - 2015 - Antidote</title>
+
+	<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link id="data-uikit-theme" rel="stylesheet" href="css/uikit.css">
+
+        <script src="js/jquery.js"></script>
+        <script src="js/uikit.js"></script>
+	<script src="js/components/sticky.js"></script>
+	<script src="js/components/grid.js"></script>
+
+	<script src="smooth-scroll.min.js"></script>
+	<!-- <script src="js/bix-slideshow.js"></script> -->
+      <script src="js/slideshow.js"></script>
+        <script src="js/slideshow-fx.js"></script>
+	<style>
+
+
+	.menu {
+max-width: 700px;
+padding-left:0px;
+
+
+	}
+	.page {
+		min-height: 700px;
+		max-width: 700px;
+		background-position: 100% 100%; 
+		background-repeat: no-repeat;
+		background-size: cover;
+
+	}
+	.slideshow {
+height: 200px;		
+height: 150px;
+overflow: hidden;
+	}
+.antidote {
+	padding: 50px 50px 50px 50px;	
+	background-image: url(images/mykonos-biennale-2015-antidote-invite.jpg);
+}
+
+.antidote h3, .antidote h2, .antidote h1 {
+	color: magenta;
+	font-weight: bold;
+	text-shadow: 2px 2px #000000;
+	text-align: center;
+}
+.statement {
+	color: blue;
+	text-shadow: 3px 3px 9px rgba(255, 237, 0, 1);
+	background-image: url(images/mykonos-biennale-2015-antidote-statement.jpg);
+	padding: 350px 50px 50px 50px;
+
+}
+
+.statement p {
+		
+	font-size: 130%;
+}
+
+.statement h1 {
+	color: blue;
+		text-shadow: 3px 3px 9px rgba(255, 237, 0, 1);	
+}
+
+
+.kite-festival {
+	padding: 150px 50px 50px 50px;
+	font-size: 130%;
+	color: cyan;
+	text-shadow: 2px 2px 9px rgba(0, 0, 0, 1);	
+	background-image: url(images/mykonos-biennale-2015-antidote-kite-festival.jpg);
+}
+
+.kite-festival h1 {
+	color: yellow;
+}
+
+
+
+.treasure-hunt {
+	padding: 300px 50px 50px 50px;
+	font-size: 130%;
+	background-image: url(images/mykonos-biennale-2015-antidote-treasure-hunt.png);
+}
+.treasure-hunt h1 {
+	color: pink;
+}
+
+
+.weaving-conspiracy {
+	padding: 250px 50px 50px 50px;
+	font-size: 130%;
+	color: cyan;
+	text-shadow: 2px 2px 9px rgba(0, 0, 0, 1);	
+	background-image: url(images/mykonos-biennale-2015-antidote-weaving-residency.png);
+}
+
+.weaving-conspiracy h1 {
+	color: yellow;
+}
+
+.video-graffiti {
+	padding: 250px 50px 50px 50px;
+	font-size: 130%;
+	color: cyan;
+	text-shadow: 2px 2px 9px rgba(0, 0, 0, 1);	
+	background-image: url(images/mykonos-biennale-2015-antidote-video-graffiti.png);
+}
+
+.video-graffiti h1 {
+	color: yellow;
+}
+
+
+.dramatic-nights {
+	padding: 250px 50px 50px 50px;
+	font-size: 130%;
+	color: cyan;
+	text-shadow: 2px 2px 9px rgba(0, 0, 0, 1);	
+	background-image: url(images/mykonos-biennale-2015-antidote-dramatic-nights.png);
+}
+
+.dramatic-nights  h1 {
+	color: yellow;
+}
+
+.pigeage {
+	padding: 250px 50px 50px 50px;
+	font-size: 130%;
+	color: cyan;
+	text-shadow: 2px 2px 9px rgba(0, 0, 0, 1);	
+	background-image: url(images/mykonos-biennale-2015-antidote-pigeage.png);
+}
+
+.pigeage  h1 {
+	color: yellow;
+}
+
+
+
+
+	
+
+#slideshow {
+    position:relative;
+    height:350px;
+}
+
+#slideshow IMG {
+    position:absolute;
+    top:0;
+    left:0;
+    z-index:8;
+}
+
+#slideshow IMG.active {
+    z-index:10;
+}
+
+#slideshow IMG.last-active {
+    z-index:9;
+}
+
+.uk-container {
+	padding: 0px 0px;
+
+}
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+ li.uk-active>a {
+ 	color: magenta!important;
+ }
+
+
+	</style>
+</head>
+
+
+
+
+<body class="uk-height-1-1"  id="invite">
+
+<div class="uk-container uk-height-1-1" >
+<div class="uk-grid mark_red" >
+	<div class="uk-width-medium-1-1  uk-container-center uk-cover-background menu " >
+		<div class="uk-sticky-init " data-uk-sticky style="z-index:4;  ">
+			<nav class="uk-navbar  uk-navbar-attached" style="" >
+				<a class="uk-navbar-brand uk-hidden-small uk-align-right" href="index.html" style="z-index:14;" ><img alt = "mykonos biennale logo" width="100" src="images/mykonos-biennale-logo.png"></a> 
+				<ul class="uk-navbar-nav uk-hidden-small">
+					<li class="uk-parent" data-uk-dropdown="">
+								<a href="mykonos_biennale.html" >Mykonos Biennale</a>
+						<div style="" class="uk-dropdown uk-dropdown-navbar">
+							<ul class="uk-nav uk-nav-navbar">
+								<li class="uk-active" > <a href="#biennale-introduction"   >Introduction</a></li>
+								<li> <a href="mykonos_biennale.html#biennale-statement"  >Statement</a></li>
+								<li > <a href="mykonos_biennale.html#biennale-artprogram"   >Art Program</a></li>
+								<li><a href="mykonos_biennale.html#biennale-education"  >Education &amp; Internship</a><li>
+								<li> <a href="mykonos_biennale.html#biennale-awards"   >Awards</a></li>
+								<li><a href="mykonos_biennale.html#biennale-contact"  >Contact</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="uk-parent uk-active" data-uk-dropdown="" >
+						<a href="2015-Antidote.html" data-uk-smooth-scroll="{offset: 90}" style="background-color: transparent;">2015 Antidote</a>
+						<div style="" class="uk-dropdown uk-dropdown-navbar">
+							<ul class="uk-nav uk-nav-navbar">
+								<li class="uk-active" > <a href="2015-Antidote.html" data-uk-smooth-scroll="{offset: 90}">Antidote</a></li>
+								<li> <a href="2015-Antidote.html#statement" data-uk-smooth-scroll="{offset: 90}">Statement</a></li>
+								<li > <a href="/2015-Antidote.html#kite-festival" data-uk-smooth-scroll="{offset: 90}">Kite Festival</a></li>
+								<li><a href="/2015-Antidote.html#treasue-hunt" data-uk-smooth-scroll="{offset: 90}">Treasue Hunt</a><li>
+								<li> <a href="/2015-Antidote.html#weaving-conspiracy" data-uk-smooth-scroll="{offset: 90}">Weaving Conspiracy</a></li>
+								<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+								<li><a href="/2015-Antidote.html#video-graffiti" data-uk-smooth-scroll="{offset: 90}">Video Graffiti</a></li>
+								<li><a href="/2015-Antidote.html#dramatic-nights" data-uk-smooth-scroll="{offset: 90}">Dramatic Nights</a></li>
+								<li class="uk-nav-header" >Dance</li>
+								<li><a href="/2015-Antidote.html#pigeage" data-uk-smooth-scroll="{offset: 90}">Pigeage</a></li>
+							</ul>
+						</div>
+					</li>
+					<li class="uk-parent" data-uk-dropdown="">
+						<a href="2013-Crises-and-Paganism.html" data-uk-smooth-scroll="{offset: 90}">2013 Crises &amp; Paganism</a>
+						<div style="" class="uk-dropdown uk-dropdown-navbar">
+							<ul class="uk-nav uk-nav-navbar">
+								<li> <a href="2013-Crises-and-Paganism.html#invite">Crises &amp; Paganism</a></li>
+								<li> <a href="2013-Crises-and-Paganism.html#statement">Statement</a></li>
+								<li><a href="2013-Crises-and-Paganism.html#Events">Events</a></li>
+								<li><a href="2013-Crises-and-Paganism.html#Venues">Venues</a></li>
+								<li><a href="2013-Crises-and-Paganism.html#Artists">Artists</a></li>
+								<li><a href="2013-Crises-and-Paganism.html#Credits">Credits</a></li>
+								<li><a href="2013-Crises-and-Paganism.html#Press">Press</a></li>
+							</ul>
+						</div>
+					</li>
+				</ul>
+				<a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas>x</a>
+				<div class="uk-navbar-brand uk-navbar-center uk-visible-small">2015 Antidote</div>
+			</nav>
+		</div>
+	</div>
+</div>
+
+
+		
+	<div class="uk-grid mark_red">
+		<div class="uk-width-medium-1-1  uk-container-center uk-cover-background page antidote " >
+			<div class="uk-vertical-align block" >
+		<!-- 		<div class="uk-vertical-align-bottom uk-text-justify uk-text-large uk-text-contrast" style = ""> -->	
+					<h1>2015 - Antidote</h1>
+					<h3>Kite Festival</h2>
+					<h3>Treasue Hunt</h2>
+					<h3>Weaving Conspiracy</h2>
+					<h3>Weaving Conspiracy</h2>
+					<h3>Video Graffiti - Dramatic Nights</h3>
+					<h3>Pigeage</h3>
+					<h1>July 2nd - 12th</h1>
+					<h3>The Byron Award ~ The Manto Award</h3>
+					<h3>The Golden Pelican</h3>
+				<!-- </div> -->
+			</div>
+		</div>
+	</div>
+
+		
+		
+	<div class="uk-grid mark_red"  id="statement">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page statement ">
+		
+				<!-- <div class="uk-vertical-align-bottom uk-text-justify uk-text-large uk-text-contrast" style = "">	 -->
+<h1>Statement</h1>
+				<p>Everyday like a poison, world news infects humanity, plunging the human conscience into a deep hibernation of frantic inactivity, in an attempt to find some serenity to endure in until the end.</p>
+
+<p>However they say that if a tarantula bites you the only way to escape death is to dance day and night, jumping from the pain and staying awake, because if you let go and fall asleep you are lost. Such a crazy celebration of consciousness is the Mykonos Biennale as its theme for 2015 is the Antidote.</p>
+
+<p>What is the antidote? Is it love? Is it power? Or is it sorcery? Always the artist, the scientist, and the alchemist have searched for the answer to immortality, the philosophers’ stone, and the magic portal. Their quest, itself, holds the answer for by it they have already danced the first steps of the Great Awakening.
+</p>
+				<!-- </div> -->
+		
+		</div>
+	</div>
+		
+		
+
+
+	<div class="uk-grid mark_red"  id="kite-festival">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page  kite-festival">
+
+<h1>Kite Festival</h1>
+				<p>The Mykonos Biennale will host a Kite festival at the beach of Ftelia on this island famous for its wind and windmills.</p>
+
+<p>An exhibition  of the kites will be hosted at the Elementary School. Talented students attending Art and technology colleges will participate in the Kite Festival, where they will present their constructions and a video with description details of their engineering and its significance, as well as their ideas about how toys and art can provide with alternatives for the energy of tomorrow.</p>
+
+<p>The Kite Festival will place Mykonos among the pioneers in ecological alternative energy thinking, which is the “Antidote” to the consumer exploitation of our planet.</p>
+	
+		</div>
+	</div>
+		
+	<div class="uk-grid mark_red"  id="treasue-hunt">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page treasure-hunt">
+	
+<h1>Treasure Hunt</h1>
+				<p>
+
+Boxes with the label “Antidote” will be sent to 40 artists around the world. The artists will return the boxes with a piece of art inspired by the theme. The boxes will be hidden in several places in the island of Delos. A treasure hunt will be organized, where visitors will scatter around to find the “treasures”. When all boxes are found, the art works will be revealed at a special ceremony and the founder will be awarded with a medal of the Art Seeker. The art works will be exhibited in the School of Fine Arts in Mykonos until the end of summer. Our long term goal is to attain the first floating museum - maybe an old war ship- where the artworks of the Mykonos Biennale
+will be exhibited, the museum of Archipelago.
+</p>
+			
+		</div>
+	</div>
+		
+	<div class="uk-grid mark_red"  id="weaving-conspiracy">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page weaving-conspiracy">
+			
+<h1>Weaving Conspiracy</h1>
+				<p>In Mykonos, weaving is one of the most important artisanat which is rooted in Ancient Greece, and survived to our days. There are four weavers and four looms in the island. The craft, until the early 80's was a living tradition, and a way for people to make ends meet, but then it declined. The Mykonos Biennale will invite seven artists to work and collaborate with the weavers. </p>
+<p>Penelope, for twenty years while waiting for Odysseus to come back, was weaving (ύφαινε) the burial shroud of her father in law, Laertis, old king of Ithaca. During the night, she was undoing her day's work, as she had promised her suitors that she would choose one of them as her husband and new king of Ithaca, when the shroud were ready. </p>
+		
+
+		</div>
+	</div>	
+
+		<div class="uk-grid mark_red"  id="video-graffiti">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page video-graffiti">
+
+<h1>Video Graffiti</h1>
+				<p>
+Throughout the old town of Mykonos, famous for its white building and thus often called the bride of the Aegean, videos will be projected on the walls of houses and gardens  transforming this town that never sleeps into a living theatre of video graffiti. </p>
+
+and of the island and at the important Gryparion center. </p>
+<a target="_top" href="http://www.withoutabox.com/login/12396"><img src="http://www.withoutabox.com/09images/partner_box.gif" border="0"></a>
+
+ &nbsp; &nbsp; &nbsp; &nbsp;
+
+					<a href="https://filmfreeway.com/festivals/6431?utm_campaign=Submission+Button&amp;utm_medium=External&amp;utm_source=Submission+Button" target="_blank" title="Click to submit with FilmFreeway"><img src="https://storage.googleapis.com/filmfreeway-assets/submission_buttons/submit_btn-black.png" title="Click to submit with FilmFreeway" height="40" width="263"></a>
+	
+		</div>
+	</div>	
+
+	<div class="uk-grid mark_red"  id="dramatic-nights">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page  dramatic-nights">
+
+					<h1>Dramatic Nights</h1>
+					<p>A selection narrative short films, documentary and art videos will be screened in the open air theatre Cine Manto, the amphitheatre and of the island and at the important Gryparion center. </p>
+<a target="_top" href="http://www.withoutabox.com/login/12396"><img src="http://www.withoutabox.com/09images/partner_box.gif" border="0"></a>
+
+ &nbsp; &nbsp; &nbsp; &nbsp;
+
+					<a href="https://filmfreeway.com/festivals/6431?utm_campaign=Submission+Button&amp;utm_medium=External&amp;utm_source=Submission+Button" target="_blank" title="Click to submit with FilmFreeway"><img src="https://storage.googleapis.com/filmfreeway-assets/submission_buttons/submit_btn-black.png" title="Click to submit with FilmFreeway" height="40" width="263"></a>
+
+
+<!-- 					<div class="uk-grid">
+					<div class="uk-width-medium-1-3">
+			    <ul style="height: 333px;" class="uk-slideshow" data-uk-slideshow="{autoplay:true}">
+                                <li style="animation-duration: 200ms; height: 333px;" class="" aria-hidden="true"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_1.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_1.jpg" alt="" height="400" width="800">
+                                <div  class="uk-overlay-panel uk-overlay-bottom" >Photo 1</div>
+                                </li>
+                                <li class="uk-active" style="animation-duration: 200ms; height: 333px;" aria-hidden="false"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_2.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_2.jpg" alt="" height="400" width="800"><div  class="uk-overlay-panel uk-overlay-bottom" >Photo 2</div></li>
+                                <li class="" style="animation-duration: 200ms; height: 333px;" aria-hidden="true"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_3.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_3.jpg" alt="" height="400" width="800">
+                                <div class="uk-overlay-panel uk-overlay-bottom" >Photo 3</div>
+                                </li>
+                            </ul>
+                            </div>
+                            		<div class="uk-width-medium-1-3">
+			    <ul style="height: 333px;" class="uk-slideshow" data-uk-slideshow="{autoplay:true}">
+                                  <li class="" style="animation-duration: 200ms; height: 333px;" aria-hidden="true"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_3.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_3.jpg" alt="" height="400" width="800">
+                                <div class="uk-overlay-panel uk-overlay-bottom" >Photo 3</div>
+                                </li>
+                                <li style="animation-duration: 200ms; height: 333px;" class="" aria-hidden="true"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_1.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_1.jpg" alt="" height="400" width="800">
+                                <div  class="uk-overlay-panel uk-overlay-bottom" >Photo 1</div>
+                                </li>
+                                <li class="uk-active" style="animation-duration: 200ms; height: 333px;" aria-hidden="false"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_2.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_2.jpg" alt="" height="400" width="800"><div  class="uk-overlay-panel uk-overlay-bottom" >Photo 2</div></li>
+                              
+                            </ul>
+                            </div>
+                            		<div class="uk-width-medium-1-3">
+			    <ul style="height: 333px;" class="uk-slideshow" data-uk-slideshow="{autoplay:true}">
+			         <li class="uk-active" style="animation-duration: 200ms; height: 333px;" aria-hidden="false"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_2.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_2.jpg" alt="" height="400" width="800"><div  class="uk-overlay-panel uk-overlay-bottom" >Photo 2</div></li>
+
+                                <li style="animation-duration: 200ms; height: 333px;" class="" aria-hidden="true"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_1.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_1.jpg" alt="" height="400" width="800">
+                                <div  class="uk-overlay-panel uk-overlay-bottom" >Photo 1</div>
+                                </li>
+                           
+                                <li class="" style="animation-duration: 200ms; height: 333px;" aria-hidden="true"><div style="background-image: url(&quot;file:///Users/lydia/Downloads/images/placeholder_800x400_3.jpg&quot;);" class="uk-cover-background uk-position-cover"></div><img style="width: 100%; height: auto;" src="file:///Users/lydia/Downloads/Slideshow%20component%20-%20UIkit%20documentation_files/placeholder_800x400_3.jpg" alt="" height="400" width="800">
+                                <div class="uk-overlay-panel uk-overlay-bottom" >Photo 3</div>
+                                </li>
+                            </ul>
+                            </div>
+                            </div> -->
+
+		</div>
+	</div>	
+		
+	<div class="uk-grid mark_red"  id="pigeage">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page   pigeage">
+	
+					<h1>Pigeage</h1>
+					<p>An international dance theatre will do the stomping for the grapes,  a real pigeage, as ritual initiation in the Orphic Mysteries. Pigeage is the origin of the dance theater, the comedy, and the tragedy, with Arion as the creator of theatre. A special vitage will be bottled from this dance.</p>
+
+		</div>
+	</div>	
+
+
+<!-- <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> -->
+	<footer class="footie uk-hidden-small">
+		<div class="uk-container uk-container-center">
+			<div class="uk-clearfixc">
+				<div class="uk-align-medium-left">
+					<div class="uk-panel widget_text">Copyright  © Mykonos Biennale 2013,14,15</div>
+				</div>
+				<div class="uk-align-medium-right">
+					<div class="uk-panel widget_text">
+						<a href="#" class="uk-icon-small uk-icon-twitter uk-margin-right"></a>
+						<a href="#" class="uk-icon-small uk-icon-facebook uk-margin-right"></a>
+						<a href="#" class="uk-icon-small uk-icon-pinterest"></a>
+					</div>
+				</div>
+				<a class="tm-totop-scroller uk-text-center" data-uk-smooth-scroll="" href="#"></a>
+			</div>
+		</div>
+	</footer>	
+<!-- </div> -->
+
+	</div>
+
+<script>
+	
+
+
+// function slideSwitch() {
+//     var $active = $('.slideshow IMG.active');
+
+//     if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
+
+//     var $next =  $active.next().length ? $active.next()
+//         : $('#slideshow1 IMG:first');
+
+//     $active.addClass('last-active');
+        
+//     $next.css({opacity: 0.0})
+//         .addClass('active')
+//         .animate({opacity: 1.0}, 500, function() {
+//             $active.removeClass('active last-active');
+//         });
+// }
+
+// $(function() {
+//     setInterval( "slideSwitch()", 3000 );
+// });
+
+
+</script>
+
+
+
+</body>
+
+</html>

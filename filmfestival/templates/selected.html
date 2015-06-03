@@ -1,0 +1,131 @@
+{% load re_tags %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Slideset component - UIkit documentation</title>
+        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link id="data-uikit-theme" rel="stylesheet" href="{% static "css/uikit.min.css" %}">
+        <link rel="stylesheet" href="{% static "css/docs.css" %}">
+        <link rel="stylesheet" href="http://getuikit.com/vendor/highlight/highlight.css">
+        <script src="http://getuikit.com/vendor/jquery.js"></script>
+        <script src="{% static "js/uikit.min.js" %}"></script>
+        <script src="http://getuikit.com/vendor/highlight/highlight.js"></script>
+        <script src="{% static "js/holder.js" %}"></script>
+        <script src="http://getuikit.com/docs/js/docs.js"></script>
+        <script src="{% static "js/components/slideset.js" %}"></script>
+        <script charset="utf-8">
+            jQuery(function($){
+                var select = $('#slideset-animation').on('change', function(){
+                    select.next('[data-uk-slideset]').data('slideset').options.animation = select.val();
+                });
+            });
+        </script>
+<style>
+    .uk-panel {
+        padding: 50px;
+    }
+        </style>
+    </head>
+
+    <body>
+        
+         <div class="uk-container">
+{% for film in films %}
+<div class="uk-panel">
+    <header class="uk-comment-header">
+        {% if film.poster %}
+        <img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" style="height:150px;"  alt="{{film.title}} Poster">
+           {% endif %}
+        <h4 class="uk-comment-title">{{film.title|title}}</h4>
+        <div class="uk-comment-meta">dir. by {{film.dir_by|title}}<br/>{{film.runtime}} minutes, {{film.country}}
+      
+        </div>
+           {{film.synopsis}}
+    </header>
+    <div class="uk-comment-body">
+          {% if film %}
+       
+        {% comment %}
+    <ul>
+        {% for image in film.filmfestival_image_related.all %}
+        <li>
+           <img src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image}}"  style="height:150px;" >
+        <li>
+    {% endfor %}
+             </ul>
+       
+              {% endcomment %}
+    <hr class="uk-article-divider">
+	     			<h3> Cast </h3>
+        {% re_split "\s*,\s*" film.actors as cast %}
+            <ul class="uk-list">
+                {% for actor in cast %}
+				   		 	<li> {{ actor }}
+			    {% endfor %}
+					</ul>
+           <hr class="uk-article-divider">
+						<h3> Credits </h3>
+        		  {% if film.directors %} Directors: {{ film.directors|title }}<br> {% endif %}
+						   {% if film.screenwriters %}Screenwriters:  {{ film.screenwriters|title }}<br>{% endif %}
+						  {% if film.producers %} Producers: {{ film.producers|title }}<br>{% endif %}
+						  {% if film.exec_producers %} Exec producers: {{ film.exec_producers|title }}<br>{% endif %}
+						  {% if film.co_producers %} Co producers: {{ film.co_producers|title }}<br>{% endif %}
+						  {% if film.cinematographers %} Cinematographers: {{ film.cinematographers|title }}<br>{% endif %}
+						  {% if film.product_designers %} Product designers: {{ film.product_designers|title }}<br>{% endif %}
+						  {% if film.art_directors %} Art directors:  {{ film.art_directors|title }}<br>{% endif %}
+						  {% if film.editors %} Editors:  {{ film.editors|title }}<br>{% endif %}
+						  {% if film.sound_editors %} Sound editors:  {{ film.sound_editors|title }}<br>{% endif %}
+						  {% if film.composers %} Composers:  {{ film.composers|title }}<br>{% endif %}
+        
+        
+         {% comment %}
+        
+						<dl class="uk-description-list-horizontal">
+                            
+                            
+						  {% if film.directors %}  <dt>Directors</dt><dd>{{ film.directors }}</dd> {% endif %}
+						   {% if film.screenwriters %} <dt>Screenwriters</dt><dd> {{ film.screenwriters }}</dd>{% endif %}
+						  {% if film.producers %}  <dt>Producers</dt><dd>{{ film.producers }}</dd>{% endif %}
+						  {% if film.exec_producers %}  <dt>Exec producers</dt><dd>{{ film.exec_producers }}</dd>{% endif %}
+						  {% if film.co_producers %}  <dt>Co producers</dt><dd>{{ film.co_producers }}</dd>{% endif %}
+						  {% if film.cinematographers %}  <dt>Cinematographers</dt><dd>{{ film.cinematographers }}</dd>{% endif %}
+						  {% if film.product_designers %}  <dt>Product designers</dt><dd>{{ film.product_designers }}</dd>{% endif %}
+						  {% if film.art_directors %}  <dt>Art directors</dt><dd> {{ film.art_directors }}</dd>{% endif %}
+						  {% if film.editors %}  <dt>Editors</dt><dd> {{ film.editors }}</dd>{% endif %}
+						  {% if film.sound_editors %}  <dt>Sound editors</dt><dd> {{ film.sound_editors }}</dd>{% endif %}
+						  {% if film.composers %}  <dt>Composers</dt><dd> {{ film.composers }}</dd>{% endif %}
+						</dl>
+                 {% endcomment %}
+        {% endif %}
+    </div>
+    
+    
+   
+</div>
+{% endfor %}
+
+ <div class="uk-slidenav-position uk-margin">
+<ul class="uk-slideset uk-grid uk-flex-center uk-grid-width-1-4">
+                                        <li class="uk-active" style=""><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDoxL3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij4xPC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="1 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:1/size:100" data-holder-rendered="true"></li>
+                                        <li class="uk-active" style=""><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDoyL3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij4yPC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="2 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:2/size:100" data-holder-rendered="true"></li>
+                                        <li class="uk-active" style=""><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDozL3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij4zPC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="3 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:3/size:100" data-holder-rendered="true"></li>
+                                        <li class="uk-active" style=""><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDo0L3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij40PC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="4 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:4/size:100" data-holder-rendered="true"></li>
+                                        <li style="display: none;"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDo1L3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij41PC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="5 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:5/size:100" data-holder-rendered="true"></li>
+                                        <li style="display: none;"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDo2L3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij42PC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="6 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:6/size:100" data-holder-rendered="true"></li>
+                                        <li style="display: none;"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDo3L3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij43PC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="7 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:7/size:100" data-holder-rendered="true"></li>
+                                        <li style="display: none;"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDo4L3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij44PC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="8 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:8/size:100" data-holder-rendered="true"></li>
+                                        <li style="display: none;"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDo5L3NpemU6MTAwCkNyZWF0ZWQgd2l0aCBIb2xkZXIuanMgMi41LjIuCkxlYXJuIG1vcmUgYXQgaHR0cDovL2hvbGRlcmpzLmNvbQooYykgMjAxMi0yMDE1IEl2YW4gTWFsb3BpbnNreSAtIGh0dHA6Ly9pbXNreS5jbwotLT48ZGVmcy8+PHJlY3Qgd2lkdGg9IjYwMCIgaGVpZ2h0PSI0MDAiIGZpbGw9IiMwRDhGREIiLz48Zz48dGV4dCB4PSIyNjMiIHk9IjI0NS45IiBzdHlsZT0iZmlsbDojRkZGRkZGO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwMHB0Ij45PC90ZXh0PjwvZz48L3N2Zz4=" width="600" height="400" alt="9 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:9/size:100" data-holder-rendered="true"></li>
+                                        <li style="display: none;"><img src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iNjAwIiBoZWlnaHQ9IjQwMCIgdmlld0JveD0iMCAwIDYwMCA0MDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzYwMHg0MDAvc2t5L2F1dG8vdGV4dDoxMC9zaXplOjEwMApDcmVhdGVkIHdpdGggSG9sZGVyLmpzIDIuNS4yLgpMZWFybiBtb3JlIGF0IGh0dHA6Ly9ob2xkZXJqcy5jb20KKGMpIDIwMTItMjAxNSBJdmFuIE1hbG9waW5za3kgLSBodHRwOi8vaW1za3kuY28KLS0+PGRlZnMvPjxyZWN0IHdpZHRoPSI2MDAiIGhlaWdodD0iNDAwIiBmaWxsPSIjMEQ4RkRCIi8+PGc+PHRleHQgeD0iMjI2IiB5PSIyNDUuOSIgc3R5bGU9ImZpbGw6I0ZGRkZGRjtmb250LXdlaWdodDpib2xkO2ZvbnQtZmFtaWx5OkFyaWFsLCBIZWx2ZXRpY2EsIE9wZW4gU2Fucywgc2Fucy1zZXJpZiwgbW9ub3NwYWNlO2ZvbnQtc2l6ZToxMDBwdCI+MTA8L3RleHQ+PC9nPjwvc3ZnPg==" width="600" height="400" alt="10 [600x400]" data-src="/static/js/holder.js/600x400/sky/auto/text:10/size:100" data-holder-rendered="true"></li>
+                                    </ul>
+                                 <a href="#" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+   <a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
+             </div>
+      
+        </div>
+    </body>
+</html>
