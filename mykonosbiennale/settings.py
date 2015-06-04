@@ -105,12 +105,7 @@ DATABASES = {
 }
 
 
-CACHES = {
-    'default': {
-        'BACKEND':  'django.core.cache.backends.locmem.LocMemCache',
-        'LOCATION': 'cache_table',
-    }
-}
+CACHES = { 'default': { 'BACKEND':  'django.core.cache.backends.locmem.LocMemCache', 'LOCATION': 'cache_table', } }
 
 
 # Internationalization
@@ -189,3 +184,5 @@ PIPELINE_JS = {
     }
 }
 """
+
+from local_settings import *
