@@ -12,6 +12,7 @@ https://docs.djangoproject.com/en/1.7/ref/settings/
 import os
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
+STATIC_ROOT = os.path.join(PROJECT_ROOT,  "static")
 from local_settings import *
 
 # Quick-start development settings - unsuitable for production
@@ -128,19 +129,23 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-STATIC_ROOT = os.path.join(PROJECT_ROOT,  "static")
-print 'STATIC_ROOT',STATIC_ROOT
 STATIC_URL = '/static/'
+print 'STATIC_ROOT',STATIC_ROOT
 
 #
 #  S3 static storage
 #
-DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+#DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3.S3Storage'
 
 AWS_ACCESS_KEY_ID='AKIAIMB277P23WWWAVAQ'
 AWS_SECRET_ACCESS_KEY = Passwords.AWS_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'com.mykonosbiennale.static'
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+from S3 import CallingFormat 
+AWS_CALLING_FORMAT = CallingFormat.PATH
+
+
 
 
 REST_FRAMEWORK = {
@@ -159,6 +164,7 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 100,
 }
 
+"""
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 PIPELINE_CSS = {
     'css': {
@@ -169,7 +175,11 @@ PIPELINE_CSS = {
         'output_filename': 'css/css.css',
     },
 }
+
 PIPELINE_ENABLED = False
+PIPELINE_JS_COMPRESSOR=None
+PIPELINE_CSS_COMPRESSOR=None
+
 PIPELINE_JS = {
     'javascript': {
         'source_filenames': (
@@ -178,3 +188,4 @@ PIPELINE_JS = {
         'output_filename': 'js/js.js',
     }
 }
+"""

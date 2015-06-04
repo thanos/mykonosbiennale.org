@@ -154,7 +154,7 @@
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if film.poster %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster_for_download}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster_thumbnail}}"    width="{{film.poster_thumbnail.width}}" height="{{film.poster_thumbnail.height}}"  alt="{{film.title}} Poster"></a>
+        <a href="https://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster_for_download}}" target="_blank"><img class="uk-comment-avatar" src="https://s3.amazonaws.com//com.mykonosbiennale.static/{{film.poster_thumbnail}}"    width="{{film.poster_thumbnail.width}}" height="{{film.poster_thumbnail.height}}"  alt="{{film.title}} Poster"></a>
            {% endif %}
             <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
             <div class="uk-comment-meta">dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}</div>

@@ -3,7 +3,7 @@ from django.views.generic import TemplateView
 from django.contrib import admin
 from django.conf import settings
 from django.http import HttpResponseRedirect
-from filmfestival.rest_api import FilmView
+#from filmfestival.rest_api import FilmView
 
 urlpatterns = patterns('',
     # Examples:
@@ -13,8 +13,8 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r"^filmfestival/", include("filmfestival.urls")),    
     url(r"^artfestival/", include("festival.urls")),  
-    url(r'^api/films', FilmView.as_view(), name='films'),
-    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
+#    url(r'^api/films', FilmView.as_view(), name='films'),
+#    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^$', lambda x: HttpResponseRedirect('/2015-antidote/')),
     url(r"^", include("pages.urls")),           
 )
