@@ -159,7 +159,6 @@ REST_FRAMEWORK = {
     'PAGINATE_BY': 100,
 }
 
-"""
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 PIPELINE_CSS = {
     'css': {
@@ -171,8 +170,8 @@ PIPELINE_CSS = {
     },
 }
 
-PIPELINE_ENABLED = False
-PIPELINE_JS_COMPRESSOR=None
+PIPELINE_ENABLED = True
+PIPELINE_JS_COMPRESSOR='pipeline.compressors.jsmin.JSMinCompressor'
 PIPELINE_CSS_COMPRESSOR=None
 
 PIPELINE_JS = {
@@ -183,6 +182,5 @@ PIPELINE_JS = {
         'output_filename': 'js/js.js',
     }
 }
-"""
 
 from local_settings import *
