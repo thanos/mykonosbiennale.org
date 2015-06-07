@@ -51,6 +51,7 @@ INSTALLED_APPS = (
     #'generic_positions',
     #'user_media',
     #'hvad',
+    'imagelabs',
     'variables',
     'pages',
     'mykonosbiennale',
@@ -105,8 +106,16 @@ DATABASES = {
 }
 
 
-CACHES = { 'default': { 'BACKEND':  'django.core.cache.backends.locmem.LocMemCache', 'LOCATION': 'cache_table', } }
-
+CACHES = {
+    'default': {
+        'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+        'LOCATION': '/home/action/django_cache',
+        'TIMEOUT': 60*60*24,
+        'OPTIONS': {
+            'MAX_ENTRIES': 1000
+        }
+    }
+}
 
 # Internationalization
 # https://docs.djangoproject.com/en/1.7/topics/i18n/

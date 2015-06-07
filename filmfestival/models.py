@@ -86,7 +86,7 @@ class Film(models.Model):
     year = models.CharField(max_length=4)
     runtime = models.IntegerField()
     country = models.TextField()
-    
+    coming = models.BooleanField( default= False)
 
 
     log_line = models.TextField(default='')

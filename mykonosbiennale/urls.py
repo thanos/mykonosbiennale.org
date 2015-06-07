@@ -16,7 +16,10 @@ urlpatterns = patterns('',
 #    url(r'^api/films', FilmView.as_view(), name='films'),
 #    url(r'^api-auth/', include('rest_framework.urls', namespace='rest_framework')),
     url(r'^$', lambda x: HttpResponseRedirect('/2015-antidote/')),
-    url(r"^", include("pages.urls")),           
+    url(r"(?P<processor>[A-Z]+:)*(?P<width>\d*)x(?P<height>\d*)(@(?P<resolution>\d+))*(Q(?P<quality>\d+))*(?P<image_url>\/.+)", 'imagelabs.views.process'),
+
+    url(r"^", include("pages.urls")), 
+    
 )
 # urlpatterns += patterns('',
 #         url(r'^static/(?P<path>.*)$', 'django.views.static.serve', {

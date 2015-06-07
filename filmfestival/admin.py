@@ -43,7 +43,7 @@ class FilmAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['ref', 'status', 'film_type', 'title', 'dir_by'] #, 'length']
     search_fields = ['title', 'dir_by', 'synopsis' ]
-    list_editable=['status', 'film_type',]
+    list_editable=['status', 'film_type', ]
     list_filter = [ 'status','film_type','source'] 
     inlines = [ImageInline] #PersonInline, , DocumentationInline]
 admin.site.register(models.Film, FilmAdmin) 

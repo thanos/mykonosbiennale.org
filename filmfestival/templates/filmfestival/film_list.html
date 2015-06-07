@@ -154,22 +154,13 @@
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if film.poster %}
-        <a href="https://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster_for_download}}" target="_blank"><img class="uk-comment-avatar" src="https://s3.amazonaws.com//com.mykonosbiennale.static/{{film.poster_thumbnail}}"    width="{{film.poster_thumbnail.width}}" height="{{film.poster_thumbnail.height}}"  alt="{{film.title}} Poster"></a>
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" target="_blank"><img class="uk-comment-avatar" src="/il/300x200/https://s3.amazonaws.com/com.mykonosbiennale.static/{{film.poster}}" alt="{{film.title}} Poster"></a>
            {% endif %}
             <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
             <div class="uk-comment-meta">dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}</div>
         <div class="uk-comment-body">{{film.synopsis}}</div>
         </header>
-        
-        {% comment %}
-        {% for image in film.filmfestival_image_related.all %}
-              {% if forloop.counter0  < 1 %}
-                       {% if image.image_thumbnail %}
-<img src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image_thumbnail}}" class="uk-responsive-width" width="{{image.image_thumbnail.width}}" height="{{image.image_thumbnail.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" />  
-                                         {% endif %}
-           {% endif %}
- {% endfor %}
-         {% endcomment %}
+       
 </article>
            {% endif %}   
 
