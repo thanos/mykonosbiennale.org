@@ -7,7 +7,7 @@ from django.utils.text import slugify
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
-
+from sorl.thumbnail import ImageField
 def path_and_rename(instance, filename):
     document_path(instance, filename, 'poster', 'images')
     
@@ -123,7 +123,7 @@ class Film(models.Model):
     
     crew = models.TextField(blank=True, default='')
     
-    poster  = models.ImageField (upload_to=poster_path,  max_length=256, blank=True)
+    poster  = ImageField (upload_to=poster_path,  max_length=256, blank=True)
     poster_thumbnail = ImageSpecField(source='poster',
                                       processors=[ResizeToFit(150,300)],
                                       format='JPEG',
