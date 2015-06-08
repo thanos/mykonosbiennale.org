@@ -1,4 +1,5 @@
 {% load re_tags %}
+{% load thumbnail %}
 {% load staticfiles %}
         {% load pipeline %}
 <!DOCTYPE html>
@@ -121,7 +122,9 @@
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if object.poster %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster_for_download}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster_thumbnail}}"    width="{{object.poster_thumbnail.width}}" height="{{object.poster_thumbnail.height}}"  alt="{{object.title}} Poster"></a>
+                {% thumbnail film.poster "150" crop="center" as im %}
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster_for_download}}" target="_blank"><img class="uk-comment-avatar" src="{{im.url}}"    width="{{im.width}}" height="{{im.height}}"  alt="{{object.title}} Poster"></a>
+                {% endthumbnail %}
            {% endif %}
             <h1>{{object.title|title}}</h1>
             <div class="uk-comment-meta">dir. by {{object.dir_by|title}}, {{object.runtime}} minutes, {{object.country}}</div>
@@ -174,9 +177,11 @@
         <ul class="uk-slider ">
             {% for image in film.filmfestival_image_related.all %}
 
-                {% if image.image_thumbnail %}
-            <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image_for_download}}" target="_blank"><li><img src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image_thumbnail}}" class="uk-responsive-width" width="{{image.image_thumbnail.width}}" height="{{image.image_thumbnail.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></li></a>
-                {% endif %}
+                {% if image.image %}
+             {% thumbnail image.image "x125" crop="center" as thum %}
+            <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image_for_download}}" target="_blank"><li><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></li></a>
+             {% endthumbnail %}    
+            {% endif %}
             {% endfor %}
         </ul>
     </div>
@@ -184,7 +189,10 @@
 
 <a class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next" href="#" draggable="true"></a>
 </div>                     
-
+        {% if film.directors_statement %} 
+        <h3>Directors Statement</h3>
+        <p>{{film.directors_statement|linebreaksbr}}</p>
+        {% endif %}
 
 </article>
      
