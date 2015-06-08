@@ -74,7 +74,21 @@ class Festival(models.Model):
 class Artist(models.Model):
     class Meta:
         ordering = ['name']
+    TEASURE_HUNT = 'TEASURE HUNT'
+    OTHER = 'OTHER'
+    KITE_FESTIVAL = 'KITE FESTIVAL'
+    EVENT_CHOICES = (
+     (TEASURE_HUNT, TEASURE_HUNT),
+        
+        (KITE_FESTIVAL, KITE_FESTIVAL),
+        (OTHER, OTHER),
+    )
+
+
     festival = models.ForeignKey(Festival)
+    event = models.CharField(max_length=64,
+                                      choices=EVENT_CHOICES,
+                                      default=TEASURE_HUNT)
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     template = models.CharField(max_length=128, default='2015-artist.html')
@@ -95,8 +109,8 @@ class Artist(models.Model):
                                       format='JPEG',
                                       options={'quality': 60})
     visible = models.BooleanField(default=True)
-    css = models.TextField(default='')
-    javascript = models.TextField(default='')
+    css = models.TextField(blank=True, default='')
+    javascript = models.TextField(blank=True, default='')
     
     def __unicode__(self):
         return self.name

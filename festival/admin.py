@@ -25,12 +25,13 @@ class ArtInline(admin.TabularInline):
 class ArtistAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("name",)}
-    list_display = ['name', 'email', 'email','festival','visible']
+    list_display = ['name', 'email', 'country','festival','event','visible']
     search_fields = ['name', ]
     list_filter = ['festival','visible'] 
+    list_editable=['visible','email', 'country', ]
     inlines = [ArtInline] #PersonInline, , DocumentationInline]
     fieldsets = [
-            (None, {'fields': ['visible','festival', 'name', 'slug', 'email',
+            (None, {'fields': ['visible', 'festival', 'event', 'name', 'slug', 'email',
     'country', 'phone', 'bio', 'statement']}),
            ('images', {'fields': ['headshot', 'poster']}),
            ('layout', {'fields': ['template', 'css', 'javascript'], 'classes': ['collapse']}),
