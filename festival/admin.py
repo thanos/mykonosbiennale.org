@@ -11,7 +11,7 @@ admin.site.register(models.Festival, FestivalAdmin)
 
 class ArtAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'description', 'text','image']   
+    list_display = ['photo', 'title', 'description', 'text']   
     search_fields = ['title', 'description','text']
 admin.site.register(models.Art, ArtAdmin)        
 
@@ -25,14 +25,14 @@ class ArtInline(admin.TabularInline):
 class ArtistAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("name",)}
-    list_display = ['name', 'email', 'country','festival','event','visible']
+    list_display = ['name', 'email', 'homepage', 'country','festival','event','visible']
     search_fields = ['name', ]
     list_filter = ['festival','visible'] 
-    list_editable=['visible','email', 'country', ]
+    list_editable=['visible','email', 'country',  'homepage', ]
     inlines = [ArtInline] #PersonInline, , DocumentationInline]
     fieldsets = [
             (None, {'fields': ['visible', 'festival', 'event', 'name', 'slug', 'email',
-    'country', 'phone', 'bio', 'statement']}),
+    'country', 'phone', 'homepage', 'bio', 'statement']}),
            ('images', {'fields': ['headshot', 'poster']}),
            ('layout', {'fields': ['template', 'css', 'javascript'], 'classes': ['collapse']}),
             ]

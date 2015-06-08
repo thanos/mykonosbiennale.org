@@ -128,15 +128,7 @@ class Art(models.Model):
     slug = models.SlugField(max_length=128)
     description = models.TextField(blank=True, default='')
     text = models.TextField(blank=True, default='')
-    image = models.ImageField (upload_to=artNamer, max_length=256, blank=True)
-    image_thumbnail = ImageSpecField(source='image',
-                                      processors=[ResizeToFit(1000, 150)],
-                                      format='JPEG',
-                                      options={'quality': 60})
-    image_for_download = ImageSpecField(source='image',
-                                      processors=[ResizeToFit(1000,1000)],
-                                      format='JPEG',
-                                      options={'quality': 90})
+    photo = models.ImageField (upload_to=artNamer, max_length=256, blank=True)
 
     def __unicode__(self):
         return "{} {}".format(self.artist, self.title)
