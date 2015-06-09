@@ -12,44 +12,37 @@ class ImageNamer:
     folder = 'artists'
     postfix = ''
     def __call__(self, instance, filename):
-        store_filename = self.image_path(instance, filename)
+        base, ext = filename.split('.')
+        store_filename = 'mykonos-biennale-{}.{}'.format(slugify(self.image_name(instance, base)),ext)
         return os.path.join(self.folder, store_filename)
-    def image_path(self, instance, filename):
-        return 'mykonos-biennale-'+slugify(self.image_name(instance, filename))
 
     
 class ArtNamer(ImageNamer):
     def image_name(self, instance, filename):
-        ext = filename.split('.')[-1]
         artist = instance.artist
         count = 0
-        return "{}-{}-{}-{}.{}".format(
+        return "{}-{}-{}".format(
                 artist.festival, 
                 artist.name, 
-                instance.title, 
-                count, ext)
+                instance.title)
 
 def artNamer(instance, filename):
     return ArtNamer()(instance, filename)
     
 class PosterNamer(ImageNamer):
     def image_name(self, instance, filename):
-        ext = filename.split('.')[-1]
-        return "{}-{}-poster.{}".format(
+        return "{}-{}-poster".format(
                 instance.festival, 
-                instance.name,
-                ext)
+                instance.name)
 
 def posterNamer(instance, filename):
     return PosterNamer()(instance, filename)
     
 class HeadshotNamer(ImageNamer):
     def image_name(self, instance, filename):
-        ext = filename.split('.')[-1]
-        return "{}-{}-headshot.{}".format(
+        return "{}-artist-{}".format(
                 instance.festival, 
-                instance.name,
-                ext)
+                instance.name)
 
 def headshotNamer(instance, filename):
     return HeadshotNamer()(instance, filename)
