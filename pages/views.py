@@ -5,4 +5,4 @@ import models
 
 def page(request, slug):
     page = models.Page.objects.get(slug=slug)
-    return render_to_response(page.template, {'page':page, 'pages': models.Page.objects.filter(visible=True)})
+    return render_to_response(page.template, {'current_page':page, 'pages': models.Page.objects.filter(visible=True)})

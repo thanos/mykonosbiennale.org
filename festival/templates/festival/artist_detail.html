@@ -1,4 +1,5 @@
 {% load re_tags %}
+{% load thumbnail %}
 {% load staticfiles %}
         {% load pipeline %}
 <!DOCTYPE html>
@@ -28,7 +29,7 @@
         
         
         <title>Mykonos Biennale 2015 Official Film Selection</title>
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+         <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
               <link rel="stylesheet" href="http://getuikit.com/docs/css/uikit.docs.min.css">
@@ -121,7 +122,9 @@
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if object.headshot %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.headshot_for_download}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.headshot_to_use}}"    width="{{object.headshot_to_use.width}}" height="{{object.headshot_to_use.height}}"  alt="{{object.name}} Headshot"></a>
+    {% thumbnail artist.headshot  "150" crop="center" colorspace="GRAY" as headshot %}
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
+          {% endthumbnail %}
            {% endif %}
             <h1>{{object.name|title}}</h1>
             <div class="uk-comment-meta">{{object.country}}</div>
@@ -149,9 +152,11 @@
         <ul class="uk-slider ">
             {% for art in object.art_set.all %}
 
-                {% if art.image_thumbnail %}
-            <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.image_for_download}}" target="_blank"><li><img src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.image_thumbnail}}" class="uk-responsive-width" width="{{art.image_thumbnail.width}}" height="{{art.image_thumbnail.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{art.title} - screen shot" />
-                {{ art.title}}
+                {% if art.photo %}
+            {% thumbnail art.photo  "400" crop="center"  as photo %}
+            <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><li><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{art.title} - screen shot" />
+                 {% endthumbnail %}
+                <h2>{{ art.title}}</h2>
                 </li></a>
                 {% endif %}
             {% endfor %}

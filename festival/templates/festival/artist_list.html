@@ -30,8 +30,8 @@
         
         
         
-        <title>Mykonos Biennale 2015 Official Film Selection</title>
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+        <title>Mykonos Biennale 2015 - Antidote Artists</title>
+         <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
         
         
@@ -195,7 +195,7 @@
     <header class="uk-comment-header">
          {% if artist.headshot %}
            {% thumbnail artist.headshot  "150" crop="center" colorspace="GRAY" as headshot %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot_for_download}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
           {% endthumbnail %}
            {% endif %}
             <h2><a href="/artfestival/artist/{{artist.slug}}/">{{artist.name|title}}</a></h2>

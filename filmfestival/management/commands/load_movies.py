@@ -39,13 +39,16 @@ class Command(BaseCommand):
 
     def handle(self, *args, **kwargs):
         print time.ctime(), args, kwargs
-        with open('wab-movies.csv', 'rb') as csvfile:
+        csvfile = open('12396_20150608_ALL_G-Y-R_3705595.csv', 'rb')
+        if True:
+            print csvfile
             filmreader = csv.DictReader(csvfile)
             for row in filmreader:
                 try:
                     row['slug'] = slugify(row['title'])
                     row['runtime'] = int(row['runtime'] if row['year'] else row['runtime'])
-                    Film.objects.create(**row)
+                    print row['ref'], row['title']
+                    print Film.objects.get_or_create(ref = row['ref'], defaults = row)
                 except:
                     print row
                     raise

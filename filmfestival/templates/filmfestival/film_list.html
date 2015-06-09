@@ -31,7 +31,7 @@
         
         
         <title>Mykonos Biennale 2015 Official Film Selection</title>
-        <link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+		 <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
         
         
@@ -209,7 +209,9 @@
         {% endthumbnail %}
            {% endif %}
             <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
-            <div class="uk-comment-meta">dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}</div>
+     
+            <div class="uk-comment-meta">dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}<br/>
+        {{film.film_type}}</div>
         <div class="uk-comment-body">{{film.synopsis}}</div>
         </header>
        

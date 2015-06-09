@@ -121,7 +121,7 @@ padding-left:0px;
 	</style>
     
     
-            {% for panel in page.panel_set.all %}
+            {% for panel in current_page.panel_set.all %}
 <style>
         {{ panel.css| safe }}
     </style>
