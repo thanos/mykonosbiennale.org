@@ -13,5 +13,6 @@ urlpatterns = patterns('',
     url(r'^video-graffiti/$', views.VideoGraffitiFilms.as_view(), name='video-graffiti'),
     url(r'^documentaries/$', views.DocumentaryFilms.as_view(), name='documentaries'),
     url(r'^film/(?P<slug>[^/]+)/$', views.FilmDetail.as_view(), name='film-detail'),
+    url(r'^program/(?P<slug>[^/]+)/$', views.ProgramDetail.as_view(), name='program'),
     #url(r'^film/(?P<slug>[^/]+)/$', cache_page(60 * 15)(views.FilmDetail.as_view()), name='film-detail'),
 ) + static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)

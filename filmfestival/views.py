@@ -36,4 +36,5 @@ class DocumentaryFilms(FilmList):
 class FilmDetail(DetailView):
     model = models.Film
     
-    
+class ProgramDetail(DetailView):
+    model = models.Program 
