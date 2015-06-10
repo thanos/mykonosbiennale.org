@@ -42,7 +42,7 @@ class FilmAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['id', 'ref', 'status', 'poster', 'film_type', 'title', 'dir_by'] #, 'length']
-    search_fields = ['ref',' title', 'dir_by', 'synopsis' ]
+    search_fields = ['ref','title', 'dir_by', 'synopsis' ]
     list_editable=['status', 'film_type',  ]
     list_filter = [ 'status','film_type','source'] 
     inlines = [ImageInline] #PersonInline, , DocumentationInline]
@@ -76,9 +76,11 @@ class DayAdmin(admin.ModelAdmin):
     list_filter = [ 'program']
     exclude = ('slug',)
     inlines = [ScreeningInline] 
+    
+
 admin.site.register(models.Day, DayAdmin) 
 
-from ordered_model.admin import OrderedModelAdmin
+
 
 class ScreeningAdmin(admin.ModelAdmin):
     save_on_top  = True
@@ -86,6 +88,10 @@ class ScreeningAdmin(admin.ModelAdmin):
     list_filter = [ 'day']
     exclude = ('slug',)
     search_fields = ['film__title',  'film__dir_by']
-
+    def formfield_for_foreignkey(self, db_field, request, **kwargs):
+        if db_field.name == "film":      
+            print "FILM"
+            kwargs["queryset"] = models.Film.objects.filter(status=models.Film.SELECTED).exclude(film_type = models.Film.VIDEO_GRAFITTI).order_by('title')
+        return super(ScreeningAdmin, self).formfield_for_foreignkey(db_field, request, **kwargs)
    
 admin.site.register(models.Screening, ScreeningAdmin) 

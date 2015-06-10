@@ -55,6 +55,8 @@ class Program(models.Model):
         super(Program, self).save(*args, **kwargs)
 
 class Day(models.Model):
+    class Meta:
+        ordering = ['date']
     program = models.ForeignKey(Program)
     date = models.DateField()
     slug = models.SlugField(max_length=200)
@@ -88,13 +90,14 @@ class Screening(models.Model):
     
     def save(self, *args, **kwargs):
         self.slug = slugify(str(self))
-        try:
-            last = Screening.objects.filter(day=self.day).latest()
-            self.start_time =  last.start_time
-            self.start_time  += datetime.timedelta(minutes=last.film.runtime)
-        except Screening.DoesNotExist:
-            self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
-        self.start_time  += datetime.timedelta(minutes=self.pause)
+        if self.id is None:
+            try:
+                last = Screening.objects.filter(day=self.day).latest()
+                self.start_time =  last.start_time
+                self.start_time  += datetime.timedelta(minutes=last.film.runtime)
+            except Screening.DoesNotExist:
+                self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
+            self.start_time  += datetime.timedelta(minutes=self.pause)
         super(Screening, self).save(*args, **kwargs)
         
     
@@ -108,7 +111,7 @@ class Film(models.Model):
     DOCUMENTARY = 'Documentary'
     FILM_TYPES_CHOICES = (
         (DRAMATIC_NIGHTS, 'Dramatic Nights'),
-        (VIDEO_GRAFITTI, 'Video Grafitti'),
+        (VIDEO_GRAFITTI, 'Video Graffiti'),
         (DANCE, 'Dance'),
         (DOCUMENTARY, 'Documentary'),
     )
@@ -134,6 +137,7 @@ class Film(models.Model):
                                       choices=FILM_SOURCE_CHOICES,
                                       default=WITHOUTABOX)
     title = models.CharField(max_length=200)
+    original_title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     dir_by = models.CharField(max_length=128)
     sub_by = models.CharField(max_length=128, default='')
