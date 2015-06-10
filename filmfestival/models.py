@@ -1,7 +1,7 @@
 from django.db import models
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
-import os
+import os,datetime
 from uuid import uuid4
 from django.utils.text import slugify
 
@@ -42,6 +42,63 @@ def document_path(instance, filename, prefix='document',path='documents'):
     filename = 'mykonos-biennale-2015-film-festival-{}-{}.{}'.format(slug, prefix, instance.id, ext)
     return os.path.join(path, filename)
 
+
+class Program(models.Model):
+    slug = models.SlugField(max_length=200)
+    title = models.CharField(max_length=200)
+    
+    def __unicode__(self):
+        return self.title
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title+'-program')
+        super(Program, self).save(*args, **kwargs)
+
+class Day(models.Model):
+    program = models.ForeignKey(Program)
+    date = models.DateField()
+    slug = models.SlugField(max_length=200)
+    runtime = models.IntegerField(default=0)
+    start_time = models.TimeField(default="21:00")
+    
+    def number_of_films(self):
+        return 0
+    
+    def __unicode__(self):
+        return "{} {}".format(self.program, self.date)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(str(self))
+        super(Day, self).save(*args, **kwargs)
+        
+        
+class Screening(models.Model):
+    class Meta:
+        ordering  = ('start_time',)
+        get_latest_by ="start_time"
+        
+    day = models.ForeignKey(Day)
+    pause = models.IntegerField(default=3)
+    film = models.ForeignKey('Film')  
+    slug = models.SlugField(max_length=200)
+    start_time = models.DateTimeField(blank=True, default=None)
+    
+    def __unicode__(self):
+        return "{} {} {}".format(self.day.program, self.start_time, self.film.title)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(str(self))
+        try:
+            last = Screening.objects.filter(day=self.day).latest()
+            self.start_time =  last.start_time
+            self.start_time  += datetime.timedelta(minutes=last.film.runtime)
+        except Screening.DoesNotExist:
+            self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
+        self.start_time  += datetime.timedelta(minutes=self.pause)
+        super(Screening, self).save(*args, **kwargs)
+        
+    
+    
 class Film(models.Model):
     class Meta:
         ordering = ['ref']
@@ -86,7 +143,7 @@ class Film(models.Model):
     year = models.CharField(max_length=4)
     runtime = models.IntegerField()
     country = models.TextField()
-    coming = models.BooleanField( default= False)
+    #coming = models.BooleanField(default= False)
 
 
     log_line = models.TextField(default='')

@@ -42,12 +42,50 @@ class FilmAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['id', 'ref', 'status', 'poster', 'film_type', 'title', 'dir_by'] #, 'length']
-    search_fields = ['title', 'dir_by', 'synopsis' ]
-    list_editable=['status', 'film_type', ]
+    search_fields = ['ref',' title', 'dir_by', 'synopsis' ]
+    list_editable=['status', 'film_type',  ]
     list_filter = [ 'status','film_type','source'] 
     inlines = [ImageInline] #PersonInline, , DocumentationInline]
+
 admin.site.register(models.Film, FilmAdmin) 
-    
+
     
 
     
+class DayInline(admin.TabularInline):
+    model = models.Day
+    extra = 0
+    
+class ScreeningInline(admin.TabularInline):
+    model = models.Screening
+    extra = 1
+    exclude = ('slug',)
+    fields = ('pause', 'start_time',  'film', )
+    
+    
+class ProgramAdmin(admin.ModelAdmin):
+    save_on_top  = True
+    prepopulated_fields = {"slug": ("title",)}
+    list_display = ['title'] 
+    inlines = [DayInline] 
+admin.site.register(models.Program, ProgramAdmin) 
+
+class DayAdmin(admin.ModelAdmin):
+    save_on_top  = True
+    list_display = ['program', 'date', 'number_of_films',  'runtime'] 
+    list_filter = [ 'program']
+    exclude = ('slug',)
+    inlines = [ScreeningInline] 
+admin.site.register(models.Day, DayAdmin) 
+
+from ordered_model.admin import OrderedModelAdmin
+
+class ScreeningAdmin(admin.ModelAdmin):
+    save_on_top  = True
+    list_display = ['day', 'pause', 'start_time',  'film',] 
+    list_filter = [ 'day']
+    exclude = ('slug',)
+    search_fields = ['film__title',  'film__dir_by']
+
+   
+admin.site.register(models.Screening, ScreeningAdmin) 
