@@ -198,7 +198,7 @@ class Film(models.Model):
     
 
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title+self.dir_by)
+        self.slug = slugify(self.title+'-'+self.dir_by)
         super(Film, self).save(*args, **kwargs)
     
 class Person(models.Model):

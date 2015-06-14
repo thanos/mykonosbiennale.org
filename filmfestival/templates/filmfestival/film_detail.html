@@ -38,11 +38,14 @@
         <script src="/static/js/uikit.min.js"></script>
         <script src="/static/js/components/slider.js"></script>
 <style>
+article {
+padding: 10px 0 0 0px;
+}
     .uk-panel {
         padding: 50px;
     }
     
-/*     .page { max-width: 900px!important; padding: 5px; } */
+    .page { padding-left:0px; }
         </style>
     </head>
 
@@ -107,6 +110,11 @@
 			<div class="uk-navbar-brand uk-navbar-center uk-visible-small">2015 Antidote</div>
 			</nav>
 		</div>
+<ul class="uk-breadcrumb">
+    <li><a href="/">Antidote</a></li>
+    <li><a href="/filmfestival/films/">Film Festival</a></li>
+    <li class="uk-active"><span>{{ object.title}}</span></li>
+</ul>
 	</div>
 </div>
     
@@ -155,14 +163,14 @@
 			</li>
         </ul>
     </div>
+
+
+
 </div>
-
-
-
-<div class="uk-grid mark_red"  id="film">
     
     
-		<div class="uk-width-medium-1-1  uk-container-center page film ">
+<div class="uk-grid mark_red" >
+	<div class="uk-width-medium-1-1  uk-container-center page film ">
                          
                                 
     <article class="uk-comment">
@@ -249,7 +257,7 @@
      
         </div>
      </div>
-     </div>
+ </div>
     
     
   
