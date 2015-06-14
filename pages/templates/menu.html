@@ -31,55 +31,17 @@
 
 <div id="offcanvas" class="uk-offcanvas">
 	<div class="uk-offcanvas-bar">
-
-                                    <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
-   
-
-                                        <li class="uk-parent">
-                                            <a href="/mykonos-beinnale/" >Mykonos Biennale</a>
-                                            <ul class="uk-nav-sub">
-			<li><a href="/mykonos-biennale#biennale-introduction">Introduction</a></li>
-			<li><a href="/mykonos-biennale#biennale-statement">Statement</a></li>
-			<li><a href="/mykonos-biennale#biennale-artprogram" >Art Program</a></li>
-			<li><a href="/mykonos-biennale#biennale-education" >Education &amp; Internship</a><li>
-			<li><a href="/mykonos-biennale#biennale-awards" >Awards</a></li>
-			<li><a href="/mykonos-biennale#biennale-contact">Contact</a></li>
-                                            </ul>
-                                        </li>
-
-                                        <li class="uk-parent uk-active">
-                                            <a href="#"  style="color: magenta;">2015 Antidote</a>
-                                            <ul class="uk-nav-sub">
-			<li><a href="/2015-antidote/#2015-antidote">Antidote</a></li>
-			<li><a href="/2015-antidote/#2015-statement">Statement</a></li>
-			<li><a href="/2015-antidote/#2015-kite-festival">Kite Festival</a></li>
-			<li><a href="/2015-antidote/#2015-treasure-hunt">Treasue Hunt</a><li>
-			<li> <a href="/2015-antidote/#2015-weaving-residency">Weaving Residency</a></li>
-			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
-			<li><a href="/2015-antidote/#2015-video-graffiti">Video Graffiti</a></li>
-			<li><a href="/2015-antidote/#2015-dramatic-nights">Dramatic Nights</a></li>     
-			<li class="uk-nav-header" >Dance</li>
-			<li><a href="/2015-antidote/#2015-pigeage">Pigeage</a></li>
-                                            </ul>
-                                        </li>
-<li class="uk-parent">
-                                            	<a href="/2013-crisis-and-paganism/" >2013 Crises &amp; Paganism</a>
-                                            <ul class="uk-nav-sub">
-			<li><a href="/2013-crisis-and-paganism/#2013-invite" >Crises &amp; Paganism</a></li>
-			<li><a href="/2013-crisis-and-paganism/#2013-statement" >Statement</a></li>
-			<li><a href="/2013-crisis-and-paganism/#2013-events" >Events</a></li>
-			<li><a href="/2013-crisis-and-paganism/#2013-venues" >Venues</a></li>
-			<li><a href="/2013-crisis-and-paganism/#2013-artists" >Artists</a></li>
-			<li><a href="/2013-crisis-and-paganism/#2013-press" >Press</a></li>
-			<li class="uk-nav-header" >Credits</li>
-			<li><a href="/2013-crisis-and-paganism/#2013-team" >Team</a></li>
-			<li><a href="/2013-crisis-and-paganism/#2013-sponsors" >Sponsors</a></li>
-                                            </ul>
-                                        </li>
-                                    </ul>
-
-                                </div>
-
-        </div>
-
-
+        <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
+        {% for page in pages %}
+            <li class="uk-parent">
+                <a href="/{{ page.slug }}" >{{ page.title }}</a>
+                <ul class="uk-nav-sub">
+                {% for panel in page.panel_set.all %}
+                    <li><a href="/#{{ panel.slug }}">{{panel.title}}</a></li>
+                  {% endfor %}    
+                </ul>
+            </li>
+        {% endfor %}
+        </ul>
+    </div>
+</div>
