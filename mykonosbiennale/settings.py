@@ -167,7 +167,7 @@ REST_FRAMEWORK = {
 
     'PAGINATE_BY': 100,
 }
-
+"""
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 PIPELINE_CSS = {
     'css': {
@@ -192,4 +192,5 @@ PIPELINE_JS = {
     }
 }
 
+"""
 from local_settings import *
