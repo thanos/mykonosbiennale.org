@@ -6,5 +6,5 @@ from django.conf import settings
 
 
 urlpatterns = patterns('',
-    url(r'^(?P<slug>[^/]+)/$', 'pages.views.page', name='page'),
+    url(r'^(?P<slug>[^/.]+)/$', 'pages.views.page', name='page'),
 )
