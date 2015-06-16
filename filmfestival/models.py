@@ -136,22 +136,27 @@ class Film(models.Model):
     source = models.CharField(max_length=30,
                                       choices=FILM_SOURCE_CHOICES,
                                       default=WITHOUTABOX)
+    
     title = models.CharField(max_length=200)
-    original_title = models.CharField(max_length=200)
+    original_title = models.CharField(max_length=200,blank=True, default='')
     slug = models.SlugField(max_length=200)
     dir_by = models.CharField(max_length=128)
     sub_by = models.CharField(max_length=128, default='')
     subtitles = models.BooleanField(default=False)
-    language= models.CharField(max_length=128)
-    actors = models.TextField()
+    language= models.CharField(max_length=128,blank=True, default='')
+    actors = models.TextField(blank=True, default='')
     year = models.CharField(max_length=4)
     runtime = models.IntegerField()
-    country = models.TextField()
+    country = models.TextField(blank=True, default='')
     #coming = models.BooleanField(default= False)
-
-
-    log_line = models.TextField(default='')
-    synopsis = models.TextField(default='')
+    projection_copy = models.BooleanField(default= False)
+    projection_copy_url = models.URLField(blank=True, default='')
+    present = models.BooleanField(default= False)
+    when = models.CharField(max_length=64,blank=True, default='')
+    
+    
+    log_line = models.TextField(blank=True, default='')
+    synopsis = models.TextField(blank=True, default='')
     synopsis_125 = models.TextField( blank=True, default='')
     synopsis_250 = models.TextField( blank=True, default='')
     first_time = models.CharField(max_length=164,  blank=True, default='') 
@@ -172,7 +177,9 @@ class Film(models.Model):
     screenings  = models.TextField(blank=True, default='')
     status = models.CharField(max_length=164,   choices=ENTRY_STATUS_CHOICES, default = UNDECIDED)
     url = models.URLField(blank=True, default='')
+    
     trailer = models.URLField(blank=True, default='')
+    
     genres = models.CharField(max_length=128, blank=True, default='')
     niches = models.CharField(max_length=256, blank=True, default='')
     info = models.TextField(blank=True, default='')
@@ -239,14 +246,7 @@ class Image(Material):
                                       choices=IMAGE_TYPES_CHOICES,
                                       default=SCREENSHOT)
     image = models.ImageField (upload_to=image_path,  max_length=256, blank=True)
-    image_thumbnail = ImageSpecField(source='image',
-                                      processors=[ResizeToFit(1000, 150)],
-                                      format='JPEG',
-                                      options={'quality': 60})
-    image_for_download = ImageSpecField(source='image',
-                                      processors=[ResizeToFit(1000,1000)],
-                                      format='JPEG',
-                                      options={'quality': 90})
+
     
 class Documentation(Material):
     file = models.FileField(upload_to=document_path, max_length=256, blank=True)
