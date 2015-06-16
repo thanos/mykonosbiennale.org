@@ -1,0 +1,24 @@
+{% load thumbnail %}
+
+<title>"{{seo.title}}</title>
+<meta name="description" content="{{seo.description|truncatechars:155}}">
+
+<meta property="og:site_name" content="Mykonos Biennale"/>
+<meta property="og:title" content="{{seo.title}}"/>
+<meta property="og:type" content="website"/>
+<meta property="og:url" content="{{seo.url}}" />
+<meta property="og:description" content="{{ seo.description |truncatechars:280 }}" />
+
+<meta name="twitter:card" content="summary">
+<meta name="twitter:url" content="{{seo.url}}">
+<meta name="twitter:title" content="{{seo.title}}">
+<meta name="twitter:description" content="{{ seo.description |truncatechars:200 }}" >
+<meta name="twitter:image" content="{{seo.image}}">
+{% comment %}
+    {% if seo.image %}
+    {% thumbnail seo.image  "400" crop="center" colorspace="GRAY" as image %}
+    <meta property="og:image" content="{{image}}" />
+    <meta name="twitter:image" content="{{image}}"> 
+    {% endthumbnail %}
+    {% endif %} 
+{% endcomment %}

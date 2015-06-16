@@ -21,22 +21,16 @@
 
 	<title>Mykonos Biennale - 2015 - Antidote</title>
 
-	<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-	<link rel="apple-touch-icon-precomposed" href="/static/images/apple-touch-icon.png">
-     <link rel="stylesheet" href="/static/css/uikit.docs.min.css" />
-    <link rel="stylesheet" href="http://getuikit.com/vendor/highlight/highlight.css"> 
-        <script src="/static/js/jquery.js"></script>
-        <script src="/static/js/uikit.js"></script>
-	<script src="/static/js/components/sticky.js"></script>
-	<script src="/static/js/components/grid.js"></script>
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="/static/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
+    <link rel="stylesheet" href="/static/uikit/js/components/sticky.min.css">
 
-<script src="/static/js/core/smooth-scroll.min.js"></script>
-	<script src="/static/js/core/scrollspy.js"></script>
-
-	 <script src="http://getuikit.com/vendor/holder.js"></script>
-  <script src="/static/js/components/slideset.js"></script>
-
-
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/uikit/js/uikit.min.js"></script>
+    <script src="/static/uikit/js/components/grid.min.js"></script>
+    <script src="/static/uikit/js/components/sticky.min.js"></script>
 
 	<style>
 
@@ -117,15 +111,14 @@ padding-left:0px;
     color: #FF00FF;
 	 text-decoration: none;
 }
-
-	</style>
+</style>
     
     
-            {% for panel in current_page.panel_set.all %}
-<style>
+    {% for panel in current_page.panel_set.all %}
+    <style>
         {{ panel.css| safe }}
     </style>
-        {% endfor %}
+    {% endfor %}
 </head>
 
 
@@ -144,7 +137,7 @@ padding-left:0px;
 {% endfor %}
 
 
-{% include "menu.html" %}
+{% include "nav_bar.html" %}
 		
 {% for panel in current_page.panel_set.all %}	
     {% if  panel.order >= 0 %} 
@@ -188,52 +181,6 @@ $('[data-uk-scrollspy]').on('outview.uk.scrollspy', function(){
 $('[data-uk-scrollspy]').on('inview.uk.scrollspy', function(){
       $('nav').hide();
 });
-
-// var container = document.querySelector('#container');
-// var  msnry = new Masonry( container, {
-// 	  // options
-// 	  columnWidth: 200,
-// 	  itemSelector: '.item'
-// 	});
-// //$("#container").hide();
-// imagesLoaded( container, function() {
-// //  $("#container").show(); 
-//   // $('html, body').animate({
-//   //       scrollTop: $("#container").offset().top
-//   //   }, 10000);
-//   msnry.layout();
-// });
-
-
-
-
-</script>
-<script>
-	
-
-
-// function slideSwitch() {
-//     var $active = $('.slideshow IMG.active');
-
-//     if ( $active.length == 0 ) $active = $('#slideshow IMG:last');
-
-//     var $next =  $active.next().length ? $active.next()
-//         : $('#slideshow1 IMG:first');
-
-//     $active.addClass('last-active');
-        
-//     $next.css({opacity: 0.0})
-//         .addClass('active')
-//         .animate({opacity: 1.0}, 500, function() {
-//             $active.removeClass('active last-active');
-//         });
-// }
-
-// $(function() {
-//     setInterval( "slideSwitch()", 3000 );
-// });
-
-
 </script>
 
  
