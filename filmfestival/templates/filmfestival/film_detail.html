@@ -32,11 +32,15 @@
         <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
         <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
       <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-              <link rel="stylesheet" href="http://getuikit.com/docs/css/uikit.docs.min.css">
+      <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
+        <link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
+         <link rel="stylesheet" href="/static/uikit/css/components/slider.css">
+         <link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
         <link rel="stylesheet" href="{% static "css/film_detail.css" %}">
         <script src="/static/js/jquery.js"></script>
-        <script src="/static/js/uikit.min.js"></script>
-        <script src="/static/js/components/slider.js"></script>
+        <script src="/static/uikit/js/uikit.min.js"></script>
+        <script src="/static/uikit/js/components/slider.js"></script>
+           <script src="/static/uikit/js/components/slideset.js"></script>
 <style>
 article {
 padding: 10px 0 0 0px;
@@ -225,7 +229,7 @@ padding: 10px 0 0 0px;
         {% endif %}
         
           
-
+       {% comment %}
       <div class="uk-slidenav-position" data-uk-slider="{infinite: true}" style="max-width:700px;"> 
     <div class="uk-slider-container">
         <ul class="uk-slider ">
@@ -234,9 +238,6 @@ padding: 10px 0 0 0px;
                 {% if image.image %}
              {% thumbnail image.image "x125" crop="center" as thum %}
             <li><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></li>
-            {% comment %}
-              <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image}}" target="_blank"><li><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></li></a>
-             {% endcomment %} 
             {% endthumbnail %}    
             {% endif %}
             {% endfor %}
@@ -245,7 +246,35 @@ padding: 10px 0 0 0px;
     <a class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous" href="#" draggable="true"></a>
 
 <a class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next" href="#" draggable="true"></a>
-</div>                     
+</div>     
+              {% endcomment %} 
+        
+
+
+
+        
+    <div class="uk-margin" data-uk-slideset="{default: 2}">
+                                <div class="uk-slidenav-position uk-margin">
+                                    <ul class="uk-slideset uk-grid uk-flex-center">
+{% for image in film.filmfestival_image_related.all %}
+
+                {% if image.image %}
+             {% thumbnail image.image "x125" crop="center" as thum %}
+            <li><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></a></li>
+     
+             
+
+            {% endthumbnail %}    
+            {% endif %}
+            {% endfor %}
+                                    </ul>
+                                    <a href="#" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+                                    <a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
+                                </div>
+                            </div>
+        
+        
+        
         {% if film.directors_statement %} 
         <h3>Directors Statement</h3>
         <p>{{film.directors_statement|linebreaksbr}}</p>
