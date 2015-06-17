@@ -2,6 +2,7 @@ from django.db import models
 import os
 from uuid import uuid4
 from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
@@ -60,15 +61,22 @@ class Page(models.Model):
     visible = models.BooleanField(default=True)
     css = models.TextField(default='')
     javascript = models.TextField(default='')
-    def __unicode__(self):
-        return self.title
+
     
     def panels(self):
         return self.panel_set.filter(visible=True)
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Page, self).save(*args, **kwargs)
+
     
+    def __unicode__(self):
+        return self.title
+    
+    def get_absolute_url(self):
+        return reverse('page', args=[self.slug])        
+        
+
     
 class Panel(models.Model):
     class Meta:
@@ -80,6 +88,13 @@ class Panel(models.Model):
     content = models.TextField(blank=True, default='')
     css = models.TextField(default='')
     visible = models.BooleanField(default=True)
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Panel, self).save(*args, **kwargs)
+        
+        
+    def get_absolute_url(self):
+        return "{}#{}".format(self.page.get_absolute_url(), self.slug)
+    
+    

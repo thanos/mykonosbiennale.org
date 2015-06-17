@@ -2,6 +2,7 @@ from django.db import models
 import os
 from uuid import uuid4
 from django.utils.text import slugify
+from django.core.urlresolvers import reverse
 from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from imagekit.models import ImageSpecField
@@ -107,6 +108,9 @@ class Artist(models.Model):
     
     def __unicode__(self):
         return self.name
+    
+    def get_absolute_url(self):
+        return reverse('artist-detail', args=[self.slug]) 
     
     def artists(self):
         return self.panel_set.filter(visible=True)

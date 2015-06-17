@@ -28,7 +28,7 @@ class ArtistDetail(PageMixin, DetailView):
         return [('/', artist.festival), ('/artfestival/artists/', artist.event), ('', artist.name )]
 
     def seo(self, context):
-        artist = context['object']
+        artist = self.getObject()
         title =  "Mykonos Biennale 2015 - {} - {}".format(artist.event, artist.name)
         description = "Biennale page for {}".format(artist.name)
         url = "/artfestival/artist/{}".format(artist.slug)

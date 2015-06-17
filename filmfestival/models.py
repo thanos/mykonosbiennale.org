@@ -1,10 +1,11 @@
 from django.db import models
 from django_countries.fields import CountryField
+from django.utils.text import slugify
+from django.core.urlresolvers import reverse
+
 from phonenumber_field.modelfields import PhoneNumberField
 import os,datetime
 from uuid import uuid4
-from django.utils.text import slugify
-
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
 from sorl.thumbnail import ImageField
@@ -50,8 +51,11 @@ class Program(models.Model):
     def __unicode__(self):
         return self.title
     
+    def get_absolute_url(self):
+        return reverse('program', args=[self.slug])
+    
     def save(self, *args, **kwargs):
-        self.slug = slugify(self.title+'-program')
+        self.slug = slugify(self.title)
         super(Program, self).save(*args, **kwargs)
 
 class Day(models.Model):
@@ -203,6 +207,8 @@ class Film(models.Model):
     def __unicode__(self):
         return self.title
     
+    def get_absolute_url(self):
+        return reverse('film-detail', args=[self.slug])
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title+'-'+self.dir_by)

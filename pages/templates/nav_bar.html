@@ -6,11 +6,11 @@
                 <ul class="uk-navbar-nav uk-hidden-small">
                     {% for page in pages %}
                     <li class="uk-parent" data-uk-dropdown="">
-                        <a href="/{{page.slug}}/" >{{page.title}}</a>
+                        <a href="{{ page.get_absolute_url }}" >{{page.title}}</a>
                         <div style="" class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 {% for panel in page.panel_set.all %}
-                                <li><a href="/{{page.slug}}/#/{{panel.slug}}/">{{panel.title}}</a></li>
+                                <li><a href="{{panel.get_absolute_url}}">{{panel.title}}</a></li>
                                 {% endfor %}
                             </ul>
                         </div>
@@ -40,10 +40,10 @@
         <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
              {% for page in pages %}
             <li class="uk-parent">
-                <a href="#" >Mykonos Biennale</a>
+                <a href="#" >{{ page.title }}</a>
                 <ul class="uk-nav-sub">
                       {% for panel in page.panel_set.all %}
-			        <li><a href="/{{ page.slug }}/#{{ panel.slug }}">{{ panel.title }}</a></li>
+			        <li><a href="{{ panel.get_absolute_url }}">{{ panel.title }}</a></li>
                     {% endfor %}
                 </ul>
              </li>

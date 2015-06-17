@@ -166,11 +166,11 @@
                          
 <div class="uk-grid">
      {% for day in program.day_set.all %}
-    <div class="uk-width-1-4">
-       <h2>{{day.date}}</h2>
+    <div class="uk-width-1-5">
+       <h2>{{day.date|date:"F jS"}}</h2>
         <dl>
         {% for screening in day.screening_set.all %}
-        <dt>{{screening.film }}</dt>
+            <dt><a href="{{ screening.film.get_absolute_url }}">{{screening.film }}</a></dt>
         <dd>{{screening.start_time|time:"H:i" }}</dd>
         </dl>
         

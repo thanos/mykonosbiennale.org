@@ -17,9 +17,31 @@ class PageMixin(object):
         context['seo'] = self.seo(context)
         return context
     
+    def getObject(self, context):
+        return context['object']
+        
     def breadcrumbs(self, context):
         pass
         
     def seo(self, context):
-        raise NotImplementedError()
-       
+        object = self.getObject(context)
+        return {
+            'url': object.get_absolute_url(), 
+            'image': 'http://mykonosbiennale.org/static/images/mykonos-biennale-logo.png'
+        }
+    
+    
+class ListMixin(PageMixin):
+
+    def getObject(self, context):
+        return context['list_object']
+        
+    def breadcrumbs(self, context):
+        pass
+    
+    def seo(self, context):
+        object = self.getObject(context)
+        return {
+            'url': '', 
+            'image': 'http://mykonosbiennale.org/static/images/mykonos-biennale-logo.png'
+        }
