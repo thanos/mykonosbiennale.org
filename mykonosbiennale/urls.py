@@ -12,7 +12,7 @@ urlpatterns = patterns('',
     #url(r"^$", TemplateView.as_view(template_name="index.html"), name="home"),
     #url(r"^2013-crises-and-paganism/$", TemplateView.as_view(template_name="2013-Crises-and-Paganism.html"), name="home"),
     #url(r"^mykonos-biennale/$", TemplateView.as_view(template_name="mykonos-biennale.html"), name="home"),
-
+    url(r".*Mykonos_Biennale_2015", 'pages.views.redirect_to_2013', name='redirect_to_2013'),
     url(r"^filmfestival/", include("filmfestival.urls")),    
     url(r"^artfestival/", include("festival.urls")),  
 #    url(r'^api/films', FilmView.as_view(), name='films'),
