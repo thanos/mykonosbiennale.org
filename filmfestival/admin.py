@@ -42,7 +42,7 @@ class DocumentationInline(admin.TabularInline):
 class FilmAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['id', 'ref', 'status', 'present','when' , 'projection_copy', 'projection_copy_url', 'film_type', 'title', 'dir_by'] #, 'length']
+    list_display = ['id', 'ref', 'status', 'title', 'dir_by' , 'projection_copy', 'projection_copy_url', 'film_type', 'present','when' ] #, 'length']
     search_fields = ['ref','title', 'dir_by', 'synopsis',  ]
     list_editable=['status', 'film_type',  'projection_copy', 'projection_copy_url', 'present','when' ]
     list_filter = [ 'status','film_type','source','projection_copy', 'present'] 

@@ -5,11 +5,10 @@ from django.http import Http404
 from django.shortcuts import render_to_response
 from django.views.generic import ListView,DetailView
 
-import models
 
 
 from pages.views import PageMixin,ListMixin
-
+import models
 
 def selected(request, what=models.Film.DRAMATIC_NIGHTS):
     qs = models.Film.objects.filter(status='SELECTED', film_type=what)
@@ -62,7 +61,7 @@ class FilmDetail(PageMixin, DetailView):
         x = super(FilmDetail,self).seo(context) 
         x.update({
             'title': 'Mykonos Biennale 2015 - {}'.format(film.title),
-            'description': 'The list of presented in {}'.format(film.synopsis),
+            'description': film.synopsis,
         })
         return x
     
