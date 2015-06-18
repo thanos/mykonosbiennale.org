@@ -19,6 +19,7 @@ def selected(request, what=models.Film.DRAMATIC_NIGHTS):
 
 
 class FilmList(ListMixin,ListView):
+    sub_title =''
     film_type = models.Film.DRAMATIC_NIGHTS
     queryset = models.Film.objects.filter(status='SELECTED').order_by('title')
     def getObject(self, context):

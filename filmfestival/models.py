@@ -77,7 +77,27 @@ class Day(models.Model):
         self.slug = slugify(str(self))
         super(Day, self).save(*args, **kwargs)
         
+    def build_timetable(self):
+        previous_screening = None
+        for screening in self.screening_set.all():
+            screening.schedule(previous_screening)
+            screening.save()
+            previous_screening = screening
+            
+            
+    def first_screening(self):
+        try:
+            return self.screening_set.first()
+        except Screening.DoesNotExist:
+            pass
         
+    def last_screening(self):
+        try:
+            return self.screening_set.last()
+        except Screening.DoesNotExist:
+            pass
+        
+                
 class Screening(models.Model):
     class Meta:
         ordering  = ('start_time',)
@@ -92,18 +112,20 @@ class Screening(models.Model):
     def __unicode__(self):
         return "{} {} {}".format(self.day.program, self.start_time, self.film.title)
     
+    def schedule(self, previous_screening=None):
+        if previous_screening:
+            self.start_time =  previous_screening.start_time
+            self.start_time  += datetime.timedelta(minutes=previous_screening.film.runtime+previous_screening.pause)
+        else:
+            self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
+    
+    
+            
     def save(self, *args, **kwargs):
         self.slug = slugify(str(self))
         if self.id is None:
-            try:
-                last = Screening.objects.filter(day=self.day).latest()
-                self.start_time =  last.start_time
-                self.start_time  += datetime.timedelta(minutes=last.film.runtime)
-            except Screening.DoesNotExist:
-                self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
-            self.start_time  += datetime.timedelta(minutes=self.pause)
+            self.schedule(self.day.last_screening())
         super(Screening, self).save(*args, **kwargs)
-        
     
     
 class Film(models.Model):
