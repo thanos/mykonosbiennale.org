@@ -58,7 +58,6 @@ class FilmDetail(PageMixin, DetailView):
     model = models.Film
     def seo(self, context):
         film = self.getObject(context)
-        print super(FilmDetail,self).seo(context)
         x = super(FilmDetail,self).seo(context) 
         x.update({
             'title': 'Mykonos Biennale 2015 - {}'.format(film.title),

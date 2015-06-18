@@ -46,7 +46,11 @@
                 {% endthumbnail %}
            {% endif %}
             <h1>{{object.title|title}}</h1>
-            <div class="uk-comment-meta">dir. by {{object.dir_by|title}}, {{object.runtime}} minutes, {{object.country}}</div>
+            <div class="uk-comment-meta">dir. by {{object.dir_by|title}}, {{object.runtime}} minutes, {{object.country}}<br/>
+            {{film.film_type}}
+                {% for screening in film.screening_set.all %}
+                    {{ screening.start_time }}
+                {% endfor %}</div>
         <div class="uk-comment-body">{{film.synopsis}}</div>
         </header>
 
