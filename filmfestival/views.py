@@ -53,7 +53,23 @@ class DanceFilms(FilmList):
     sub_title = 'Dance'
     queryset = models.Film.objects.filter(status='SELECTED', film_type= film_type).order_by('title')
           
-        
+
+class WhoIsComing(FilmList):
+    film_type = models.Film.DANCE
+    sub_title = 'Who is Comming'
+    template_name ='filmfestival/who-is-coming.html'
+    queryset = models.Film.objects.filter(present=True).order_by('title')
+    
+class MissingMedia(FilmList):
+    film_type = models.Film.DANCE
+    sub_title = 'Missing Media'
+    template_name ='filmfestival/missing-media.html'
+    queryset = models.Film.objects.filter(status='SELECTED', projection_copy=False).order_by('title')
+    
+    
+    
+    
+    
 class FilmDetail(PageMixin, DetailView):
     model = models.Film
     def seo(self, context):

@@ -1,0 +1,100 @@
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load variable_tags %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "seo.html" %}
+
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+        
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
+<link rel="stylesheet" href="/static/css/film_detail.css">
+ 
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/uikit/js/uikit.min.js"></script>
+<script src="/static/uikit/js/components/slider.js"></script>
+<script src="/static/uikit/js/components/slideset.js"></script>
+<style>
+.uk-panel {padding: 10px;}
+.page { padding-left:0px; }
+article {padding: 50px;}
+</style>
+</head>
+
+<body class="uk-height-1-1"  id="invite">
+<div class="uk-container uk-height-1-1" >
+{% include "nav_bar.html" %}      
+
+
+
+
+<div class="uk-grid mark_red"  id="film">
+    
+    
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
+            <h1>Mykonos Biennale 2015</h1>
+            <h2>{{seo.sub_title}}</h2>
+            <h3>Official Film Selection</h3>
+            <h4>As of {% variable "Official Selection Date" %}</h4>
+                   <ol>
+{% for film in object_list  %}
+                       <li>
+    {% if 0 <= forloop.counter0  and forloop.counter0 < 500 %} 
+                                
+                                
+                                
+                                
+                                
+                                
+    <article class="uk-comment">
+    <header class="uk-comment-header">
+         {% if film.poster %}
+        {% thumbnail film.poster "150" crop="center" as im %}
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a>
+        {% endthumbnail %}
+           {% endif %}
+            <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
+           <div>{{film.film_type}}<br/>
+                dir. by {{film.dir_by}} {{film.country}}<br />
+                {% for screening in film.screening_set.all %}
+                    {{ screening.start_time }}
+                {% endfor %}
+        </div>
+ 
+        </header>
+            
+                                 
+             
+                      <div class="uk-panel uk-panel-box">
+   {{film.contact_email}}<br/>
+                {{film.contact_phone}}<br/>
+                {{film.when}}<br/>
+</div>
+</article>
+           {% endif %}   
+                       </li>
+{% endfor %}
+                       </ol>
+        </div>
+     </div>
+     </div>
+    
+    
+    
+    
+    
+    </body>
+</html>
