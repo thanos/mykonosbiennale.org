@@ -32,7 +32,7 @@ class ArtistDetail(PageMixin, DetailView):
         title =  "Mykonos Biennale 2015 - {} - {}".format(artist.event, artist.name)
         description = "Biennale page for {}".format(artist.name)
         url = "/artfestival/artist/{}".format(artist.slug)
-        image = artist.headshot.url
+        image = artist.headshot.url if artist.headshot else ''
         return {
             'title': title,
             'description': description,
