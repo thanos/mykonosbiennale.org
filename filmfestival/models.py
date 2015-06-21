@@ -207,8 +207,8 @@ class Film(models.Model):
     status = models.CharField(max_length=164,   choices=ENTRY_STATUS_CHOICES, default = UNDECIDED)
     url = models.URLField(blank=True, default='')
     
-    trailer = models.URLField(blank=True, default='')
-    
+    trailer_url = models.URLField(blank=True, default='')
+    trailer_embed = models.TextField(blank=True, default='')
     genres = models.CharField(max_length=128, blank=True, default='')
     niches = models.CharField(max_length=256, blank=True, default='')
     info = models.TextField(blank=True, default='')

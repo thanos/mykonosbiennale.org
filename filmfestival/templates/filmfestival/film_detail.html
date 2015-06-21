@@ -85,31 +85,20 @@
              {% if film.composers %}  <dt>Composers</dt><dd> {{ film.composers }}</dd>{% endif %}
             </dl>
 
-        {% if film.screenings %} 
-        <h3> Screenings </h3>
-        {% re_split "\s*,\s*" film.screenings as screenings %}
-            <ul class="uk-list">
-                {% for screening in screenings %}
-                <li> {{ screening }}</li>
-			    {% endfor %}
-					</ul>
-        {% endif %}
-          {% if film.trailer %}
-        <div class="uk-slidenav-position" data-uk-slideshow="{animation: 'scroll'}">
-            <ul class="uk-slideshow">
-                      <li> <video width="600" height="400" autoplay loop muted controls>
-                                            <source src="{{film.trailer }}" type="video/mp4">
-             </video></li>   
-        {% else %}
+
+          {% if film.trailer_url %}
+        {{ film.trailer_embed|safe}}
+          {% endif %}
+
     <div class="uk-slidenav-position" data-uk-slideshow="{animation: 'scroll', autoplay:true}">
             <ul class="uk-slideshow">
-                 {% endif %}
+       
                 
                                             
 {% for image in film.filmfestival_image_related.all %}
                                      
                 {% if image.image %}
-             {% thumbnail image.image "x600" crop="center" as thum %}
+             {% thumbnail image.image "x640" crop="center" as thum %}
                     <li><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></a></li>                   
                       {% endthumbnail %}    
             {% endif %}
@@ -119,7 +108,15 @@
 <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
  </div>
 
-        
+             {% if film.screenings %} 
+        <h3> Screenings </h3>
+        {% re_split "\s*,\s*" film.screenings as screenings %}
+            <ul class="uk-list">
+                {% for screening in screenings %}
+                <li> {{ screening }}</li>
+			    {% endfor %}
+					</ul>
+        {% endif %}   
         
         
         {% if film.directors_statement %} 
