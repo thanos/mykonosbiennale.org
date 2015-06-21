@@ -1,5 +1,6 @@
 from django.contrib import admin
 import models 
+from django.http import HttpResponse
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ['name', 'email'] 
@@ -42,12 +43,20 @@ class DocumentationInline(admin.TabularInline):
 class FilmAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['id', 'ref', 'status', 'title', 'dir_by' , 'projection_copy', 'projection_copy_url', 'film_type', 'present','when' ] #, 'length']
+    list_display = ['id', 'ref', 'status', 'title', 'trailer', 'dir_by' , 'projection_copy', 'projection_copy_url', 'film_type', 'present','when' ] #, 'length']
     search_fields = ['ref','title', 'dir_by', 'synopsis',  ]
     list_editable=['status', 'film_type',  'projection_copy', 'projection_copy_url', 'present','when' ]
     list_filter = [ 'status','film_type','source','projection_copy', 'present'] 
     inlines = [ImageInline] #PersonInline, , DocumentationInline]
-
+    actions=['export_emails']
+    def export_emails(self, request, queryset):
+        emails = set()
+        for film in queryset:
+            emails.add(film.contact_email)
+        text = ",".join(list(emails))
+        return HttpResponse(text, content_type="text/plain")
+    
+    
 admin.site.register(models.Film, FilmAdmin) 
 
     
