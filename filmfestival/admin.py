@@ -15,7 +15,7 @@ class ImageAdmin(admin.ModelAdmin):
       
 admin.site.register(models.Image, ImageAdmin)  
 
-
+admin.site.register(models.Location)
 
 class DocumentationAdmin(admin.ModelAdmin):
     list_display = ['title', 'file', ]   
@@ -43,12 +43,12 @@ class DocumentationInline(admin.TabularInline):
 class FilmAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['id', 'ref', 'status', 'title', 'trailer_url', 'trailer_embed', 'dir_by' , 'projection_copy', 'projection_copy_url', 'film_type', 'present','when' ] #, 'length']
+    list_display = ['id', 'ref', 'status', 'title', 'dir_by' , 'projection_copy', 'projection_copy_url', 'film_type', 'present','when', 'trailer_url', 'trailer_embed',  ] #, 'length'] 
     search_fields = ['ref','title', 'dir_by', 'synopsis',  ]
     list_editable=['status', 'film_type',  'trailer_embed', 'projection_copy', 'projection_copy_url', 'present','when' ]
     list_filter = [ 'status','film_type','source','projection_copy', 'present'] 
     inlines = [ImageInline] #PersonInline, , DocumentationInline]
-    actions=['export_emails']
+    actions=['export_emails', 'export_names']
     def export_emails(self, request, queryset):
         emails = set()
         for film in queryset:
@@ -56,6 +56,13 @@ class FilmAdmin(admin.ModelAdmin):
         text = ",".join(list(emails))
         return HttpResponse(text, content_type="text/plain")
     
+    def export_names(self, request, queryset):
+        dir_by = set()
+        for film in queryset.order_by('dir_by'):
+            dir_by.add(film.dir_by)
+        text = ", ".join(list(dir_by))
+        return HttpResponse(text, content_type="text/plain")
+      
     
 admin.site.register(models.Film, FilmAdmin) 
 

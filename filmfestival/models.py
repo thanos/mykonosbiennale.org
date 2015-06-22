@@ -20,6 +20,13 @@ def poster_path(instance, filename):
     filename = 'mykonos-biennale-2015-film-festival-{}-{}.{}'.format(slug,'poster', ext)
     return os.path.join('images', filename)
 
+def location_image_path(instance, filename):
+    ext = filename.split('.')[-1]
+    # get filename
+    slug = slugify(instance.name)
+    filename = 'mykonos-biennale-2015-{}-{}.{}'.format('location', slug, ext)
+    return os.path.join('images', filename)
+
 def image_path(instance, filename):
     ext = filename.split('.')[-1]
     # get filename
@@ -44,6 +51,27 @@ def document_path(instance, filename, prefix='document',path='documents'):
     return os.path.join(path, filename)
 
 
+
+        
+
+class Location(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
+    image  = ImageField (upload_to=location_image_path,  max_length=256, blank=True)
+    address =  models.TextField(blank=True, default='')
+    url = models.URLField(blank=True, default='')
+    embeded_map =  models.TextField(blank=True, default='')
+    
+    def __unicode__(self):
+        return self.name
+    
+    def get_absolute_url(self):
+        return reverse('location', args=[self.slug])
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.name)
+        super(Location, self).save(*args, **kwargs)  
+    
 class Program(models.Model):
     slug = models.SlugField(max_length=200)
     title = models.CharField(max_length=200)
@@ -96,16 +124,16 @@ class Day(models.Model):
             return self.screening_set.last()
         except Screening.DoesNotExist:
             pass
-        
                 
 class Screening(models.Model):
     class Meta:
         ordering  = ('start_time',)
         get_latest_by ="start_time"
         
-    day = models.ForeignKey(Day)
+    day = models.ForeignKey(Day, blank=True, null=None)
     pause = models.IntegerField(default=3)
-    film = models.ForeignKey('Film')  
+    film = models.ForeignKey('Film') 
+    location = models.ForeignKey('Location', blank=True, null=True) 
     slug = models.SlugField(max_length=200)
     start_time = models.DateTimeField(blank=True, default=None)
     
@@ -118,9 +146,7 @@ class Screening(models.Model):
             self.start_time  += datetime.timedelta(minutes=previous_screening.film.runtime+previous_screening.pause)
         else:
             self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
-    
-    
-            
+       
     def save(self, *args, **kwargs):
         self.slug = slugify(str(self))
         if self.id is None:

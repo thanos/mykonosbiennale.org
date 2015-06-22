@@ -1,6 +1,6 @@
 from django.contrib import admin
 import models 
-
+from django.http import HttpResponse
 
 class FestivalAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
@@ -11,7 +11,7 @@ admin.site.register(models.Festival, FestivalAdmin)
 
 class ArtAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['photo', 'title', 'description', 'text']   
+    list_display = ['title', 'photo',  'description', 'text']   
     search_fields = ['title', 'description','text']
 admin.site.register(models.Art, ArtAdmin)        
 
@@ -36,5 +36,20 @@ class ArtistAdmin(admin.ModelAdmin):
            ('images', {'fields': ['headshot', 'poster']}),
            ('layout', {'fields': ['template', 'css', 'javascript'], 'classes': ['collapse']}),
             ]
-admin.site.register(models.Artist, ArtistAdmin) 
+
+    actions=['export_emails', 'export_names']
+    def export_emails(self, request, queryset):
+        emails = set()
+        for film in queryset:
+            emails.add(film.contact_email)
+        text = ",".join(list(emails))
+        return HttpResponse(text, content_type="text/plain")
     
+    def export_names(self, request, queryset):
+        names = set()
+        for film in queryset.order_by('name'):
+            names.add(film.name)
+        text = ", ".join(sorted(names))
+        return HttpResponse(text, content_type="text/plain")
+    
+admin.site.register(models.Artist, ArtistAdmin) 

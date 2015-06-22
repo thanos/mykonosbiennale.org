@@ -13,17 +13,18 @@
         
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
 <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
 <link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
 <link rel="stylesheet" href="/static/uikit/css/components/slider.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slideshow.css">
 <link rel="stylesheet" href="/static/css/film_detail.css">
-        
+ 
+
 <script src="/static/js/jquery.js"></script>
 <script src="/static/uikit/js/uikit.min.js"></script>
 <script src="/static/uikit/js/components/slider.js"></script>
-<script src="/static/uikit/js/components/slideset.js"></script>
+<script src="/static/uikit/js/components/slideshow.js"></script>
 <style>
 .uk-panel {padding: 50px;}
 .page { padding-left:0px; }
@@ -71,27 +72,21 @@
         
           
 
-      <div class="uk-slidenav-position" data-uk-slider="{infinite: true}" style="max-width:700px;"> 
-    <div class="uk-slider-container">
-        <ul class="uk-slider ">
-            {% for art in object.art_set.all %}
-
+    <div class="uk-slidenav-position" data-uk-slideshow="{animation: 'scroll', autoplay:true}">
+            <ul class="uk-slideshow">>
+            {% for art in object.art_set.all %}                               
                 {% if art.photo %}
-            {% thumbnail art.photo  "400" crop="center"  as photo %}
-            <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><li><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{art.title} - screen shot" />
-                 {% endthumbnail %}
-                <h2>{{ art.title}}</h2>
-                </li></a>
-                {% endif %}
-            {% endfor %}
-        </ul>
-    </div>
-    <a class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slider-item="previous" href="#" draggable="true"></a>
-
-<a class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slider-item="next" href="#" draggable="true"></a>
-</div>                     
-
-
+        {% thumbnail art.photo  "700" crop="center"  quality=60 as photo %}
+            <li><a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{art.title} - screen shot" /></a></li>
+                 {% endthumbnail %}   
+            {% endif %}
+            {% endfor %}                       
+           </ul>
+<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
+<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+ </div>
+            
+                               
 </article>
      
 
