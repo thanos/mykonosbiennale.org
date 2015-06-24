@@ -65,8 +65,10 @@
            {% endif %}
             <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
      
-            <div class="uk-comment-meta">dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}<br/>
-                {% if film.screening_set.count %} Screening: 
+            <div class="uk-comment-meta"> dir. by <span style="color:black; font-size:125%;">{{object.dir_by|title}}</span>, {{object.country}}<br/>
+                  runtime: {{object.runtime}} min<br/>
+              
+             {% if film.screening_set.count %} screening: 
                 {% for screening in film.screening_set.all %}
                     {{ screening.day.date|date:"F jS"  }}
                 {% endfor %}
