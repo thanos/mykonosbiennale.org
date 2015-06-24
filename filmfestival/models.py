@@ -127,7 +127,7 @@ class Day(models.Model):
                 
 class Screening(models.Model):
     class Meta:
-        ordering  = ('start_time',)
+        ordering  = ('id',)
         get_latest_by ="start_time"
         
     day = models.ForeignKey(Day, blank=True, null=None)
@@ -146,7 +146,7 @@ class Screening(models.Model):
             self.start_time  += datetime.timedelta(minutes=previous_screening.film.runtime+previous_screening.pause)
         else:
             self.start_time = datetime.datetime.combine(self.day.date, self.day.start_time)
-       
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(str(self))
         if self.id is None:

@@ -24,6 +24,7 @@
  
 
 <script src="/static/js/jquery.js"></script>
+<script src="/static/js/modernizr.js"></script>
 <script src="/static/uikit/js/uikit.min.js"></script>
 <script src="/static/uikit/js/components/slider.js"></script>
 <script src="/static/uikit/js/components/slideset.js"></script>
@@ -48,26 +49,26 @@
                 {% endthumbnail %}
            {% endif %}
             <h1>{{object.title|title}}</h1>
-            <div class="uk-comment-meta">dir. by {{object.dir_by|title}}, {{object.runtime}} minutes, {{object.country}}<br/>
-            {{film.film_type}}
+          </header>
+          <div class="uk-comment-meta">
+              dir. by <span style="color:black; font-size:125%;">{{object.dir_by|title}}</span>, {{object.country}}<br/>
+                  runtime: {{object.runtime}} min<br/>
+              
+             {% if film.screening_set.count %} screening: 
                 {% for screening in film.screening_set.all %}
-                    {{ screening.start_time }}
-                {% endfor %}</div>
-        <div class="uk-comment-body">{{film.synopsis}}</div>
-        </header>
-
-        {% re_split "\s*,\s*" film.actors as cast %}
-        {% if cast %}
+                    {{ screening.day.date|date:"F jS"  }}
+                {% endfor %}
+                {% endif %}</div>
+        <div class="uk-comment-body" style="padding-top:10px;">{{film.synopsis}}</div>
       
+{% if film.actors %}     
+        {% re_split "\s*,\s*" film.actors as cast %}
         <h3> Cast </h3>
-
-        
             <ul class="uk-list">
                 {% for actor in cast %}
                 <li> {{ actor }}</li>
 			    {% endfor %}
 					</ul>
-       
 {% endif %}
                             
 		<h3> Credits </h3>
@@ -86,9 +87,17 @@
             </dl>
 
 
-          {% if film.trailer_url %}
+          {% if film.trailer_embed %}
         {{ film.trailer_embed|safe}}
+          {% else %}
+        
+        {% if film.trailer_url %}
+                <video id="video" controls class="uk-responsive-width" width="700" >
+                                    <source src="{{film.trailer_url|safe}}" type="video/mp4">
+                </video>
           {% endif %}
+
+        {% endif %}
 
     <div class="uk-slidenav-position" data-uk-slideshow="{animation: 'scroll', autoplay:true}">
             <ul class="uk-slideshow">
@@ -134,7 +143,16 @@
     
     
   
-
+<script>
+   $(function() { 
+       
+if (Modernizr.video.h264 ) {
+      $("#video").show();
+} else {
+      $("#video").hide();       
+}
+              });                 
+</script>
     
     
     
