@@ -14,25 +14,25 @@ def path_and_rename(instance, filename):
     
     
 def poster_path(instance, filename):
-    ext = filename.split('.')[-1]
+    base, ext = os.path.splitext(filename)
     # get filename
     slug = slugify(instance.title+'-'+instance.dir_by)
-    filename = 'mykonos-biennale-2015-film-festival-{}-{}.{}'.format(slug,'poster', ext)
+    filename = 'mykonos-biennale-2015-film-festival-{}-{}{}'.format(slug,'poster', ext)
     return os.path.join('images', filename)
 
 def location_image_path(instance, filename):
-    ext = filename.split('.')[-1]
+    base, ext = os.path.splitext(filename)
     # get filename
     slug = slugify(instance.name)
-    filename = 'mykonos-biennale-2015-{}-{}.{}'.format('location', slug, ext)
+    filename = 'mykonos-biennale-2015-{}-{}{}'.format('location', slug, ext)
     return os.path.join('images', filename)
 
 def image_path(instance, filename):
-    ext = filename.split('.')[-1]
+    base, ext = os.path.splitext(filename)
     # get filename
     slug = slugify(instance.film.title+'-'+instance.title+'-'+instance.film.dir_by)
     count = instance.film.filmfestival_image_related.count()
-    filename = 'mykonos-biennale-2015-film-festival-{}-{}-{}.{}'.format(slug, instance.image_type, count,  ext)
+    filename = 'mykonos-biennale-2015-film-festival-{}-{}-{}{}'.format(slug, instance.image_type, count,  ext)
     return os.path.join('images', filename)
     
 def headshot_path(instance, filename):
@@ -45,9 +45,9 @@ def still_path(instance, filename):
     document_path(instance, filename, 'still', 'images')
 
 def document_path(instance, filename, prefix='document',path='documents'):
-    ext = filename.split('.')[-1]
+    base, ext = os.path.splitext(filename)
     slug = slugify(instance.film.title+'-'+instance.film.dir_by)
-    filename = 'mykonos-biennale-2015-film-festival-{}-{}.{}'.format(slug, prefix, instance.id, ext)
+    filename = 'mykonos-biennale-2015-film-festival-{}-{}{}'.format(slug, prefix, instance.id, ext)
     return os.path.join(path, filename)
 
 
@@ -73,8 +73,8 @@ class Location(models.Model):
         super(Location, self).save(*args, **kwargs)  
     
 class Program(models.Model):
-    slug = models.SlugField(max_length=200)
     title = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
     
     def __unicode__(self):
         return self.title
@@ -260,7 +260,8 @@ class Film(models.Model):
     
     def get_absolute_url(self):
         return reverse('film-detail', args=[self.slug])
-
+    
+    
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title+'-'+self.dir_by)
         super(Film, self).save(*args, **kwargs)

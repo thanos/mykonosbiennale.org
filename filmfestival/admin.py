@@ -48,7 +48,7 @@ class FilmAdmin(admin.ModelAdmin):
     list_editable=['status', 'film_type', 'trailer_url', 'trailer_embed', 'projection_copy', 'projection_copy_url', 'present','when' ]
     list_filter = [ 'status','film_type','source','projection_copy', 'present'] 
     inlines = [ImageInline] #PersonInline, , DocumentationInline]
-    actions=['export_emails', 'export_names']
+    actions=['export_emails', 'export_directors', 'export_titles']
     def export_emails(self, request, queryset):
         emails = set()
         for film in queryset:
@@ -56,13 +56,19 @@ class FilmAdmin(admin.ModelAdmin):
         text = ",".join(list(emails))
         return HttpResponse(text, content_type="text/plain")
     
-    def export_names(self, request, queryset):
+    def export_directors(self, request, queryset):
         dir_by = set()
         for film in queryset.order_by('dir_by'):
             dir_by.add(film.dir_by)
         text = ", ".join(list(dir_by))
         return HttpResponse(text, content_type="text/plain")
-      
+    
+    def export_titles(self, request, queryset):
+        dir_by = set()
+        for film in queryset.order_by('dir_by'):
+            dir_by.add(film.title)
+        text = ", ".join(list(dir_by))
+        return HttpResponse(text, content_type="text/plain")    
     
 admin.site.register(models.Film, FilmAdmin) 
 

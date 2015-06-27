@@ -92,8 +92,10 @@
           {% else %}
         
         {% if film.trailer_url %}
-                <video id="video" controls class="uk-responsive-width" width="700" >
-                                    <source src="{{film.trailer_url|safe}}" type="video/mp4">
+                <video id="video" controls class="uk-responsive-width" width="700" style="padding:5px 0 50px 0;">
+                    <source src="{{film.trailer_url|safe}}" type="video/mp4">
+                    <source src="{{film.trailer_url|replace_ext:"WebM"}}" type="video/webm">
+                    <source src="{{film.trailer_url|replace_ext:"ogv"}}" type="video/ogg">
                 </video>
           {% endif %}
 
