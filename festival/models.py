@@ -13,8 +13,8 @@ class ImageNamer:
     folder = 'artists'
     postfix = ''
     def __call__(self, instance, filename):
-        base, ext = filename.split('.')
-        store_filename = 'mykonos-biennale-{}.{}'.format(slugify(self.image_name(instance, base)),ext)
+        base, ext = os.path.splitext(filename)
+        store_filename = 'mykonos-biennale-{}{}'.format(slugify(self.image_name(instance, base)),ext)
         return os.path.join(self.folder, store_filename)
 
     
@@ -63,7 +63,6 @@ class Festival(models.Model):
         super(Festival, self).save(*args, **kwargs)
         
 
-        
 
 class Artist(models.Model):
     class Meta:
@@ -71,10 +70,11 @@ class Artist(models.Model):
     TEASURE_HUNT = 'TEASURE HUNT'
     OTHER = 'OTHER'
     KITE_FESTIVAL = 'KITE FESTIVAL'
+    PROJECT_X = 'PROJECT X'
     EVENT_CHOICES = (
-     (TEASURE_HUNT, TEASURE_HUNT),
-        
+        (TEASURE_HUNT, TEASURE_HUNT),
         (KITE_FESTIVAL, KITE_FESTIVAL),
+        (PROJECT_X, PROJECT_X),
         (OTHER, OTHER),
     )
 

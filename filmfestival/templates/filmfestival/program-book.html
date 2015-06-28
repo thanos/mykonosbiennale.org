@@ -1,3 +1,5 @@
+
+
 {% load re_tags %}
 {% load thumbnail %}
 {% load staticfiles %}
@@ -23,6 +25,8 @@
 <link rel="stylesheet" href="/static/css/film_detail.css">
  
 
+    
+    
 <script src="/static/js/jquery.js"></script>
 <script src="/static/uikit/js/uikit.min.js"></script>
 <script src="/static/uikit/js/components/slider.js"></script>
@@ -35,58 +39,52 @@
 
 <body class="uk-height-1-1"  id="invite">
 <div class="uk-container uk-height-1-1" >
-{% include "nav_bar.html" %}      
-
-
-
+{% include "nav_bar.html" %}
 
 <div class="uk-grid mark_red"  id="film">
     
     
-		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
-            <h1>Mykonos Biennale 2015</h1>
-            <h2>{{seo.sub_title}}</h2>
-            <h3>Official Film Selection</h3>
-            <h4>As of {% variable "Official Selection Date" %}</h4>
-{% for film in object_list  %}
-    {% if 0 <= forloop.counter0  and forloop.counter0 < 500 %} 
-                                
-                                
-                                
-                                
-                                
-                                
-    <article class="uk-comment">
+		<div class="uk-width-medium-1-1  uk-container-center page film ">
+                         
+
+     {% for day in program.day_set.all %}
+
+       <h2>{{day.date|date:"F jS"}}</h2>
+        <dl>
+        {% for screening in day.screening_set.all %}
+ <article class="uk-comment">
     <header class="uk-comment-header">
-         {% if film.poster %}
-        {% thumbnail film.poster "150" crop="center" as im %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a>
+         {% if screening.film.poster %}
+        {% thumbnail screening.film.poster "150" crop="center" as im %}
+        <img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" >
         {% endthumbnail %}
            {% endif %}
-            <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
-     
-            <div class="uk-comment-meta"> dir. by <span style="color:black; font-size:125%;">{{film.dir_by|title}}</span>, {{film.country}}<br/>
-                  runtime: {{film.runtime}} min<br/>
-              
-             {% if film.screening_set.count %} screening: 
-                {% for screening in film.screening_set.all %}
-                    {{ screening.day.date|date:"F jS"  }}
-                {% endfor %}
-                {% endif %}
+            <h2>{{screening.film.title|title}}</h2>
+             {{screening.film.runtime}} min<br>
+            <div class="uk-comment-meta">dir. by {{screening.film.dir_by|title}}, {{screening.film.country}}<br/>
+        
         </div>
-        <div class="uk-comment-body">{{film.log_line}}</div>
+        <div class="uk-comment-body">{{screening.film.log_line}}</div>
         </header>
        
 </article>
-           {% endif %}   
+            {% endfor %}
 
-{% endfor %}   
+     {% endfor %}
+
+       
+
+            
+       
+
+
+     
         </div>
      </div>
      </div>
     
     
-    
+
     
     
     </body>

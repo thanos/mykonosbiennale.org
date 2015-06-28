@@ -81,6 +81,9 @@ class FilmDetail(PageMixin, DetailView):
         })
         return x
     
+    def breadcrumbs(self, context):
+        film = self.getObject(context)
+        return [('/', '2015 - Antidote'), ('/filmfestival/films/', 'films'), ('', film.title )]   
     
     
     
