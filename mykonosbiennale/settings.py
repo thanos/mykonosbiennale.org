@@ -204,4 +204,7 @@ PIPELINE_JS = {
 }
 
 """
+
+TWITTER_APP_KEY = 'O296O2xJdwoTuJM1znUPNexsnX'
+TWITTER_APP_SECRET = Passwords.TWITTER_APP_SECRET
 from local_settings import *

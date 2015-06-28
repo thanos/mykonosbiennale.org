@@ -70,10 +70,11 @@ class Artist(models.Model):
     TEASURE_HUNT = 'TEASURE HUNT'
     OTHER = 'OTHER'
     KITE_FESTIVAL = 'KITE FESTIVAL'
+    PROJECT_X = 'PROJECT X'
     EVENT_CHOICES = (
-     (TEASURE_HUNT, TEASURE_HUNT),
-        
+        (TEASURE_HUNT, TEASURE_HUNT),
         (KITE_FESTIVAL, KITE_FESTIVAL),
+        (PROJECT_X, PROJECT_X),
         (OTHER, OTHER),
     )
 

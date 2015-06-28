@@ -100,7 +100,7 @@ class DayAdmin(admin.ModelAdmin):
     exclude = ('slug',)
     inlines = [ScreeningInline] 
     def build_timetable(self, request, queryset):
-        for day in queryset:
+        for day in queryset:            
             day.build_timetable()
     build_timetable.short_description = "Recalulate all the timetables"   
     actions=[build_timetable]

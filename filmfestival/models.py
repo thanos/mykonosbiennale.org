@@ -96,7 +96,7 @@ class Day(models.Model):
     start_time = models.TimeField(default="21:00")
     
     def number_of_films(self):
-        return 0
+        return self.screening_set.count()
     
     def __unicode__(self):
         return "{} {}".format(self.program, self.date)
@@ -107,11 +107,17 @@ class Day(models.Model):
         
     def build_timetable(self):
         previous_screening = None
+        runtime = 0
+        count =  10
         for screening in self.screening_set.all():
+            runtime += screening.film.runtime
             screening.schedule(previous_screening)
             screening.save()
             previous_screening = screening
-            
+            print "%02d-%03d-%s %s" % ( self.date.day, count, slugify(screening.film.title), screening.film.projection_copy_url)
+            count +=10
+        self.runtime = runtime
+        self.save()
             
     def first_screening(self):
         try:
