@@ -67,14 +67,20 @@ class Festival(models.Model):
 class Artist(models.Model):
     class Meta:
         ordering = ['name']
-    TEASURE_HUNT = 'TEASURE HUNT'
+    TEASURE_HUNT = 'TREASURE HUNT'
     OTHER = 'OTHER'
     KITE_FESTIVAL = 'KITE FESTIVAL'
     PROJECT_X = 'PROJECT X'
+    INTERGRATIONS  = 'INTERGRATIONS'
+    ARCHEOLOGICAL_MUSEUM  = 'ARCHEOLOGICAL MUSEUM'
+    PDF_JPEG  = 'PDF-JPEG'
     EVENT_CHOICES = (
+		(ARCHEOLOGICAL_MUSEUM, ARCHEOLOGICAL_MUSEUM),
         (TEASURE_HUNT, TEASURE_HUNT),
         (KITE_FESTIVAL, KITE_FESTIVAL),
         (PROJECT_X, PROJECT_X),
+		(INTERGRATIONS, INTERGRATIONS),
+		(PDF_JPEG, PDF_JPEG),
         (OTHER, OTHER),
     )
 
@@ -114,6 +120,12 @@ class Artist(models.Model):
     
     def artists(self):
         return self.panel_set.filter(visible=True)
+
+    def artwork(self):
+        try:
+            return self.art_set.first().photo.url
+        except: 
+            pass 
     
     def save(self, *args, **kwargs):
         self.slug = slugify(self.name)

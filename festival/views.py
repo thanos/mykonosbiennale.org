@@ -16,7 +16,16 @@ class ArtistList(PageMixin, ListView):
     def seo(self, context):
         return {
             'title': 'Mykonos Biennale 2015 - Antidote Artists',
-            'description': "The list of artists prtisipating in the Mykonos Biennale Treasure Hunt",
+            'description': "The complete list of artists partisipating in the Mykonos Biennale",
+            'url': "/artfestival/artists", 
+        }
+
+class TreasureHuntArtists(PageMixin, ListView):
+    queryset = models.Artist.objects.filter(visible=True, event=models.Artist.TEASURE_HUNT).order_by('name')
+    def seo(self, context):
+        return {
+            'title': 'Mykonos Biennale 2015 - Antidote Treasure Hunt Artists',
+            'description': "The list of artists partisipating in the Mykonos Biennale Treasure Hunt",
             'url': "/artfestival/artists", 
         }
         
@@ -32,7 +41,8 @@ class ArtistDetail(PageMixin, DetailView):
         title =  "Mykonos Biennale 2015 - {} - {}".format(artist.event, artist.name)
         description = "Biennale page for {}".format(artist.name)
         url = "/artfestival/artist/{}".format(artist.slug)
-        image = artist.headshot.url if artist.headshot else ''
+        image = artist.artwork() 
+        if not image: image = artist.headshot.url if artist.headshot else ''
         return {
             'title': title,
             'description': description,

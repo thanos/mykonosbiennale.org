@@ -26,10 +26,18 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+		'mykonosbiennale.com', 
+		'mykonosbiennale.org',
+		'www.mykonosbiennale.com', 
+		'www.mykonosbiennale.org',
+		'www.mykonos-biennale.com', 
+		'www.mykonos-biennale.org',
+		]
 
 
 # Application definition
+SITE_ID = 1
 
 INSTALLED_APPS = (
     'django.contrib.admin',
@@ -38,6 +46,8 @@ INSTALLED_APPS = (
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+'django.contrib.sites',
+#'django.contrib.sitemaps',
      'storages',
     'django_countries',
      'phonenumber_field',
@@ -61,7 +71,9 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.common.CommonMiddleware',
+    'django.middleware.cache.UpdateCacheMiddleware',     
+    'django.middleware.common.CommonMiddleware',     
+	'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -117,8 +129,7 @@ DATABASES = {
 #     }
 # }
 
-"""
-CACHES = {
+CACHES_X = {
     "default": {
         "BACKEND": "django_redis.cache.RedisCache",
         "LOCATION": "redis://54.159.35.116:6379/",
@@ -127,7 +138,6 @@ CACHES = {
         }
     }
 }
-"""
 
 
 # Internationalization

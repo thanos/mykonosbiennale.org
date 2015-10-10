@@ -50,9 +50,25 @@ def document_path(instance, filename, prefix='document',path='documents'):
     filename = 'mykonos-biennale-2015-film-festival-{}-{}{}'.format(slug, prefix, instance.id, ext)
     return os.path.join(path, filename)
 
+class Award(models.Model):
+    name = models.CharField(max_length=200)
+    slug = models.SlugField(max_length=200)
+    image  = ImageField (upload_to=image_path,  max_length=256, blank=True)
+    description  = models.TextField()
 
-
+    def __unicode__(self):
+        return "{} {}".format(self.name, self.description)
+	
         
+class Reward(models.Model):
+    film = models.ForeignKey('Film') 
+    award = models.ForeignKey('Award') 
+    description  = models.TextField()
+
+    def __unicode__(self):
+        return "{} {}".format(self.film.title, self.award)
+	
+
 
 class Location(models.Model):
     name = models.CharField(max_length=200)

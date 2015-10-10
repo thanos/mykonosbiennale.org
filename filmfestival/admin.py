@@ -47,8 +47,8 @@ class FilmAdmin(admin.ModelAdmin):
     search_fields = ['ref','title', 'dir_by', 'synopsis',  ]
     list_editable=['status', 'film_type', 'trailer_url', 'trailer_embed', 'projection_copy', 'projection_copy_url', 'present','when' ]
     list_filter = [ 'status','film_type','source','projection_copy', 'present'] 
-    inlines = [ImageInline] #PersonInline, , DocumentationInline]
-    actions=['export_emails', 'export_directors', 'export_titles']
+    inlines = [ImageInline,] #PersonInline, , DocumentationInline]
+    actions=['export_emails', 'export_posts', 'export_directors', 'export_titles']
     def export_emails(self, request, queryset):
         emails = set()
         for film in queryset:
@@ -70,10 +70,22 @@ class FilmAdmin(admin.ModelAdmin):
         text = ", ".join(list(dir_by))
         return HttpResponse(text, content_type="text/plain")    
     
+    def export_posts(self, request, queryset):
+        dir_by = set()
+        for film in queryset.order_by('dir_by'):
+            dir_by.add("Showing 7th July at the Laka Theatre\n\n{}".format(film.absolute_url))
+        text = "\n\n".join(list(dir_by))
+        return HttpResponse(text, content_type="text/plain")    
+    
 admin.site.register(models.Film, FilmAdmin) 
 
     
+class RewardInline(admin.TabularInline):
+    model = models.Reward
+    extra = 0
 
+admin.site.register(models.Reward) 
+admin.site.register(models.Award) 
     
 class DayInline(admin.TabularInline):
     model = models.Day

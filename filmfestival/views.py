@@ -36,12 +36,11 @@ class FilmList(ListMixin,ListView):
 class DramaticNightsFilms(FilmList):
     film_type = models.Film.DRAMATIC_NIGHTS
     sub_title = 'Dramatic Nights'
-    queryset = models.Film.objects.filter(status='SELECTED', film_type= film_type).order_by('title')
-
+    queryset = models.Film.objects.filter(status='SELECTED').exclude(film_type=models.Film.VIDEO_GRAFITTI).exclude(film_type=models.Film.DANCE).order_by('title')
 class VideoGraffitiFilms(FilmList):
     film_type = models.Film.VIDEO_GRAFITTI
     sub_title = 'Video Graffiti'
-    queryset = models.Film.objects.exclude(film_type=models.Film.DRAMATIC_NIGHTS).filter(status='SELECTED').order_by('title')
+    queryset = models.Film.objects.exclude(film_type=models.Film.DRAMATIC_NIGHTS).exclude(film_type=models.Film.DOCUMENTARY).filter(status='SELECTED').order_by('title')
 
 class DocumentaryFilms(FilmList):
     film_type = models.Film.DOCUMENTARY
@@ -79,6 +78,8 @@ class FilmDetail(PageMixin, DetailView):
             'title': 'Mykonos Biennale 2015 - {}'.format(film.title),
             'description': film.synopsis,
         })
+	if film.poster:
+		x['image'] = film.poster.url	
         return x
     
     def breadcrumbs(self, context):
