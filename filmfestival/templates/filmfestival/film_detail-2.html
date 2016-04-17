@@ -1,0 +1,252 @@
+{% load re_tags %} 
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name=”description” content="Mykonos Biennale 2015 Official Selection - {{film.title|title}}, dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}, {{film.synopsis|truncatechars:155}}">
+        <meta property=”og:title” content="Mykonos Biennale 2015 Official Selection - {{film.title|title}}, dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:image" content="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" />
+        <meta property="og:url" content="/filmfestival/film/{{film.pk}}/" />
+        <meta property=”og:description” content="{{ film.synopsis|truncatechars:280 }}" />
+       <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="/filmfestival/film/{{film.pk}}/">
+        <meta name=”twitter:title” content="Mykonos Biennale 2015 Official Selection - {{film.title|title}}, dir. by {{film.dir_by|title}}, {{film.runtime}} minutes, {{film.country}}">
+        <meta name="twitter:description" content="{{ film.synopsis|truncatechars:200 }}" >
+        <meta name="twitter:image" content="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}"> 
+        
+        
+        <link rel="author" href="http://www.mykonosbiennale.org/"/>
+        
+        <title>Mykonos Biennale Film Festival - {{film.title|title}}</title>
+        <link rel="shortcut icon" href="http://www.mykonosbiennale.com/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="http://getuikit.com/docs/images/apple-touch-icon.png">
+        <link rel="stylesheet" href="http://mykonosbiennale.github.io/css/uikit.docs.min.css" />
+        <link rel="stylesheet" href="{% static "css/film_detail.css" %}">
+       <!-- <link rel="stylesheet" href="css/components/slider.css" />
+           <link rel="stylesheet" href="http://getuikit.com/docs/css/docs.css">  -->
+        <!--    <link rel="stylesheet" href="http://getuikit.com/vendor/highlight/highlight.css">  -->
+        <script src="http://mykonosbiennale.github.io/js/jquery2.js"></script>
+        <script src="http://mykonosbiennale.github.io/js/uikit2.min.js"></script>
+      <!--      <script src="http://getuikit.com/vendor/highlight/highlight.js"></script>  -->
+        <!-- <script src="http://getuikit.com/vendor/holder.js"></script> -->
+    <!--     <script src="http://getuikit.com/docs/js/docs.js"></script> -->
+        <script src="http://mykonosbiennale.github.io/js/components/slideset.js"></script>
+
+        	<style>
+
+	</style>
+   </head>
+
+   <body >
+
+   <body class="uk-height-1-1"  id="invite">
+
+<div class="uk-container uk-height-1-1" >
+<div class="uk-grid mark_red" style="z-index:4;">
+	<div class="uk-width-medium-1-1  uk-container-center uk-cover-background menu " >
+		<div class="uk-sticky-init " data-uk-sticky >
+			<nav class="uk-navbar  uk-navbar-attached" style="" >
+				<a class="uk-navbar-brand uk-hidden-small uk-align-right" href="index.html" style="z-index:14;" ><img alt = "mykonos biennale logo" width="100" src="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"></a> 
+				<ul class="uk-navbar-nav uk-hidden-small">
+<li class="uk-parent" data-uk-dropdown="">
+	<a href="mykonos_biennale.html" >Mykonos Biennale</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
+			<li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
+			<li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
+			<li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
+			<li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
+			<li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
+		</ul>
+	</div>
+</li>
+<li class="uk-parent" data-uk-dropdown="" >
+	<a href="index.html" data-uk-smooth-scroll="{offset: 90}" style="color: magenta;">2015 Antidote</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="index.html#2015-antidote" data-uk-smooth-scroll="{offset: 90}">Antidote</a></li>
+			<li><a href="index.html#2015-statement" data-uk-smooth-scroll="{offset: 90}">Statement</a></li>
+			<li><a href="index.html#2015-kite-festival" data-uk-smooth-scroll="{offset: 90}">Kite Festival</a></li>
+			<li><a href="index.html#2015-treasue-hunt" data-uk-smooth-scroll="{offset: 90}">Treasue Hunt</a><li>
+			<li> <a href="index.html#2015-weaving-conspiracy" data-uk-smooth-scroll="{offset: 90}">Weaving Conspiracy</a></li>
+			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+			<li><a href="index.html#2015-video-graffiti" data-uk-smooth-scroll="{offset: 90}">Video Graffiti</a></li>
+			<li><a href="index.html#2015-dramatic-nights" data-uk-smooth-scroll="{offset: 90}">Dramatic Nights</a></li>
+			<li class="uk-nav-header" >Dance</li>
+			<li><a href="index.html#2015-pigeage" data-uk-smooth-scroll="{offset: 90}">Pigeage</a></li>
+		</ul>
+	</div>
+</li>
+<li class="uk-parent" data-uk-dropdown="">
+	<a href="2013-Crises-and-Paganism.html" >2013 Crises &amp; Paganism</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-statement" >Statement</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-events" >Events</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-venues" >Venues</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-artists" >Artists</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-press" >Press</a></li>
+			<li class="uk-nav-header" >Credits</li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-team" >Team</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-sponsors" >Sponsors</a></li>
+			
+		</ul>
+	</div>
+</li>
+				</ul>
+				<a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas>x</a>
+				<div class="uk-navbar-brand uk-navbar-center uk-visible-small">2015 Antidote</div>
+			</nav>
+		</div>
+	</div>
+</div
+
+
+
+
+<div class="uk-grid mark_red"  id="film">
+		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
+
+                        <article class="uk-article">    
+                                    {% if film.poster %}
+        <a href=""><img itemprop="image" class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster_thumbnail}}"   width="{{film.poster_thumbnail.width}}" height="{{film.poster_thumbnail.height}}" alt="Mykonos Biennale 2015 - Film Festival - {{film.title}} Poster"></a>
+           {% endif %}
+                            
+
+        <h1 itemprop="name" >{{film.title|title}}</h1>
+<h3>dir. by {{film.dir_by|title}}<br/>{{film.runtime}} minutes, {{film.country}}</h3>
+                            
+                            <p itemprop="description">{{film.synopsis}}</p>
+                              <hr class="uk-article-divider">
+ <div class="uk-margin" data-uk-slideset="{small: 1, medium: 3, large: 3}">
+                                <div class="uk-slidenav-position uk-margin">
+                                    <ul class="uk-slideset uk-grid uk-flex-center">
+                                        
+{% for image in film.filmfestival_image_related.all %}
+      
+                                                    <li><img src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{image.image_thumbnail}}" width="{{image.image_thumbnail.width}}" height="{{image.image_thumbnail.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot"></li>
+
+{% endfor %}
+            
+            {% comment %}
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/The%20Loyalist/mykonos-biennale-2015-Film-Festivale-The%20Loyalist.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://heliothefilm.com/wp-content/uploads/2014/09/marketplace_reaction_2-941x519.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Branches/mykonos-biennale-2015-Film-Festivale-branches%20promo%20still%201.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Bread%20or%20Blood/mykonos-biennale-2015-Film-Festivale-Bread%20or%20Blood-eyes%20unit%20windshield%20text.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/submitions/2015-0012-Gripes,%20Grudges,%20and%20Grace/Screen%20Shot%202015-03-10%20at%202.14.23%20PM.png" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/I%20was%20born%20in%201985/mykonos-biennale-2015-Film-Festivale-I%20was%20born%20in%201985-1.jpeg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/The%20Tree%20of%20Numbers/mykonos-biennale-2015-Film-Festivale-tree%20Of%20Number%203289390.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Ona%20Meta/mykonos-biennale-2015-Film-Festivale-Ona%20Meta.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/En%20mi%20recuerdo%20siempre%20estar%C3%A1s/mykonos-biennale-2015-Film-Festivale-En%20mi%20recuerdo%201.jpg" width="600" height="400" alt=""></li>
+                                        <li><img src="http://org.mykonosbiennale.2015.s3.amazonaws.com/film%20festival%202015/Helio/mykonos-biennale-2015-Film-Festivale-Helio-boots_outside_window_full.jpg" width="400"  alt=""></li>
+                                   {% endcomment %}
+                                    </ul>
+                                    <a href="#" class="uk-slidenav uk-slidenav-previous" data-uk-slideset-item="previous"></a>
+                                    <a href="#" class="uk-slidenav uk-slidenav-next" data-uk-slideset-item="next"></a>
+                                </div>
+                            </div>
+{% if film.actors %}
+        <h2> Cast </h2>
+
+        {% re_split "\s*,\s*" film.actors as cast %}
+            <ul class="uk-list">
+                {% for actor in cast %}
+                <li> {{ actor }}</li>
+			    {% endfor %}
+					</ul>
+{% endif %}
+                            
+		<h2> Credits </h2>
+                            <dl class="uk-description-list-horizontal">
+            {% if film.directors %}  <dt>Directors</dt><dd>{{ film.directors }}</dd> {% endif %}
+            {% if film.screenwriters %} <dt>Screenwriters</dt><dd> {{ film.screenwriters }}</dd>{% endif %}
+            {% if film.producers %}  <dt>Producers</dt><dd>{{ film.producers }}</dd>{% endif %}
+            {% if film.exec_producers %}  <dt>Exec producers</dt><dd>{{ film.exec_producers }}</dd>{% endif %}
+            {% if film.co_producers %}  <dt>Co producers</dt><dd>{{ film.co_producers }}</dd>{% endif %}
+             {% if film.cinematographers %}  <dt>Cinematographers</dt><dd>{{ film.cinematographers }}</dd>{% endif %}
+            {% if film.product_designers %}  <dt>Product designers</dt><dd>{{ film.product_designers }}</dd>{% endif %}
+            {% if film.art_directors %}  <dt>Art directors</dt><dd> {{ film.art_directors }}</dd>{% endif %}
+            {% if film.editors %}  <dt>Editors</dt><dd> {{ film.editors }}</dd>{% endif %}
+            {% if film.sound_editors %}  <dt>Sound editors</dt><dd> {{ film.sound_editors }}</dd>{% endif %}
+             {% if film.composers %}  <dt>Composers</dt><dd> {{ film.composers }}</dd>{% endif %}
+            </dl>
+
+        {% if film.screenings %} 
+        <h2> Screenings </h2>
+        {% re_split "\s*,\s*" film.screenings as screenings %}
+            <ul class="uk-list">
+                {% for screening in screenings %}
+                <li> {{ screening }}</li>
+			    {% endfor %}
+					</ul>
+        {% endif %}
+               
+                        </article>
+
+                    </div>
+                
+        </div>
+ </div>
+
+  <div id="offcanvas" class="uk-offcanvas">
+	<div class="uk-offcanvas-bar">
+
+                                    <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
+   
+
+                                        <li class="uk-parent">
+                                            <a href="#" >Mykonos Biennale</a>
+                                            <ul class="uk-nav-sub">
+												<li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
+												<li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
+												<li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
+												<li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
+												<li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
+												<li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="uk-parent uk-active">
+                                            <a href="#"  style="color: magenta;">2015 Antidote</a>
+                                            <ul class="uk-nav-sub">
+			<li><a href="index.html#2015-antidote" >Antidote</a></li>
+			<li><a href="index.html#2015-statement" >Statement</a></li>
+			<li><a href="index.html#2015-kite-festival" >Kite Festival</a></li>
+			<li><a href="index.html#2015-treasue-hunt" >Treasue Hunt</a><li>
+			<li> <a href="index.html#2015-weaving-conspiracy" >Weaving Conspiracy</a></li>
+			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+			<li><a href="index.html#2015-video-graffiti" >Video Graffiti</a></li>
+			<li><a href="index.html#2015-dramatic-nights" >Dramatic Nights</a></li>
+			<li class="uk-nav-header" >Dance</li>
+			<li><a href="index.html#2015-pigeage" >Pigeage</a></li>
+                                            </ul>
+                                        </li>
+<li class="uk-parent">
+                                            	<a href="#" >2013 Crises &amp; Paganism</a>
+                                            <ul class="uk-nav-sub">
+							<li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-statement" >Statement</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-events" >Events</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-venues" >Venues</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-artists" >Artists</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-press" >Press</a></li>
+			<li class="uk-nav-header" >Credits</li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-team" >Team</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-sponsors" >Sponsors</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+        </div>
+
+
+    </body>
+</html>

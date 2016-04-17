@@ -1,0 +1,71 @@
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+        {% load pipeline %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+
+    <head>
+        
+
+
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+{% include "seo.html" %}
+        
+        
+        
+    
+        <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+        <link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+        <link rel="stylesheet" href="http://getuikit.com/docs/css/uikit.docs.min.css">
+        <link rel="stylesheet" href="{% static "css/film_detail.css" %}">
+        <script src="/static/js/jquery.js"></script>
+        <script src="/static/js/uikit.min.js"></script>
+
+<style>
+    .uk-panel {
+        padding: 50px;
+    }
+
+    .page { padding-left:0px; }
+        </style>
+
+    </head>
+
+<body class="uk-height-1-1"  id="invite">
+
+<div class="uk-container uk-height-1-1" >
+    
+    
+    
+
+{% include "nav_bar.html" %}
+
+
+    <div class="uk-grid mark_red"  id="film">
+        <div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
+            <h1>Antidote Artists</h1>
+            {% for artist in object_list  %}
+                <article class="uk-comment">
+                    <header class="uk-comment-header">
+                         {% if artist.headshot %}
+                           {% thumbnail artist.headshot  "150" crop="center" colorspace="GRAY" as headshot %}
+                                <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
+                          {% endthumbnail %}
+                        {% endif %}
+                        <h2><a href="{{ artist.get_absolute_url }}">{{artist.name|title}}</a></h2>
+                        <div class="uk-comment-meta"> {{artist.country}} {% if artist.homepage != "" %} <span> <a href="{{artist.homepage}}">{{artist.homepage}}</a></span>{% endif %}</div>
+                    </header>
+                </article>
+            {% endfor %}      
+        </div>
+    </div>
+</div>
+     
+    
+</body>
+</html>

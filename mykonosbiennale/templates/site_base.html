@@ -1,0 +1,245 @@
+
+{% load staticfiles %}
+{% load pipeline %}
+
+<!DOCTYPE html>
+<html class="uk-notouch uk-height-1-1" dir="ltr" lang="en-gb">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% block meta %}
+<meta name=”description” content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote.">
+<meta property=”og:title” content="Mykonos Biennale 2015  - Antidote"/>
+<meta property="og:type" content="website"/>
+        <meta property="og:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png" />
+        <meta property="og:url" content="http://www.mykonosbiennale.com/" />
+        <meta property=”og:description” content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." />
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="http://www.mykonosbiennale.com/filmfestival/films/">
+        <meta name=”twitter:title” content="Mykonos Biennale 2015 - Antidote">
+        <meta name="twitter:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." >
+        <meta name="twitter:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"> 
+{% endblock %}
+
+	{% block title %}<title>Set Title</title>{% endblock %}
+<link rel="shortcut icon" href="images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+    
+{% stylesheet 'css' %}
+
+	<style>
+	.menu {
+max-width: 700px;
+padding-left:0px;
+
+
+	}
+	.page {
+		min-height: 700px;
+		max-width: 700px;
+		background-position: 100% 100%; 
+		background-repeat: no-repeat;
+		background-size: cover;
+
+	}
+
+.stills {
+		
+	max-width: 700px;
+}
+
+.stills li {
+	padding: 3px;
+}
+
+.uk-container {
+	padding: 0px 0px;
+
+}
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+
+.item { width: 15%; padding:1px;}
+.item.w2 { width: 40%; }
+
+	</style>
+    
+    {% block page_css %}{% endblock %}
+</head>
+
+
+
+
+<body class="uk-height-1-1"  id="invite">
+       <div class="uk-container uk-height-1-1" >
+{% block body_base %}
+ 
+ {% block menu_bar %}
+            {% comment %}
+ <div class="uk-grid mark_red" style="z-index:4;">
+	<div class="uk-width-medium-1-1  uk-container-center uk-cover-background menu " >
+		<div class="uk-sticky-init " data-uk-sticky >
+			<nav class="uk-navbar  uk-navbar-attached" style="" >
+				<a class="uk-navbar-brand uk-hidden-small uk-align-right" href="/" style="z-index:14;" ><img alt = "mykonos biennale logo" width="100" src="/static/images/mykonos-biennale-logo.png"></a> 
+				<ul class="uk-navbar-nav uk-hidden-small">
+                    {% block menu_mb %}
+<li class="uk-parent" data-uk-dropdown="">
+	<a href="mykonos-biennale/" >Mykonos Biennale</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="/mykonos-biennale/#biennale-introduction">Introduction</a></li>
+			<li><a href="/mykonos-biennale/#biennale-statement">Statement</a></li>
+			<li><a href="/mykonos-biennale/#biennale-artprogram" >Art Program</a></li>
+			<li><a href="/mykonos-biennale/#biennale-education" >Education &amp; Internship</a><li>
+			<li><a href="/mykonos-biennale/#biennale-awards" >Awards</a></li>
+			<li><a href="/mykonos-biennale/#biennale-contact">Contact</a></li>
+		</ul>
+	</div>
+</li>
+                     {% endblock %}
+                    {% block menu_2015 %}
+<li class="uk-parent" data-uk-dropdown="" >
+	<a href="index.html"  style="color: magenta;">2015 Antidote</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="/#2015-antidote">Antidote</a></li>
+			<li><a href="/#2015-statement" >Statement</a></li>
+			<li><a href="/#2015-kite-festival" >Kite Festival</a></li>
+			<li><a href="/#2015-treasue-hunt" >Treasue Hunt</a><li>
+			<li> <a href="/#2015-weaving-residency" >Weaving Residency</a></li>
+			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+			<li><a href="/#2015-video-graffiti" >Video Graffiti</a></li>
+			<li><a href="/#2015-dramatic-nights" >Dramatic Nights</a></li>
+			<li><a href="/#2015-video-graffiti" >Video Graffiti</a></li>
+           <!-- <li><a href="filmfestival/video-graffiti/">&nbsp;&nbsp;&nbsp;- Official Selection</a></li> -->
+			<li><a href="/#2015-dramatic-nights" >Dramatic Nights</a></li>
+          <!--  <li><a href="filmfestival/video-graffiti/">&nbsp;&nbsp;&nbsp;- Official Selection</a></li> -->
+         <!--   <li><a href="filmfestival/documentaries/">Doucmentary Thought</a></li> -->
+			<li class="uk-nav-header" >Dance</li>
+			<li><a href="/#2015-pigeage">Pigeage</a></li>
+		</ul>
+	</div>
+</li>
+                    {% endblock %}
+                    {% block menu_2013 %}
+<li class="uk-parent" data-uk-dropdown="">
+	<a href="2013-Crises-and-Paganism.html" >2013 Crises &amp; Paganism</a>
+	<div style="" class="uk-dropdown uk-dropdown-navbar">
+		<ul class="uk-nav uk-nav-navbar">
+			<li><a href="2013-crises-and-paganism/#2013-invite" >Crises &amp; Paganism</a></li>
+			<li><a href="2013-crises-and-paganism/#2013-statement" >Statement</a></li>
+			<li><a href="2013-crises-and-paganism/#2013-events" >Events</a></li>
+			<li><a href="2013-crises-and-paganism/#2013-venues" >Venues</a></li>
+			<li><a href="2013-crises-and-paganism/#2013-artists" >Artists</a></li>
+			<li><a href="2013-crises-and-paganism/#2013-press" >Press</a></li>
+			<li class="uk-nav-header" >Credits</li>
+			<li><a href="2013-crises-and-paganism/#2013-team" >Team</a></li>
+			<li><a href="2013-crises-and-paganism/#2013-sponsors" >Sponsors</a></li>
+			
+		</ul>
+	</div>
+</li>
+                     {% endblock %}
+				</ul>
+				<a href="#offcanvas" class="uk-navbar-toggle uk-visible-small" data-uk-offcanvas>x</a>
+				<div class="uk-navbar-brand uk-navbar-center uk-visible-small">2015 Antidote</div>
+			</nav>
+		</div>
+	</div>
+</div>
+
+
+<div id="offcanvas" class="uk-offcanvas">
+	<div class="uk-offcanvas-bar">
+
+                                    <ul class="uk-nav uk-nav-offcanvas uk-nav-parent-icon" data-uk-nav>
+   
+
+                                        <li class="uk-parent">
+                                            <a href="#" >Mykonos Biennale</a>
+                                            <ul class="uk-nav-sub">
+												<li><a href="mykonos_biennale.html#biennale-introduction">Introduction</a></li>
+												<li><a href="mykonos_biennale.html#biennale-statement">Statement</a></li>
+												<li><a href="mykonos_biennale.html#biennale-artprogram" >Art Program</a></li>
+												<li><a href="mykonos_biennale.html#biennale-education" >Education &amp; Internship</a><li>
+												<li><a href="mykonos_biennale.html#biennale-awards" >Awards</a></li>
+												<li><a href="mykonos_biennale.html#biennale-contact">Contact</a></li>
+                                            </ul>
+                                        </li>
+
+                                        <li class="uk-parent uk-active">
+                                            <a href="#"  style="color: magenta;">2015 Antidote</a>
+                                            <ul class="uk-nav-sub">
+			<li><a href="index.html#2015-antidote" >Antidote</a></li>
+			<li><a href="index.html#2015-statement" >Statement</a></li>
+			<li><a href="index.html#2015-kite-festival" >Kite Festival</a></li>
+			<li><a href="index.html#2015-treasue-hunt" >Treasue Hunt</a><li>
+			<li> <a href="index.html#2015-weaving-residency" >Weaving Residency</a></li>
+			<li class="uk-nav-header">Film &amp; Art Vieo Festival</li>
+			<li><a href="index.html#2015-video-graffiti" >Video Graffiti</a></li>
+			<li><a href="index.html#2015-dramatic-nights" >Dramatic Nights</a></li>
+			<li class="uk-nav-header" >Dance</li>
+			<li><a href="index.html#2015-pigeage" >Pigeage</a></li>
+                                            </ul>
+                                        </li>
+<li class="uk-parent">
+                                            	<a href="#" >2013 Crises &amp; Paganism</a>
+                                            <ul class="uk-nav-sub">
+							<li><a href="2013-Crises-and-Paganism.html#2013-invite" >Crises &amp; Paganism</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-statement" >Statement</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-events" >Events</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-venues" >Venues</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-artists" >Artists</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-press" >Press</a></li>
+			<li class="uk-nav-header" >Credits</li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-team" >Team</a></li>
+			<li><a href="2013-Crises-and-Paganism.html#2013-sponsors" >Sponsors</a></li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+
+                                </div>
+
+        </div>   
+    
+    {% endcomment %}
+ {% endblock %} 
+           
+           {% block page %}
+    {% endblock %}
+{% endblock %}
+   </div>   
+
+{% block google_analytics %}
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38396033-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+{% endblock %}
+
+  
+    
+    
+{% block script_base %}
+{% javascript 'javascript' %}
+    {% block extra_script %}{% endblock %}
+{% endblock %}
+
+</body>
+    
+    
+
+</html>

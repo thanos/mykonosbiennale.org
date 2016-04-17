@@ -1,0 +1,91 @@
+
+
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load variable_tags %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "seo.html" %}
+
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+        
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
+<link rel="stylesheet" href="/static/css/film_detail.css">
+ 
+
+    
+    
+<script src="/static/js/jquery.js"></script>
+<script src="/static/uikit/js/uikit.min.js"></script>
+<script src="/static/uikit/js/components/slider.js"></script>
+<script src="/static/uikit/js/components/slideset.js"></script>
+<style>
+.uk-panel {padding: 50px;}
+.page { padding-left:0px; }
+</style>
+</head>
+
+<body class="uk-height-1-1"  id="invite">
+<div class="uk-container uk-height-1-1" >
+{% include "nav_bar.html" %}
+
+<div class="uk-grid mark_red"  id="film">
+    
+    
+		<div class="uk-width-medium-1-1  uk-container-center page film ">
+                         
+
+     {% for day in program.day_set.all %}
+
+       <h2>{{day.date|date:"F jS"}}</h2>
+        <dl>
+        {% for screening in day.screening_set.all %}
+ <article class="uk-comment">
+    <header class="uk-comment-header">
+         {% if screening.film.poster %}
+        {% thumbnail screening.film.poster "150" crop="center" as im %}
+        <img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" >
+        {% endthumbnail %}
+           {% endif %}
+            <h2>{{screening.film.title|title}}</h2>
+             {{screening.film.runtime}} min<br>
+            <div class="uk-comment-meta">dir. by {{screening.film.dir_by|title}}, {{screening.film.country}}<br/>
+        
+        </div>
+        <div class="uk-comment-body">{{screening.film.log_line}}</div>
+        </header>
+       
+</article>
+            {% endfor %}
+
+     {% endfor %}
+
+       
+
+            
+       
+
+
+     
+        </div>
+     </div>
+     </div>
+    
+    
+
+    
+    
+    </body>
+</html>

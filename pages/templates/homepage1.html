@@ -1,0 +1,205 @@
+
+<!DOCTYPE html>
+<html class="uk-notouch uk-height-1-1" dir="ltr" lang="en-gb">
+
+<head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote.">
+<meta property="og:title" content="Mykonos Biennale 2015  - Antidote"/>
+<meta property="og:type" content="website"/>
+        <meta property="og:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png" />
+        <meta property="og:url" content="http://www.mykonosbiennale.com/" />
+        <meta property="og:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." />
+        <meta name="twitter:card" content="summary">
+        <meta name="twitter:url" content="http://www.mykonosbiennale.com/filmfestival/films/">
+        <meta name="twitter:title" content="Mykonos Biennale 2015 - Antidote">
+        <meta name="twitter:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." >
+        <meta name="twitter:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"> 
+
+
+	<title>Mykonos Biennale - 2015 - Antidote</title>
+
+    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+    <link rel="apple-touch-icon-precomposed" href="/static/images/apple-touch-icon.png">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
+    <link rel="stylesheet" href="/static/uikit/js/components/sticky.min.css">
+
+    <script src="/static/js/jquery.js"></script>
+    <script src="/static/uikit/js/uikit.min.js"></script>
+    <script src="/static/uikit/js/components/grid.min.js"></script>
+    <script src="/static/uikit/js/components/sticky.min.js"></script>
+
+	<style>
+
+
+	.menu {
+max-width: 700px;
+padding-left:0px;
+
+
+	}
+	.page {
+		min-height: 700px;
+		max-width: 700px;
+		background-position: 100% 100%; 
+		background-repeat: no-repeat;
+		background-size: cover;
+
+	}
+
+
+	
+
+
+.uk-containerX{
+	padding: 0px 0px;
+
+}
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+
+ .home {
+	padding: 0px 0px 0px 0x;	
+		background-position: 50% 50%; 
+		background-repeat: no-repeat;
+		background-size: cover;
+		width:100%;
+		min-height: 700px;
+	background-image: url(/static/images/mykonos-biennale-2015-home.jpg);
+}
+		/* unvisited link */
+			
+
+.home a:link {
+    color: #FFF;
+}
+
+/* visited link */
+.home a:visited {
+    color: #fff;
+}
+
+/* mouse over link */
+.home a:hover {
+    color: #FF00FF;
+	 text-decoration: none;
+}
+
+/* selected link */
+.home  a:active {
+    color: #0000FF;
+}
+
+.item { width: 15%; padding:1px;}
+.item.w2 { width: 40%; }
+
+
+.offical_list_links a {
+ color: #FFF;
+}
+
+.offical_list_links a:hover {
+    color: #FF00FF;
+	 text-decoration: none;
+}
+</style>
+    
+    
+    {% for panel in current_page.panel_set.all %}
+    {% if panel.visible %}
+    <style>
+        {{ panel.css| safe }}
+    </style>
+    {% endif %}
+    {% endfor %}
+</head>
+
+
+
+
+<body class="uk-height-1-1"  id="invite">
+
+<div class="uk-container uk-height-1-1" >
+
+{% for panel in current_page.panel_set.all %}	
+    {% if  panel.order < 0 %} 
+        {% if panel.visible %}
+	    <div class="uk-grid mark_red"  id="{{ panel.slug }}" data-uk-scrollspy="{repeat: true}">
+	        {{panel.content|safe }}
+	    </div>	
+        {% endif %}
+    {% endif %}
+{% endfor %}
+
+
+{% include "nav_bar.html" %}
+		
+{% for panel in current_page.panel_set.all %}	
+    {% if  panel.order >= 0 %} 
+     {% if panel.visible %}
+    <div class="uk-grid mark_red"  id="{{ panel.slug }}">
+	{{panel.content|safe }}
+	</div>	
+      {% endif %}
+    {% endif %}
+{% endfor %}
+  {% comment %}
+ <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> 
+	 <div class="uk-grid mark_red page">
+    <footer class="footie uk-hidden-small">
+		<div class="uk-container uk-container-center">
+			<div class="uk-clearfixc">
+				<div class="uk-align-medium-left">
+					<div class="uk-panel widget_text">Copyright  © Mykonos Biennale 2013,14,15</div>
+				</div>
+				<div class="uk-align-medium-right">
+					<div class="uk-panel widget_text">
+						<a href="#" class="uk-icon-small uk-icon-twitter uk-margin-right"></a>
+						<a href="#" class="uk-icon-small uk-icon-facebook uk-margin-right"></a>
+						<a href="#" class="uk-icon-small uk-icon-pinterest"></a>
+					</div>
+				</div>
+				<a class="tm-totop-scroller uk-text-center" data-uk-smooth-scroll="" href="#"></a>
+			</div>
+		</div>
+	</footer>	
+ </div> 
+</div>
+    
+    {% endcomment %}
+    
+</div>
+<script type="text/javascript">
+
+$('[data-uk-scrollspy]').on('outview.uk.scrollspy', function(){
+     $('nav').show();
+});
+
+$('[data-uk-scrollspy]').on('inview.uk.scrollspy', function(){
+      $('nav').hide();
+});
+</script>
+
+ 
+<script>
+  (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+  (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+  m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+  })(window,document,'script','//www.google-analytics.com/analytics.js','ga');
+
+  ga('create', 'UA-38396033-1', 'auto');
+  ga('send', 'pageview');
+
+</script>
+</body>
+
+</html>

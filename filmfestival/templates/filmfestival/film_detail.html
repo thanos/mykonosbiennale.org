@@ -1,0 +1,163 @@
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "seo.html" %}
+
+<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
+        
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
+<link rel="stylesheet" href="/static/uikit/css/components/slideshow.css">
+<link rel="stylesheet" href="/static/css/film_detail.css">
+ 
+
+<script src="/static/js/jquery.js"></script>
+<script src="/static/js/modernizr.js"></script>
+<script src="/static/uikit/js/uikit.min.js"></script>
+<script src="/static/uikit/js/components/slider.js"></script>
+<script src="/static/uikit/js/components/slideset.js"></script>
+<script src="/static/uikit/js/components/slideshow.js"></script>
+<style>
+.uk-panel {padding: 50px;}
+.page { padding-left:0px; }
+</style>
+</head>
+
+<body class="uk-height-1-1"  id="invite">
+<div class="uk-container uk-height-1-1" >
+{% include "nav_bar.html" %}        
+            
+<div class="uk-grid mark_red" >
+	<div class="uk-width-medium-1-1  uk-container-center page film ">                           
+    <article class="uk-comment">
+    <header class="uk-comment-header">
+         {% if object.poster %}
+                {% thumbnail film.poster "150" crop="center" as im %}
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{im.url}}"    width="{{im.width}}" height="{{im.height}}"  alt="{{object.title}} Poster"></a>
+                {% endthumbnail %}
+           {% endif %}
+            <h1>{{object.title|title}}</h1>
+          </header>
+          <div class="uk-comment-meta">
+              dir. by <span style="color:black; font-size:125%;">{{object.dir_by|title}}</span>, {{object.country}}<br/>
+                  runtime: {{object.runtime}} min<br/>
+              
+             {% if film.screening_set.count %} screening: 
+                {% for screening in film.screening_set.all %}
+                    {{ screening.day.date|date:"F jS"  }}
+                {% endfor %}
+                {% endif %}</div>
+        <div class="uk-comment-body" style="padding-top:10px;">{{film.synopsis}}</div>
+      
+{% if film.actors %}     
+        {% re_split "\s*,\s*" film.actors as cast %}
+        <h3> Cast </h3>
+            <ul class="uk-list">
+                {% for actor in cast %}
+                <li> {{ actor }}</li>
+			    {% endfor %}
+					</ul>
+{% endif %}
+                            
+		<h3> Credits </h3>
+                            <dl class="uk-description-list-horizontal">
+            {% if film.directors %}  <dt>Directors</dt><dd>{{ film.directors }}</dd> {% endif %}
+            {% if film.screenwriters %} <dt>Screenwriters</dt><dd> {{ film.screenwriters }}</dd>{% endif %}
+            {% if film.producers %}  <dt>Producers</dt><dd>{{ film.producers }}</dd>{% endif %}
+            {% if film.exec_producers %}  <dt>Exec producers</dt><dd>{{ film.exec_producers }}</dd>{% endif %}
+            {% if film.co_producers %}  <dt>Co producers</dt><dd>{{ film.co_producers }}</dd>{% endif %}
+             {% if film.cinematographers %}  <dt>Cinematographers</dt><dd>{{ film.cinematographers }}</dd>{% endif %}
+            {% if film.product_designers %}  <dt>Product designers</dt><dd>{{ film.product_designers }}</dd>{% endif %}
+            {% if film.art_directors %}  <dt>Art directors</dt><dd> {{ film.art_directors }}</dd>{% endif %}
+            {% if film.editors %}  <dt>Editors</dt><dd> {{ film.editors }}</dd>{% endif %}
+            {% if film.sound_editors %}  <dt>Sound editors</dt><dd> {{ film.sound_editors }}</dd>{% endif %}
+             {% if film.composers %}  <dt>Composers</dt><dd> {{ film.composers }}</dd>{% endif %}
+            </dl>
+
+
+          {% if film.trailer_embed %}
+        {{ film.trailer_embed|safe}}
+          {% else %}
+        
+        {% if film.trailer_url %}
+                <video id="video" controls class="uk-responsive-width" width="700" style="padding:5px 0 50px 0;">
+                    <source src="{{film.trailer_url|safe}}" type="video/mp4">
+                    <source src="{{film.trailer_url|replace_ext:"WebM"}}" type="video/webm">
+                    <source src="{{film.trailer_url|replace_ext:"ogv"}}" type="video/ogg">
+                </video>
+          {% endif %}
+
+        {% endif %}
+
+    <div class="uk-slidenav-position" data-uk-slideshow="{animation: 'scroll', autoplay:true}">
+            <ul class="uk-slideshow">
+       
+                
+                                            
+{% for image in film.filmfestival_image_related.all %}
+                                     
+                {% if image.image %}
+             {% thumbnail image.image "x640" crop="center" quality=60 as thum %}
+                    <li><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></a></li>                   
+                      {% endthumbnail %}    
+            {% endif %}
+            {% endfor %}                       
+           </ul>
+<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
+<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
+ </div>
+
+             {% if film.screenings %} 
+        <h3> Screenings </h3>
+        {% re_split "\s*,\s*" film.screenings as screenings %}
+            <ul class="uk-list">
+                {% for screening in screenings %}
+                <li> {{ screening }}</li>
+			    {% endfor %}
+					</ul>
+        {% endif %}   
+        
+        
+        {% if film.directors_statement %} 
+        <h3>Directors Statement</h3>
+        <p>{{film.directors_statement|linebreaksbr}}</p>
+        {% endif %}
+
+</article>
+     
+
+     
+        </div>
+     </div>
+ </div>
+    
+    
+  
+<script>
+   $(function() { 
+       
+if (Modernizr.video.h264 ) {
+      $("#video").show();
+} else {
+      $("#video").hide();       
+}
+              });                 
+</script>
+    
+    
+    
+    </body>
+</html>
+    
