@@ -4,6 +4,8 @@ from django.contrib import admin
 from django.contrib.sitemaps.views import sitemap
 from django.conf import settings
 from django.http import HttpResponseRedirect
+import tagulous.views
+from festivalA.models import Tag
 
 #from filmfestival.rest_api import FilmView
 sitemaps = {}
@@ -27,6 +29,12 @@ urlpatterns = patterns('',
     #url(r"(?P<processor>[A-Z]+:)*(?P<width>\d*)x(?P<height>\d*)(@(?P<resolution>\d+))*(Q(?P<quality>\d+))*(?P<image_url>\/.+)", 'imagelabs.views.process'),
 
     url(r"^", include("pages.urls")), 
+                        url(
+        r'^api/tags/$',
+        tagulous.views.autocomplete,
+        {'tag_model': Tag},
+        name='festivalA_tag_autocomplete',
+    ),
    #url(r"^index.html", lambda x: HttpResponseRedirect('/2015-antidote/')),
    #url(r"^2013-Crises-and-Paganism.html", lambda x: HttpResponseRedirect('/2013-crisis-and-paganism/')),
    #url(r"^mykonos_biennale.html", lambda x: HttpResponseRedirect('/mykonos-biennale/')),

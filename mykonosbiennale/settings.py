@@ -42,6 +42,7 @@ SITE_ID = 1
 INSTALLED_APPS = (
     'django.contrib.admin',
     'django.contrib.auth',
+    'polymorphic',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
@@ -56,6 +57,7 @@ INSTALLED_APPS = (
     'imagekit',  
     'pipeline',
     're_templatetags',
+    'tagulous',
     #'media_library',
     #'multilingual_tags',
     #'generic_positions',
@@ -67,13 +69,14 @@ INSTALLED_APPS = (
     'mykonosbiennale',
     'filmfestival',
     'festival',
+     'festivalA',
 )
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-    'django.middleware.cache.UpdateCacheMiddleware',     
+   # 'django.middleware.cache.UpdateCacheMiddleware',     
     'django.middleware.common.CommonMiddleware',     
-	'django.middleware.cache.FetchFromCacheMiddleware',
+	#'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -219,4 +222,30 @@ PIPELINE_JS = {
 
 TWITTER_APP_KEY = 'O296O2xJdwoTuJM1znUPNexsnX'
 TWITTER_APP_SECRET = Passwords.TWITTER_APP_SECRET
+
+THUMBNAIL_DEBUG = False
+import logging
+from sorl.thumbnail.log import ThumbnailLogHandler
+handler = ThumbnailLogHandler()
+handler.setLevel(logging.ERROR)
+logging.getLogger('sorl.thumbnail').addHandler(handler)
+
+SERIALIZATION_MODULES = {
+    'xml':    'tagulous.serializers.xml_serializer',
+    'json':   'tagulous.serializers.json',
+    'python': 'tagulous.serializers.python',
+    'yaml':   'tagulous.serializers.pyyaml',
+}
+
+TAGULOUS_AUTOCOMPLETE_JS = (
+    'tagulous/lib/jquery.js',
+    'tagulous/lib/select2-3/select2.min.js',
+    'tagulous/tagulous.js',
+    'tagulous/adaptor/select2.js',
+)
+
+TAGULOUS_AUTOCOMPLETE_CSS = {
+    'all': ['tagulous/lib/select2-3/select2.css']
+}
+
 from local_settings import *

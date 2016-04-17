@@ -115,9 +115,11 @@ padding-left:0px;
     
     
     {% for panel in current_page.panel_set.all %}
+    {% if panel.visible %}
     <style>
         {{ panel.css| safe }}
     </style>
+    {% endif %}
     {% endfor %}
 </head>
 
@@ -130,9 +132,11 @@ padding-left:0px;
 
 {% for panel in current_page.panel_set.all %}	
     {% if  panel.order < 0 %} 
+        {% if panel.visible %}
 	    <div class="uk-grid mark_red"  id="{{ panel.slug }}" data-uk-scrollspy="{repeat: true}">
 	        {{panel.content|safe }}
 	    </div>	
+        {% endif %}
     {% endif %}
 {% endfor %}
 
@@ -141,9 +145,11 @@ padding-left:0px;
 		
 {% for panel in current_page.panel_set.all %}	
     {% if  panel.order >= 0 %} 
+     {% if panel.visible %}
     <div class="uk-grid mark_red"  id="{{ panel.slug }}">
 	{{panel.content|safe }}
 	</div>	
+      {% endif %}
     {% endif %}
 {% endfor %}
   {% comment %}

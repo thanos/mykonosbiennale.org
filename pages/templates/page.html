@@ -180,8 +180,9 @@ color: black;
  }
 
         {% for panel in page.panel_set.all %}
-
-        {{ panel.css| safe }}
+        {% if panel.visible %}
+         {{ panel.css| safe }}
+        {% end %}
         {% endfor %}
         
         
@@ -259,7 +260,10 @@ color: black;
 		
 	<div class="uk-grid mark_red"  id="2013-invite">
 		{% for panel in page.panel_set.all %}
+           {% if panel.visible %}
+        {{panel.visible}}
             {{panel.content|safe}}
+            {% endif %}
         {% endfor %}
 	</div>
 

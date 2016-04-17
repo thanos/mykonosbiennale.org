@@ -122,9 +122,11 @@ padding-left:0px;
     
     
             {% for panel in current_page.panel_set.all %}
-<style>
+  {% if panel.visible %}
+    <style>
         {{ panel.css| safe }}
     </style>
+    {% endif %}
         {% endfor %}
 </head>
 
@@ -232,11 +234,13 @@ padding-left:0px;
 
 		
 {% for panel in page.panel_set.all %}	
+       {% if panel.visible %}
 		    {% if  forloop.counter0 > 0 %} 
 	<div class="uk-grid mark_red"  id="{{ panel.slug }}">
 	{{panel.content|safe }}
 	</div>	
     {% endif %}
+      {% endif %}
 {% endfor %}
 
 <!-- <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> -->

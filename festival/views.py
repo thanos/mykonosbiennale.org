@@ -1,3 +1,4 @@
+import random
 from django.shortcuts import render
 
 
@@ -10,6 +11,22 @@ import models
 
 from pages.views import PageMixin
 
+
+class ArtList(PageMixin, ListView):
+    queryset = models.Art.objects.filter(pk=1)
+    def seo(self, context):
+        return {
+            'title': 'Mykonos Biennale 2015 - Biennale Art',
+            'description': "The complete list of art shown in the Mykonos Biennale",
+            'url': "/artfestival/art", 
+        }
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtList, self).get_context_data(**kwargs)
+        a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        random.shuffle(a)
+        context['art_images'] = a
+        return context
 
 class ArtistList(PageMixin, ListView):
     queryset = models.Artist.objects.filter(visible=True).order_by('name')

@@ -11,7 +11,9 @@
                         <div style="" class="uk-dropdown uk-dropdown-navbar">
                             <ul class="uk-nav uk-nav-navbar">
                                 {% for panel in page.panel_set.all %}
+                                 {% if panel.visible %}
                                 <li><a href="{{panel.get_absolute_url}}">{{panel.title}}</a></li>
+                                {% endif %}
                                 {% endfor %}
                             </ul>
                         </div>
@@ -44,7 +46,9 @@
                 <a href="#" >{{ page.title }}</a>
                 <ul class="uk-nav-sub">
                       {% for panel in page.panel_set.all %}
+                           {% if panel.visible %}
 			        <li><a href="{{ panel.get_absolute_url }}">{{ panel.title }}</a></li>
+                     {% endif %}
                     {% endfor %}
                 </ul>
              </li>

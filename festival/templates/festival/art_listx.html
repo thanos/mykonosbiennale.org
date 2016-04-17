@@ -1,0 +1,46 @@
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load pipeline %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+    <head>
+	<meta charset="utf-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "seo.html" %}
+	<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+	<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+	<link rel="stylesheet" href="http://getuikit.com/docs/css/uikit.docs.min.css">
+	<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/uikit.min.js"></script>
+		<script src="/static/js/components/grid.min.js"></script>
+	<style>
+		.uk-panel {
+			width:250px; height: 140px; background-color: cyan;
+		}
+
+	
+    </style>
+</head>
+
+<body class="uk-height-1-1"  id="invite">
+	 <div class="uk-container uk-container-center">
+		<div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4" >
+		{% for art in object_list %}
+			{% if art.photo %}
+			<div>
+				
+			</div><div class="uk-panel">
+				{% thumbnail art.photo  "300" crop="center"  quality=60 as photo %}
+				<img src="{{ photo }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photo.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{art.title} - screen shot" />
+				{% endthumbnail %}  
+			</div><div>
+			
+			</div>
+			{% endif %}
+		{% endfor %}
+		</div>    
+	</div>
+</body>
+</html>

@@ -11,7 +11,7 @@ admin.site.register(models.Festival, FestivalAdmin)
 
 class ArtAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['title', 'photo',  'description', 'text']   
+    list_display = ['artist', 'title',  'photo',  'description', 'text']   
     search_fields = ['title', 'description','text']
 admin.site.register(models.Art, ArtAdmin)        
 
