@@ -36,12 +36,12 @@
 
 
 	.menu {
-max-width: 700px;
+
 padding-left:0px;
 
 
 	}
-	.page {
+	.pageX {
 		min-height: 700px;
 		max-width: 700px;
 		background-position: 100% 100%; 
@@ -67,7 +67,7 @@ padding-left:0px;
 
 
 
- .home {
+ .homeX {
 	padding: 0px 0px 0px 0x;	
 		background-position: 50% 50%; 
 		background-repeat: no-repeat;
@@ -128,7 +128,7 @@ padding-left:0px;
 
 <body class="uk-height-1-1"  id="invite">
 
-<div class="uk-container uk-height-1-1" >
+<div class="uk-container uk-container-center">
 
 {% for panel in current_page.panel_set.all %}	
     {% if  panel.order < 0 %} 
