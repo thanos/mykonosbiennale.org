@@ -11,6 +11,17 @@ def path_and_rename(instance, filename):
     document_path(instance, filename, 'poster', 'images')
     
     
+def slide_show_image(instance, filename):
+    ext = filename.split('.')[-1]
+    # get filename
+    if instance.title:
+      filename = 'mykonos biennale 2015 art festival antidote {} {} {}.{}'.format(instance.slide_show.title, instance.title, instance.pk, ext)
+    else:
+      filename = 'mykonos biennale 2015 festival antidote {} {}.{}'.format(instance.slide_show.title, instance.pk, ext)
+    slug = slugify(filename)
+    return os.path.join('images', filename)    
+    
+    
 def poster_path(instance, filename):
     ext = filename.split('.')[-1]
     # get filename
@@ -88,7 +99,8 @@ class Panel(models.Model):
     content = models.TextField(blank=True, default='')
     css = models.TextField(default='')
     visible = models.BooleanField(default=True)
-    
+    slide_show  = models.ForeignKey('SlideShow', blank=True, null=True)
+        
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Panel, self).save(*args, **kwargs)
@@ -98,3 +110,44 @@ class Panel(models.Model):
         return "{}#{}".format(self.page.get_absolute_url(), self.slug)
     
     
+    
+class SlideShow(models.Model):
+    class Meta:
+        ordering = ['title']
+    title = models.CharField(max_length=128, blank=True, default='')
+    slug = models.SlugField(max_length=200)
+    
+    def save(self, *args, **kwargs):
+        self.slug = slugify(self.title)
+        super(SlideShow, self).save(*args, **kwargs)
+        
+    def __unicode__(self):
+        return self.title   
+    
+class Slide(models.Model):
+    class Meta:
+        ordering = ['order']
+    slide_show  = models.ForeignKey(SlideShow)
+    order = models.IntegerField()
+    title = models.CharField(max_length=128, blank=True, default='')
+    #slug = models.SlugField(max_length=200)    
+    content = models.TextField(blank=True, default='')
+    css = models.TextField(blank=True, default='')
+    visible = models.BooleanField(default=True)
+    image  = models.ImageField (upload_to=slide_show_image,  blank=True)
+    image_to_use = ImageSpecField(source='image',
+                                      processors=[ResizeToFit(1300,750)],
+                                      format='JPEG',
+                                      options={'quality': 60})
+    video  = models.FileField (upload_to=slide_show_image,  max_length=256, blank=True)
+    
+    def save(self, *args, **kwargs):
+        #if not self.slug:
+        #  self.slug = "{} slide {}".format(self.slide_show.title, self.slide_show.slide_set.count())
+        #print "SLUG", self.slug
+        #self.slug = slugify(self.slug)
+        super(Slide, self).save(*args, **kwargs)
+        
+    def __unicode__(self):
+        return self.title  if self.title else 'order-{}'.format(self.order)  
+   
