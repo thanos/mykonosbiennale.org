@@ -19,7 +19,7 @@ def slide_show_image(instance, filename):
     else:
       filename = 'mykonos biennale 2015 festival antidote {} {}.{}'.format(instance.slide_show.title, instance.pk, ext)
     slug = slugify(filename)
-    return os.path.join('images', filename)    
+    return os.path.join('images', slug)    
     
     
 def poster_path(instance, filename):

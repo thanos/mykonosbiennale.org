@@ -27,7 +27,7 @@ DEBUG = True
 TEMPLATE_DEBUG = True
 
 ALLOWED_HOSTS = [
-		'mykonosbiennale.com', 
+		'admin.mykonosbiennale.com', 
 		'mykonosbiennale.org',
 		'www.mykonosbiennale.com', 
 		'www.mykonosbiennale.org',
@@ -74,9 +74,9 @@ INSTALLED_APPS = (
 
 MIDDLEWARE_CLASSES = (
     'django.contrib.sessions.middleware.SessionMiddleware',
-   # 'django.middleware.cache.UpdateCacheMiddleware',     
+#'django.middleware.cache.UpdateCacheMiddleware',     
     'django.middleware.common.CommonMiddleware',     
-	#'django.middleware.cache.FetchFromCacheMiddleware',
+#'django.middleware.cache.FetchFromCacheMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
     'django.contrib.auth.middleware.AuthenticationMiddleware',
     'django.contrib.auth.middleware.SessionAuthenticationMiddleware',
@@ -121,16 +121,16 @@ DATABASES = {
 }
 
 
-# CACHES = {
-#     'default': {
-#         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
-#         'LOCATION': '/home/action/django_cache',
-#         'TIMEOUT': 60*60*24,
-#         'OPTIONS': {
-#             'MAX_ENTRIES': 1000
-#         }
-#     }
-# }
+CACHES_X = {
+     'default': {
+         'BACKEND': 'django.core.cache.backends.filebased.FileBasedCache',
+         'LOCATION': '/home/action/django_cache',
+         #'TIMEOUT': 60*60*24,
+         'OPTIONS': {
+             'MAX_ENTRIES': 1000
+         }
+     }
+ }
 
 CACHES_X = {
     "default": {

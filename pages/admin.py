@@ -30,7 +30,7 @@ class SlideInline(admin.TabularInline):
     #prepopulated_fields = {"slug": ("title",)}
     list_display = ['title', 'visible'] 
     model = models.Slide
-    extra = 3
+    extra = 10
 
 
 class SlideShowAdmin(admin.ModelAdmin):

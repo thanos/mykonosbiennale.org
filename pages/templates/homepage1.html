@@ -159,19 +159,19 @@
 										{% if slide.visible %}
 									 <li> 
 										 	{% if slide.image %}
-										       {% thumbnail slide.image  "700x700"  crop="center" quality=60 as photo %}
-                        <img   src="{{photo.url|safe }}" style="min-height:700px; max-height:800px;" >
+										       {% thumbnail slide.image  "x800"  crop="noop"  as photo %}
+                        <img   src="{{photo.url|safe }}" style="min-height:700px; max-height:800px;" alt="Mykonos Biennale - {{panel.slide_show.name}} - slide.title "  >
 										      {% endthumbnail %}   
 										 {% endif %}
 										 	{% if slide.video %}
-										 <video width="600" height="400"  loop muted control class="uk-cover-object uk-position-absolute"  autoplay>
+										 <video width="600" height="400"  loop muted controls class="uk-cover-object uk-position-absolute"  autoplay>
 											 
                                         <source src="{{slide.video.url|safe }}" type="video/mp4">
 											</video>
 										  {% endif %}
-                        <div class="uk-overlay-panel uk-overlay-fade uk-flex uk-flex-center uk-flex-middle " >
-                            <div class="{{panel.slide_show.slug}}" >
-                                <h2>{{slide.title|safe }}</h2>
+                        <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-bottom " >
+                            <div class="{{panel.slide_show.slug}}" style="{{slide.css|safe}}">
+                           {% if slide.title %}     <h2>{{slide.title|safe }}</h2> {% endif %}
                                 {{slide.content|safe }}
                             </div>
                         </div>
@@ -227,7 +227,6 @@ $('[data-uk-scrollspy]').on('inview.uk.scrollspy', function(){
       $('nav').hide();
 });
 	
-<script>
    $(function() { 
        
 if (Modernizr.video.h264 ) {
@@ -236,7 +235,6 @@ if (Modernizr.video.h264 ) {
       $("video").hide();       
 }
               });                 
-</script>
 </script>
 
  
