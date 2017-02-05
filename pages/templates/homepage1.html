@@ -1,4 +1,4 @@
-
+{% load thumbnail %}
 <!DOCTYPE html>
 <html class="uk-notouch uk-height-1-1" dir="ltr" lang="en-gb">
 
@@ -26,18 +26,21 @@
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
     <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
     <link rel="stylesheet" href="/static/uikit/js/components/sticky.min.css">
+	  <link rel="stylesheet" href="/static/css/components/slideshow.min.css">
+    <link rel="stylesheet" href="/static/css/components/slidenav.css">
 
-    <script src="/static/js/jquery.js"></script>
-    <script src="/static/uikit/js/uikit.min.js"></script>
-    <script src="/static/uikit/js/components/grid.min.js"></script>
-    <script src="/static/uikit/js/components/sticky.min.js"></script>
-
+		<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/modernizr.js"></script>
+		<script src="/static/uikit/js/uikit.min.js"></script>
+		<script src="/static/uikit/js/components/grid.min.js"></script>
+		<script src="/static/uikit/js/components/sticky.min.js"></script>
+		<script src="/static/js/components/slideshow.min.js"></script>
+		<script src="/static/js/components/slideshow-fx.js"></script>
 	<style>
 
 
 	.menu {
 
-padding-left:0px;
 
 
 	}
@@ -144,10 +147,46 @@ padding-left:0px;
 {% include "nav_bar.html" %}
 		
 {% for panel in current_page.panel_set.all %}	
-    {% if  panel.order >= 0 %} 
-     {% if panel.visible %}
-    <div class="uk-grid mark_red"  id="{{ panel.slug }}">
-	{{panel.content|safe }}
+	{% if  panel.order >= 0 %} 
+		{% if panel.visible %}
+			<div class="uk-grid"  id="{{ panel.slug }}"  >
+			{% if panel.slide_show %}
+    		<div class="uk-width-1-1" >
+        	<div  data-uk-slideshow="{autoplay:true, autoplayInterval:3000}" >
+            <div class="uk-slidenav-position" >
+                <ul class="uk-slideshow uk-overlay-active" style="min-height:700px;">
+									{% for slide in panel.slide_show.slide_set.all %}
+										{% if slide.visible %}
+									 <li> 
+										 	{% if slide.image %}
+										       {% thumbnail slide.image  "x800"  crop="noop"  as photo %}
+                        <img   src="{{photo.url|safe }}" style="min-height:700px; max-height:800px;" alt="Mykonos Biennale - {{panel.slide_show.name}} - slide.title "  >
+										      {% endthumbnail %}   
+										 {% endif %}
+										 	{% if slide.video %}
+										 <video width="600" height="400"  loop muted controls class="uk-cover-object uk-position-absolute"  autoplay>
+											 
+                                        <source src="{{slide.video.url|safe }}" type="video/mp4">
+											</video>
+										  {% endif %}
+                        <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-bottom " >
+                            <div class="{{panel.slide_show.slug}}" style="{{slide.css|safe}}">
+                           {% if slide.title %}     <h2>{{slide.title|safe }}</h2> {% endif %}
+                                {{slide.content|safe }}
+                            </div>
+                        </div>
+                    </li>
+										{% endif %}
+									{% endfor %}
+							</ul>
+							<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+							<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+						</div>
+					</div>
+				</div>
+			{% else %}
+				{{panel.content|safe }}
+			{% endif %}
 	</div>	
       {% endif %}
     {% endif %}
@@ -187,6 +226,15 @@ $('[data-uk-scrollspy]').on('outview.uk.scrollspy', function(){
 $('[data-uk-scrollspy]').on('inview.uk.scrollspy', function(){
       $('nav').hide();
 });
+	
+   $(function() { 
+       
+if (Modernizr.video.h264 ) {
+      $("video").show();
+} else {
+      $("video").hide();       
+}
+              });                 
 </script>
 
  

@@ -60,7 +60,8 @@
     <header class="uk-comment-header">
          {% if film.poster %}
         {% thumbnail film.poster "150" crop="center" as im %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a>
+        <!-- <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a> -->
+        <a href="/filmfestival/film/{{film.slug}}/"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a>
         {% endthumbnail %}
            {% endif %}
             <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
