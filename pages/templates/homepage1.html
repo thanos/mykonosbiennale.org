@@ -152,7 +152,7 @@
 			<div class="uk-grid"  id="{{ panel.slug }}"  >
 			{% if panel.slide_show %}
     		<div class="uk-width-1-1" >
-        	<div  data-uk-slideshow >
+        	<div  data-uk-slideshow="{autoplay:true, autoplayInterval:3000}" >
             <div class="uk-slidenav-position" >
                 <ul class="uk-slideshow uk-overlay-active" style="min-height:700px;">
 									{% for slide in panel.slide_show.slide_set.all %}

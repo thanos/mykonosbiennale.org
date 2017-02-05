@@ -44,8 +44,8 @@
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if object.poster %}
-                {% thumbnail film.poster "150" crop="center" as im %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{im.url}}"    width="{{im.width}}" height="{{im.height}}"  alt="{{object.title}} Poster"></a>
+                {% thumbnail film.poster "200" crop="center" as im %}
+        <img class="uk-comment-avatar" src="{{im.url}}"    width="{{im.width}}" height="{{im.height}}"  alt="{{object.title}} Poster">
                 {% endthumbnail %}
            {% endif %}
             <h1>{{object.title|title}}</h1>
@@ -135,6 +135,14 @@
         <p>{{film.directors_statement|linebreaksbr}}</p>
         {% endif %}
 
+
+
+
+         {% if object.poster %}
+<div style="padding-top:10px;">
+        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster}}" target="_blank"><i class="uk-icon-download"></i> download poster</a>
+</div>
+        {% endif %}
 </article>
      
 
