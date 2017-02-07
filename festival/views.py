@@ -23,9 +23,13 @@ class ArtList(PageMixin, ListView):
 
     def get_context_data(self, **kwargs):
         context = super(ArtList, self).get_context_data(**kwargs)
-        a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
         random.shuffle(a)
-        context['art_images'] = a
+        context['art_shown'] = a
+        context['choice'] = models.Project.objects.get(slug='treasure-hunt')
+        context['projects'] = (project for project in models.Project.objects.all() if project.art_set.count())
+        
         return context
 
 class ArtistList(PageMixin, ListView):

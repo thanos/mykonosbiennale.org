@@ -7,7 +7,7 @@ from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
-
+from autoslug import AutoSlugField
 
 class ImageNamer:
     folder = 'artists'
@@ -61,7 +61,19 @@ class Festival(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Festival, self).save(*args, **kwargs)
-        
+
+class Project(models.Model):
+    title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='title')
+    festival = models.ForeignKey('Festival')
+    def __unicode__(self):
+        return self.title
+    
+    def get_absolute_url(self):
+        return reverse('project', args=[self.slug])
+    
+
+				
 
 
 class Artist(models.Model):
@@ -133,11 +145,13 @@ class Artist(models.Model):
         
 class Art(models.Model):
     artist = models.ForeignKey(Artist)
+    project = models.ForeignKey(Project)
     title = models.CharField(max_length=128, blank=True, default='')
     slug = models.SlugField(max_length=128)
     description = models.TextField(blank=True, default='')
     text = models.TextField(blank=True, default='')
     photo = models.ImageField (upload_to=artNamer, max_length=256, blank=True)
+    #project = models.ForeignKey('Project')
 
     def __unicode__(self):
         return "{} {}".format(self.artist, self.title)
