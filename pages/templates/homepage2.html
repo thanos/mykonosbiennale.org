@@ -6,30 +6,31 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote.">
-<meta property="og:title" content="Mykonos Biennale 2015  - Antidote"/>
+<meta name="description" content="{{current_page.description_115}}">
+<meta property="og:title" content="Mykonos Biennale {{current_page.title}}"/>
 <meta property="og:type" content="website"/>
         <meta property="og:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png" />
         <meta property="og:url" content="http://www.mykonosbiennale.com/" />
-        <meta property="og:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." />
+        <meta property="og:description" content="{{current_page.description_115}}" />
         <meta name="twitter:card" content="summary">
         <meta name="twitter:url" content="http://www.mykonosbiennale.com/filmfestival/films/">
-        <meta name="twitter:title" content="Mykonos Biennale 2015 - Antidote">
-        <meta name="twitter:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." >
+        <meta name="twitter:title" content="Mykonos Biennale {{current_page.title}}">
+        <meta name="twitter:description" content="{{current_page.description_115}}" >
         <meta name="twitter:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"> 
 
 
-	<title>Mykonos Biennale - 2015 - Antidote</title>
+	<title>Mykonos Biennale - {{current_page.title}}</title>
 
     <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
     <link rel="apple-touch-icon-precomposed" href="/static/images/apple-touch-icon.png">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
-    <link rel="stylesheet" href="/static/uikit/js/components/sticky.min.css">
+    <link rel="stylesheet" href="/static/css/uikit.min.css">
+    <link rel="stylesheet" href="/static/css/components/sticky.min.css">
 	  <link rel="stylesheet" href="/static/css/components/slideshow.min.css">
     <link rel="stylesheet" href="/static/css/components/slidenav.css">
 
 		<script src="/static/js/jquery.js"></script>
+	<script src="/static/js/lazyload.min.js"></script> 
 	<script src="/static/js/modernizr.js"></script>
 		<script src="/static/uikit/js/uikit.min.js"></script>
 		<script src="/static/uikit/js/components/grid.min.js"></script>
@@ -133,21 +134,19 @@
 
 <div class="uk-container uk-container-center">
 
-{% for panel in current_page.panel_set.all %}	
-    {% if  panel.order < 0 %} 
-        {% if panel.visible %}
-	    <div class="uk-grid mark_red"  id="{{ panel.slug }}" data-uk-scrollspy="{repeat: true}">
-	        {{panel.content|safe }}
-	    </div>	
-        {% endif %}
-    {% endif %}
-{% endfor %}
 
 
 {% include "nav_bar.html" %}
 		
 {% for panel in current_page.panel_set.all %}	
-	{% if  panel.order >= 0 %} 
+	 {% if  panel.order == -2 %} 
+ {% if panel.visible %}
+
+	    <div class="uk-grid mark_red"  id="{{ panel.slug }}" data-uk-scrollspy="{repeat: true}">
+	        {{panel.content|safe }}
+		 </div>
+        {% endif %}
+	{% else %} 
 		{% if panel.visible %}
 			<div class="uk-grid"  id="{{ panel.slug }}"  >
 			{% if panel.slide_show %}
@@ -160,7 +159,7 @@
 									 <li> 
 										 	{% if slide.image %}
 										       {% thumbnail slide.image  "x800"  crop="noop"  as photo %}
-                        <img   src="{{photo.url|safe }}" style="min-height:700px; max-height:800px;" alt="Mykonos Biennale - {{panel.slide_show.name}} - slide.title "  >
+                        <img    data-original="{{photo.url|safe }}" height="700"  style="min-height:700px; max-height:800px;" alt="Mykonos Biennale - {{panel.slide_show.name}} - slide.title "  >
 										      {% endthumbnail %}   
 										 {% endif %}
 										 	{% if slide.video %}
@@ -171,8 +170,20 @@
 										  {% endif %}
                         <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-bottom " >
                             <div class="{{panel.slide_show.slug}}" style="{{slide.css|safe}}">
-                           {% if slide.title %}     <h2>{{slide.title|safe }}</h2> {% endif %}
+															{% if panel.slide_show.pk == 2 %}
+															
+																{{panel.content|safe }}
+																{% if not forloop.counter0 == 0 %}
+																<div>
+																
+													
+                           {% if slide.title %}     <h3>{{slide.title|safe }}</h3> {% else %}<h3>{{panel.title|safe }}</h3>  {% endif %}
                                 {{slide.content|safe }}
+																</div>
+																{% endif %}
+															{% else %}
+					{% if slide.title %}     <h2>{{slide.title|safe }}</h2> {% else %}<h2>{{panel.title|safe }}</h2>  {% endif %}
+															{% endif %}
                             </div>
                         </div>
                     </li>
@@ -191,6 +202,8 @@
       {% endif %}
     {% endif %}
 {% endfor %}
+	
+	
   {% comment %}
  <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> 
 	 <div class="uk-grid mark_red page">
@@ -215,10 +228,12 @@
 </div>
     
     {% endcomment %}
-    
+ </div>   
 </div>
 <script type="text/javascript">
-
+var myLazyLoad = new LazyLoad({
+			container: document.getElementById('events-of-2015'),
+			show_while_loading: true});
 $('[data-uk-scrollspy]').on('outview.uk.scrollspy', function(){
      $('nav').show();
 });
