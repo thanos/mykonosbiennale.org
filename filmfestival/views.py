@@ -4,10 +4,10 @@ from django.shortcuts import render
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.views.generic import ListView,DetailView
-
-
-
 from pages.views import PageMixin,ListMixin
+from django.views.generic import View
+from bakery.views import BuildableMixin, BuildableRedirectView, BuildableListView, BuildableDetailView
+
 import models
 
 def selected(request, what=models.Film.DRAMATIC_NIGHTS):
@@ -15,10 +15,14 @@ def selected(request, what=models.Film.DRAMATIC_NIGHTS):
     qs.order_by('title')
     return render_to_response('selected.html', {'films': qs})
 
+class SelectedView(View, BuildableMixin):
+    def get(self, request, what=models.Film.DRAMATIC_NIGHTS):
+        qs = models.Film.objects.filter(status='SELECTED', film_type=what)
+        qs.order_by('title')
+        return render_to_response('selected.html', {'films': qs})
 
 
-
-class FilmList(ListMixin,ListView):
+class FilmList(ListMixin,BuildableListView):
     sub_title =''
     film_type = models.Film.DRAMATIC_NIGHTS
     queryset = models.Film.objects.filter(status='SELECTED').order_by('title')
@@ -69,7 +73,7 @@ class MissingMedia(FilmList):
     
     
     
-class FilmDetail(PageMixin, DetailView):
+class FilmDetail(PageMixin, BuildableDetailView):
     model = models.Film
     def seo(self, context):
         film = self.getObject(context)
@@ -78,9 +82,9 @@ class FilmDetail(PageMixin, DetailView):
             'title': 'Mykonos Biennale 2015 - {}'.format(film.title),
             'description': film.synopsis,
         })
-	if film.poster:
-		x['image'] = film.poster.url	
-        return x
+        if film.poster:
+            x['image'] = film.poster.url    
+            return x
     
     def breadcrumbs(self, context):
         film = self.getObject(context)
@@ -88,7 +92,7 @@ class FilmDetail(PageMixin, DetailView):
     
     
     
-class ProgramDetail(PageMixin, DetailView):
+class ProgramDetail(PageMixin, BuildableDetailView):
     model = models.Program
     def seo(self, context):
         program = self.getObject(context)

@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(UI) {
 
     "use strict";
@@ -30,7 +30,7 @@
 
             var $this = this;
 
-            this.on("click.uk.nav", this.options.toggle, function(e) {
+            this.on("click.uikit.nav", this.options.toggle, function(e) {
                 e.preventDefault();
                 var ele = UI.$(this);
                 $this.open(ele.parent()[0] == $this.element[0] ? ele : ele.parent("li"));
@@ -42,7 +42,7 @@
                     active = parent.hasClass("uk-active");
 
                 $ele.wrap('<div style="overflow:hidden;height:0;position:relative;"></div>');
-                parent.data("list-container", $ele.parent()[active ? 'removeClass':'addClass']('uk-hidden'));
+                parent.data("list-container", $ele.parent());
 
                 // Init ARIA
                 parent.attr('aria-expanded', parent.hasClass("uk-open"));
@@ -54,56 +54,37 @@
 
         open: function(li, noanimation) {
 
-            var $this = this, element = this.element, $li = UI.$(li), $container = $li.data('list-container');
+            var $this = this, element = this.element, $li = UI.$(li);
 
             if (!this.options.multiple) {
 
-                element.children('.uk-open').not(li).each(function() {
+                element.children(".uk-open").not(li).each(function() {
 
                     var ele = UI.$(this);
 
-                    if (ele.data('list-container')) {
-                        ele.data('list-container').stop().animate({height: 0}, function() {
-                            UI.$(this).parent().removeClass('uk-open').end().addClass('uk-hidden');
+                    if (ele.data("list-container")) {
+                        ele.data("list-container").stop().animate({height: 0}, function() {
+                            UI.$(this).parent().removeClass("uk-open");
                         });
                     }
                 });
             }
 
-            $li.toggleClass('uk-open');
+            $li.toggleClass("uk-open");
 
             // Update ARIA
-            $li.attr('aria-expanded', $li.hasClass('uk-open'));
+            $li.attr('aria-expanded', $li.hasClass("uk-open"));
 
-            if ($container) {
-
-                if ($li.hasClass('uk-open')) {
-                    $container.removeClass('uk-hidden');
-                }
+            if ($li.data("list-container")) {
 
                 if (noanimation) {
-
-                    $container.stop().height($li.hasClass('uk-open') ? 'auto' : 0);
-
-                    if (!$li.hasClass('uk-open')) {
-                        $container.addClass('uk-hidden');
-                    }
-
-                    this.trigger('display.uk.check');
-
+                    $li.data('list-container').stop().height($li.hasClass("uk-open") ? "auto" : 0);
+                    this.trigger("display.uk.check");
                 } else {
-
-                    $container.stop().animate({
-                        height: ($li.hasClass('uk-open') ? getHeight($container.find('ul:first')) : 0)
+                    $li.data('list-container').stop().animate({
+                        height: ($li.hasClass("uk-open") ? getHeight($li.data('list-container').find('ul:first')) : 0)
                     }, function() {
-
-                        if (!$li.hasClass('uk-open')) {
-                            $container.addClass('uk-hidden');
-                        } else {
-                            $container.css('height', '');
-                        }
-
-                        $this.trigger('display.uk.check');
+                        $this.trigger("display.uk.check");
                     });
                 }
             }

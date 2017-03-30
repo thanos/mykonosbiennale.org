@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(UI) {
 
     "use strict";
@@ -8,10 +8,8 @@
     UI.component('gridMatchHeight', {
 
         defaults: {
-            "target"        : false,
-            "row"           : true,
-            "ignorestacked" : false,
-            "observe"       : false
+            "target" : false,
+            "row"    : true
         },
 
         boot: function() {
@@ -41,7 +39,7 @@
             UI.$win.on('load resize orientationchange', (function() {
 
                 var fn = function() {
-                    if ($this.element.is(":visible")) $this.match();
+                    $this.match();
                 };
 
                 UI.$(function() { fn(); });
@@ -49,12 +47,11 @@
                 return UI.Utils.debounce(fn, 50);
             })());
 
-            if (this.options.observe) {
-
-                UI.domObserve(this.element, function(e) {
-                    if ($this.element.is(":visible")) $this.match();
-                });
-            }
+            UI.$html.on("changed.uk.dom", function(e) {
+                $this.columns  = $this.element.children();
+                $this.elements = $this.options.target ? $this.find($this.options.target) : $this.columns;
+                $this.match();
+            });
 
             this.on("display.uk.check", function(e) {
                 if(this.element.is(":visible")) this.match();
@@ -71,7 +68,7 @@
 
             var stacked = Math.ceil(100 * parseFloat(firstvisible.css('width')) / parseFloat(firstvisible.parent().css('width'))) >= 100;
 
-            if (stacked && !this.options.ignorestacked) {
+            if (stacked) {
                 this.revert();
             } else {
                 UI.Utils.matchHeights(this.elements, this.options);
@@ -89,8 +86,7 @@
     UI.component('gridMargin', {
 
         defaults: {
-            cls      : 'uk-grid-margin',
-            rowfirst : 'uk-row-first'
+            "cls": "uk-grid-margin"
         },
 
         boot: function() {
@@ -113,5 +109,63 @@
             var stackMargin = UI.stackMargin(this.element, this.options);
         }
     });
+
+    // helper
+
+    UI.Utils.matchHeights = function(elements, options) {
+
+        elements = UI.$(elements).css('min-height', '');
+        options  = UI.$.extend({ row : true }, options);
+
+        var matchHeights = function(group){
+
+            if(group.length < 2) return;
+
+            var max = 0;
+
+            group.each(function() {
+                max = Math.max(max, UI.$(this).outerHeight());
+            }).each(function() {
+
+                var element = UI.$(this),
+                height  = max - (element.outerHeight() - element.height());
+
+                element.css('min-height', height + 'px');
+            });
+        };
+
+        if(options.row) {
+
+            elements.first().width(); // force redraw
+
+            setTimeout(function(){
+
+                var lastoffset = false, group = [];
+
+                elements.each(function() {
+
+                    var ele = UI.$(this), offset = ele.offset().top;
+
+                    if(offset != lastoffset && group.length) {
+
+                        matchHeights(UI.$(group));
+                        group  = [];
+                        offset = ele.offset().top;
+                    }
+
+                    group.push(ele);
+                    lastoffset = offset;
+                });
+
+                if(group.length) {
+                    matchHeights(UI.$(group));
+                }
+
+            }, 0);
+
+        } else {
+            matchHeights(elements);
+        }
+    };
 
 })(UIkit);

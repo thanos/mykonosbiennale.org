@@ -5,14 +5,14 @@ from django.shortcuts import render
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.views.generic import ListView,DetailView
-
+from bakery.views import BuildableMixin, BuildableRedirectView, BuildableListView, BuildableDetailView
 import models
 
 
 from pages.views import PageMixin
 
 
-class ArtList(PageMixin, ListView):
+class ArtList(PageMixin, BuildableListView):
     queryset = models.Art.objects.filter(pk=1)
     def seo(self, context):
         return {
@@ -24,7 +24,8 @@ class ArtList(PageMixin, ListView):
     def get_context_data(self, **kwargs):
         context = super(ArtList, self).get_context_data(**kwargs)
         #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
-        a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        #a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        a = [art for art in models.Art.objects.filter(leader=True) if art.artist.visible]
         random.shuffle(a)
         context['art_shown'] = a
         context['choice'] = models.Project.objects.get(slug='treasure-hunt')
@@ -32,7 +33,7 @@ class ArtList(PageMixin, ListView):
         
         return context
 
-class ArtistList(PageMixin, ListView):
+class ArtistList(PageMixin, BuildableListView):
     queryset = models.Artist.objects.filter(visible=True).order_by('name')
     def seo(self, context):
         return {
@@ -41,7 +42,7 @@ class ArtistList(PageMixin, ListView):
             'url': "/artfestival/artists", 
         }
 
-class TreasureHuntArtists(PageMixin, ListView):
+class TreasureHuntArtists(PageMixin, BuildableListView):
     queryset = models.Artist.objects.filter(visible=True, event=models.Artist.TEASURE_HUNT).order_by('name')
     def seo(self, context):
         return {
@@ -50,12 +51,12 @@ class TreasureHuntArtists(PageMixin, ListView):
             'url': "/artfestival/artists", 
         }
         
-class ArtistDetail(PageMixin, DetailView):
+class ArtistDetail(PageMixin, BuildableDetailView):
     model = models.Artist
 
     def breadcrumbs(self, context):
         artist = context['object']
-        return [('/', artist.festival), ('/artfestival/artists/', artist.event), ('', artist.name )]
+        return [('/', artist.festival), ('/artfestival/artists/', 'artists'), ('', artist.name )]
 
     def seo(self, context):
         artist = self.getObject(context)

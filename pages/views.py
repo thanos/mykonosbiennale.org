@@ -1,16 +1,27 @@
+import os
 from django.shortcuts import render
 from django.http import Http404
 from django.shortcuts import render_to_response
 from django.http import HttpResponseRedirect
+from django.views.generic import View
+from bakery.views import BuildableDetailView, BuildableRedirectView
+
 import models
 
 def page(request, slug):
     page = models.Page.objects.get(slug=slug)
     return render_to_response(page.template, {'current_page':page, 'pages': models.Page.objects.filter(visible=True)})
 
+class PageView(View):    
+    def get(self, request, slug):
+        page = models.Page.objects.get(slug=slug)
+        self.build_path = os.path.join(slug,'index.html')
+        return render_to_response(page.template, {'current_page':page, 'pages': models.Page.objects.filter(visible=True)})
 
-def redirect_to_2013(request):
-    return HttpResponseRedirect("http://2013.mykonosbiennale.com"+request.get_full_path())
+            
+class Redirect2013View(BuildableRedirectView):
+    def get(self, request):
+      return HttpResponseRedirect("http://2013.mykonosbiennale.com"+request.get_full_path())
 
 
 class PageMixin(object):

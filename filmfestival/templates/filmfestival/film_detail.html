@@ -9,10 +9,9 @@
 {% include "seo.html" %}
 
 <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+
 
         
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
@@ -110,7 +109,7 @@
                                      
                 {% if image.image %}
              {% thumbnail image.image "x640" crop="center" quality=60 as thum %}
-                    <li><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title} - screen shot" /></a></li>                   
+                    <li><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title}} - screen shot" /></a></li>                   
                       {% endthumbnail %}    
             {% endif %}
             {% endfor %}                       

@@ -1,9 +1,10 @@
+{% load staticfiles %}
 <div class="uk-grid mark_red" >
 	<div class="uk-width-medium-1-1  uk-container-center uk-cover-background menu " >
 		<div class="uk-sticky-init " data-uk-sticky style="z-index:4;  ">
 
 			<nav class="uk-navbar  uk-navbar-attached" style="" >
-			    <a class="uk-navbar-brand uk-hidden-small uk-align-right" href="/" style="z-index:14;" ><img alt = "mykonos biennale logo" width="200" height="142" src="/static/images/mykonos-biennale-logo.png"></a>
+			    <a class="uk-navbar-brand uk-hidden-small uk-align-right" href="/" style="z-index:14;" ><img alt = "mykonos biennale logo" width="200" height="142" src="{% static "images/mykonos-biennale-logo.png" %}" ></a>
                 <ul class="uk-navbar-nav uk-hidden-small">
                     {% for page in pages %}
                     <li class="uk-parent" data-uk-dropdown="">

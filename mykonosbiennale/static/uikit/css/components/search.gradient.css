@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /* ========================================================================
    Component: Search
  ========================================================================== */
@@ -66,6 +66,7 @@
  */
 .uk-search-field {
   /* 1 */
+  -moz-box-sizing: border-box;
   box-sizing: border-box;
   /* 2 */
   margin: 0;
@@ -82,8 +83,8 @@
   padding: 0 0 0 30px;
   border: 1px solid rgba(0, 0, 0, 0);
   background: rgba(0, 0, 0, 0);
-  -webkit-transition: all 0.2s linear;
-  transition: all 0.2s linear;
+  -webkit-transition: all linear 0.2s;
+  transition: all linear 0.2s;
   vertical-align: middle;
 }
 /* Placeholder */

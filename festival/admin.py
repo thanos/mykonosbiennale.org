@@ -15,9 +15,11 @@ admin.site.register(models.Project, ProjectAdmin)
 
 class ArtAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['artist', 'title',  'photo',  'description', 'text']   
+    list_display = ['artist', 'title',  'leader', 'image_tag', 'show', 'photo',  'description', 'text']   
     search_fields = ['title', 'description','text']
-    list_filter = ['project'] 
+    list_filter = ['project', 'leader','show'] 
+    list_editable=['show', 'leader',  ]
+    readonly_fields = ('image_tag',)
 admin.site.register(models.Art, ArtAdmin)        
 
 

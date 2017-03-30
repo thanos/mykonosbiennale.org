@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -25,12 +25,13 @@
 
             scrolltop = UI.$win.scrollTop();
 
-            window.requestAnimationFrame(function(){
+            UI.support.requestAnimationFrame.apply(window, [function(){
                 for (var i=0; i < parallaxes.length; i++) {
                     parallaxes[i].process();
                 }
-            });
+            }]);
         };
+
 
 
     UI.component('parallax', {
@@ -38,8 +39,7 @@
         defaults: {
             velocity : 0.5,
             target   : false,
-            viewport : false,
-            media    : false
+            viewport : false
         },
 
         boot: function() {
@@ -85,7 +85,7 @@
                     var parallax = UI.$(this);
 
                     if (!parallax.data("parallax")) {
-                        UI.parallax(parallax, UI.Utils.options(parallax.attr("data-uk-parallax")));
+                        var obj = UI.parallax(parallax, UI.Utils.options(parallax.attr("data-uk-parallax")));
                     }
                 });
             });
@@ -97,7 +97,7 @@
             this.props    = {};
             this.velocity = (this.options.velocity || 1);
 
-            var reserved  = ['target','velocity','viewport','plugins','media'];
+            var reserved  = ['target','velocity','viewport','plugins'];
 
             Object.keys(this.options).forEach(function(prop){
 
@@ -130,22 +130,6 @@
         },
 
         process: function() {
-
-            if (this.options.media) {
-
-                switch(typeof(this.options.media)) {
-                    case 'number':
-                        if (window.innerWidth < this.options.media) {
-                            return false;
-                        }
-                        break;
-                    case 'string':
-                        if (window.matchMedia && !window.matchMedia(this.options.media).matches) {
-                            return false;
-                        }
-                        break;
-                }
-            }
 
             var percent = this.percentageInViewport();
 
@@ -185,8 +169,7 @@
 
         update: function(percent) {
 
-            var $this      = this,
-                css        = {transform:'', filter:''},
+            var css        = {'transform':''},
                 compercent = percent * (1 - (this.velocity - (this.velocity * percent))),
                 opts, val;
 
@@ -216,67 +199,38 @@
                 switch(prop) {
 
                     // transforms
-                    case 'x':
+                    case "x":
                         css.transform += supports3d ? ' translate3d('+val+'px, 0, 0)':' translateX('+val+'px)';
                         break;
-                    case 'xp':
+                    case "xp":
                         css.transform += supports3d ? ' translate3d('+val+'%, 0, 0)':' translateX('+val+'%)';
                         break;
-                    case 'y':
+                    case "y":
                         css.transform += supports3d ? ' translate3d(0, '+val+'px, 0)':' translateY('+val+'px)';
                         break;
-                    case 'yp':
+                    case "yp":
                         css.transform += supports3d ? ' translate3d(0, '+val+'%, 0)':' translateY('+val+'%)';
                         break;
-                    case 'rotate':
+                    case "rotate":
                         css.transform += ' rotate('+val+'deg)';
                         break;
-                    case 'scale':
+                    case "scale":
                         css.transform += ' scale('+val+')';
                         break;
 
                     // bg image
-                    case 'bg':
-
-                        // don't move if image height is too small
-                        // if ($this.element.data('bgsize') && ($this.element.data('bgsize').h + val - window.innerHeight) < 0) {
-                        //     break;
-                        // }
-
+                    case "bg":
                         css['background-position'] = '50% '+val+'px';
                         break;
-                    case 'bgp':
+                    case "bgp":
                         css['background-position'] = '50% '+val+'%';
                         break;
 
                     // color
-                    case 'color':
-                    case 'background-color':
-                    case 'border-color':
+                    case "color":
+                    case "background-color":
+                    case "border-color":
                         css[prop] = calcColor(opts.start, opts.end, compercent);
-                        break;
-
-                    // CSS Filter
-                    case 'blur':
-                        css.filter += ' blur('+val+'px)';
-                        break;
-                    case 'hue':
-                        css.filter += ' hue-rotate('+val+'deg)';
-                        break;
-                    case 'grayscale':
-                        css.filter += ' grayscale('+val+'%)';
-                        break;
-                    case 'invert':
-                        css.filter += ' invert('+val+'%)';
-                        break;
-                    case 'fopacity':
-                        css.filter += ' opacity('+val+'%)';
-                        break;
-                    case 'saturate':
-                        css.filter += ' saturate('+val+'%)';
-                        break;
-                    case 'sepia':
-                        css.filter += ' sepia('+val+'%)';
                         break;
 
                     default:
@@ -285,10 +239,6 @@
                 }
 
             }.bind(this));
-
-            if (css.filter) {
-                css['-webkit-filter'] = css.filter;
-            }
 
             this.element.css(css);
 
@@ -317,40 +267,28 @@
 
     function initBgImageParallax(obj, prop, opts) {
 
-        var img = new Image(), url, element, size, check, ratio, width, height;
+        var img = new Image(), url, loaded, element, size, check, ratio, width, height;
 
         element = obj.element.css({'background-size': 'cover',  'background-repeat': 'no-repeat'});
         url     = element.css('background-image').replace(/^url\(/g, '').replace(/\)$/g, '').replace(/("|')/g, '');
         check   = function() {
 
-            var w = element.innerWidth(), h = element.innerHeight(), extra = (prop=='bg') ? opts.diff : (opts.diff/100) * h;
+            var w = element.width(), h = element.height();
 
-            h += extra;
-            w += Math.ceil(extra * ratio);
-
-            if (w-extra < size.w && h < size.h) {
-                return obj.element.css({'background-size': 'auto'});
-            }
+            h += (prop=='bg') ? opts.diff : (opts.diff/100) * h;
 
             // if element height < parent height (gap underneath)
             if ((w / ratio) < h) {
-
                 width  = Math.ceil(h * ratio);
                 height = h;
 
-                if (h > window.innerHeight) {
-                    width  = width * 1.2;
-                    height = height * 1.2;
-                }
-
             // element width < parent width (gap to right)
             } else {
-
                 width  = w;
                 height = Math.ceil(w / ratio);
             }
 
-            element.css({'background-size': (width+'px '+height+'px')}).data('bgsize', {w:width,h:height});
+            obj.element.css({'background-size': (width+'px '+height+'px')})
         };
 
         img.onerror = function(){
@@ -358,7 +296,7 @@
         };
 
         img.onload = function(){
-            size  = {w:img.width, h:img.height};
+            size  = {w:img.width, height:img.height};
             ratio = img.width / img.height;
 
             UI.$win.on("load resize orientationchange", UI.Utils.debounce(function(){
@@ -372,6 +310,7 @@
 
         return true;
     }
+
 
 
     // Some named colors to work with, added by Bradley Ayers

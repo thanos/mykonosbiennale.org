@@ -1,4 +1,5 @@
 from django.db import models
+import collections
 import os
 from uuid import uuid4
 from django.utils.text import slugify
@@ -21,11 +22,11 @@ class ImageNamer:
 class ArtNamer(ImageNamer):
     def image_name(self, instance, filename):
         artist = instance.artist
-        count = 0
-        return "{}-{}-{}".format(
+        count = instance.artist.art_set.count()
+        return "{}-{}-{}-{}".format(
                 artist.festival, 
                 artist.name, 
-                instance.title)
+                instance.title, count)
 
 def artNamer(instance, filename):
     return ArtNamer()(instance, filename)
@@ -133,6 +134,12 @@ class Artist(models.Model):
     def artists(self):
         return self.panel_set.filter(visible=True)
 
+    def art_by_project(self):
+        projects = collections.defaultdict(list)
+        for art in self.art_set.filter(show=True):
+          projects[art.project].append(art)
+        return [ {'project': project, 'art':projects[project]} for project in sorted(projects, key=lambda x:x.title)]
+
     def artwork(self):
         try:
             return self.art_set.first().photo.url
@@ -148,9 +155,19 @@ class Art(models.Model):
     project = models.ForeignKey(Project)
     title = models.CharField(max_length=128, blank=True, default='')
     slug = models.SlugField(max_length=128)
+    show = models.BooleanField(default=True)
+    leader = models.BooleanField(default=True)
     description = models.TextField(blank=True, default='')
     text = models.TextField(blank=True, default='')
     photo = models.ImageField (upload_to=artNamer, max_length=256, blank=True)
+
+    def image_tag(self):
+      return u'<img height="75" src="%s" />' % self.photo.url
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
+
+
+  
     #project = models.ForeignKey('Project')
 
     def __unicode__(self):

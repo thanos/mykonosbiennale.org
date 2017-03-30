@@ -9,6 +9,9 @@ from uuid import uuid4
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
 from sorl.thumbnail import ImageField
+
+from material.models  import Album
+
 def path_and_rename(instance, filename):
     document_path(instance, filename, 'poster', 'images')
     
@@ -277,6 +280,7 @@ class Film(models.Model):
                                       processors=[ResizeToFit(1000,1000)],
                                       format='JPEG',
                                       options={'quality': 90})
+    stills = models.ForeignKey(Album,  blank=True, null=True) 
     def __unicode__(self):
         return self.title
     
@@ -313,6 +317,7 @@ class Material(models.Model):
         
 
 
+	
 
 
 class Image(Material):

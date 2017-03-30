@@ -1,3 +1,4 @@
+{% load compress %}
 {% load re_tags %}
 {% load thumbnail %}
 {% load staticfiles %}
@@ -9,23 +10,23 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
         <title>Mykonos Biennale 2015</title>
 {% include "seo.html" %}
-<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
-        
-        
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+<link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/x-icon">
 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" charset="utf-8">	
+{% compress css %}
+<link rel="stylesheet" href="{{ STATIC_URL }}css/uikit.min.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/components/slidenav.min.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/components/slider.min.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/components/slideshow.min.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{{ STATIC_URL }}css/film_detail.css" type="text/css" charset="utf-8">
+{% endcompress %}
 
-<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slideshow.css">
-<link rel="stylesheet" href="/static/css/film_detail.css">
- 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% compress js %}
+<script src="{{ STATIC_URL }}js/uikit.min.js"></script>
+<script src="{{ STATIC_URL }}js/components/grid.min.js"></script>
+{% endcompress %}
 
-<script src="/static/js/jquery.js"></script>
-<script src="/static/uikit/js/uikit.min.js"></script>
-<script src="/static/uikit/js/components/grid.js"></script>
         <style>
 
             .uk-panel {
