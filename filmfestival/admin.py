@@ -1,6 +1,6 @@
 from django.contrib import admin
 import models 
-from django.http import HttpResponse
+from django.http import HttpResponse,HttpResponseRedirect
 
 class PersonAdmin(admin.ModelAdmin):
     list_display = ['name', 'email'] 
@@ -48,7 +48,7 @@ class FilmAdmin(admin.ModelAdmin):
     list_editable=['status', 'film_type', 'trailer_url', 'trailer_embed', 'projection_copy', 'projection_copy_url', 'present','when' ]
     list_filter = [ 'status','film_type','source','projection_copy', 'present'] 
     inlines = [ImageInline,] #PersonInline, , DocumentationInline]
-    actions=['export_emails', 'export_posts', 'export_directors', 'export_titles']
+    actions=['export_emails', 'export_posts', 'export_directors', 'export_titles','send_emails']
     def export_emails(self, request, queryset):
         emails = set()
         for film in queryset:
@@ -76,6 +76,10 @@ class FilmAdmin(admin.ModelAdmin):
             dir_by.add("Showing 7th July at the Laka Theatre\n\n{}".format(film.absolute_url))
         text = "\n\n".join(list(dir_by))
         return HttpResponse(text, content_type="text/plain")    
+        
+    def send_emails(self, request, queryset):
+        selected = ','.join([str(film.pk) for film in queryset.order_by('title')])
+        return HttpResponseRedirect("/filmfestival/send_emails/?&ids=%s" % selected)
     
 admin.site.register(models.Film, FilmAdmin) 
 

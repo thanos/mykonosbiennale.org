@@ -9,13 +9,16 @@ admin.site.register(models.Festival, FestivalAdmin)
 
 class ProjectAdmin(admin.ModelAdmin):   
     list_filter = ['festival',] 
-    list_display = ['title', 'festival']   
+    list_display = ['title', 'festival' ,'slug']   
 admin.site.register(models.Project, ProjectAdmin)  
 
 
+
+admin.site.register(models.ProjectSeason) 
+
 class ArtAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['artist', 'title',  'leader', 'image_tag', 'show', 'photo',  'description', 'text']   
+    list_display = ['artist', 'title',  'project_x', 'project', 'leader', 'image_tag', 'show', 'photo',  'description', 'text']   
     search_fields = ['title', 'description','text']
     list_filter = ['project', 'leader','show'] 
     list_editable=['show', 'leader',  ]
@@ -32,13 +35,14 @@ class ArtInline(admin.TabularInline):
 class ArtistAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("name",)}
-    list_display = ['name', 'festival','event', 'headshot', 'country','visible']
+    list_display = ['name', 'event', 'headshot', 'country','visible']
+    #list_display = ['name', 'festival','event', 'headshot', 'country','visible']
     search_fields = ['name', ]
-    list_filter = ['festival', 'event', 'visible'] 
-    list_editable=['visible','event', 'festival', 'country',  'headshot', ]
+    list_filter = ['event', 'visible'] 
+    list_editable=['visible','event',  'country',  'headshot', ]
     inlines = [ArtInline] #PersonInline, , DocumentationInline]
     fieldsets = [
-            (None, {'fields': ['visible', 'festival', 'event', 'name', 'slug', 'email',
+            (None, {'fields': ['visible',  'event', 'name', 'slug', 'email',
     'country', 'phone', 'homepage', 'bio', 'statement']}),
            ('images', {'fields': ['headshot', 'poster']}),
            ('layout', {'fields': ['template', 'css', 'javascript'], 'classes': ['collapse']}),

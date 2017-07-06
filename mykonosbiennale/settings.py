@@ -56,35 +56,38 @@ INSTALLED_APPS = (
     'django.contrib.staticfiles',
 'django.contrib.sites',
 #'django.contrib.sitemaps',
-     'storages',
-	  "compressor",
-		'dj_static',
-    'django_countries',
-     'phonenumber_field',
-        'rest_framework',
-    'sorl.thumbnail',
-    'imagekit',  
-    'pipeline',
-    're_templatetags',     
-	   'photologue',
-     'sortedm2m',
-    'tagulous',
-	
-    #'media_library',
-    #'multilingual_tags',
-    #'generic_positions',
-    #'user_media',
-    #'hvad',
+	'storages',
+	"compressor",
+	'dj_static',
+	'django_countries',
+	'phonenumber_field',
+	'rest_framework',
+	'sorl.thumbnail',
+	'imagekit',  
+	'pipeline',
+	're_templatetags',     
+	'photologue',
+	'sortedm2m',
+	'minipub',
+	'tagulous',
+	    'versatileimagefield',
+
+	#'media_library',
+	#'multilingual_tags',
+	#'generic_positions',
+	#'user_media',
+	#'hvad',
 	'django_medusa',
-    'imagelabs',
-	 'bakery',
-    'variables',
-    'pages',
+	'imagelabs',
+	'bakery',
+	'variables',
+	'pages',
 	'material',
-    'mykonosbiennale',
-    'filmfestival',
-    'festival',
-     'festivalA',
+	'mykonosbiennale',
+	'filmfestival',
+	'festival',
+	'festivalA',
+	'festivaly',
 )
 
 
@@ -230,7 +233,7 @@ AWS_SECRET_ACCESS_KEY = Passwords.AWS_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'com.mykonosbiennale.static'
 from S3 import CallingFormat 
 AWS_CALLING_FORMAT = CallingFormat.PATH
-AWS_S3_CUSTOM_DOMAIN = 'd1fu8ookpa7iv5.cloudfront.net'
+#AWS_S3_CUSTOM_DOMAIN = 'd1fu8ookpa7iv5.cloudfront.net'
 
 AWS_IS_GZIPPED=True
 AWS_AUTO_CREATE_BUCKET = True
@@ -257,7 +260,7 @@ MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #DEFAULT_FILE_STORAGE = 'mykonosbiennale.s3utils.MediaS3BotoStorage'
-STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
+#STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
@@ -268,15 +271,15 @@ MEDIA_ROOT = '/media/'
 MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 
 STATIC_ROOT = '/static/'
-STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
+#STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
 #STATIC_URL = 'https://d1fu8ookpa7iv5.cloudfront.net/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 # COMPRESSOR
 # ------------------------------------------------------------------------------
-COMPRESS_STORAGE = STATICFILES_STORAGE #'storages.backends.s3boto.S3BotoStorage'
-COMPRESS_URL = STATIC_URL
-COMPRESS_ENABLED = False
+# COMPRESS_STORAGE = STATICFILES_STORAGE #'storages.backends.s3boto.S3BotoStorage'
+# COMPRESS_URL = STATIC_URL
+# COMPRESS_ENABLED = False
 #COMPRESS_OFFLINE=True
 
 
@@ -351,6 +354,19 @@ TAGULOUS_AUTOCOMPLETE_JS = (
 
 TAGULOUS_AUTOCOMPLETE_CSS = {
     'all': ['tagulous/lib/select2-3/select2.css']
+}
+
+# Versatile Image Field
+VERSATILEIMAGEFIELD_SETTINGS = {
+	# The amount of time, in seconds, that references to created images
+	# should be stored in the cache. Defaults to `2592000` (30 days)
+	'cache_length': 2592000,
+	'cache_name': 'versatileimagefield_cache',
+	'jpeg_resize_quality': 70,
+	'sized_directory_name': '__sized__',
+	'filtered_directory_name': '__filtered__',
+	'placeholder_directory_name': '__placeholder__',
+	'create_images_on_demand': True
 }
 
 from local_settings import *

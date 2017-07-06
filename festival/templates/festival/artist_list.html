@@ -17,21 +17,21 @@
 {% include "seo.html" %}
         
         
-<link rel="shortcut icon" href="{{ STATIC_URL }}images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" charset="utf-8">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" charset="utf-8">  
 {% compress css %}
-<link rel="stylesheet" href="{{ STATIC_URL }}css/uikit.min.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/components/slidenav.min.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/components/slider.min.css" type="text/css" charset="utf-8">
-<link rel="stylesheet" href="{{ STATIC_URL }}css/components/slideshow.min.css" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/uikit.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/components/slidenav.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/components/slider.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/components/slideshow.min.css" %}" type="text/css" charset="utf-8">
 <link rel="stylesheet" href="{% static "css/film_detail.css" %}" type="text/css" charset="utf-8">
 {% endcompress %}
 
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 {% compress js %}
-	<script src="{{ STATIC_URL }}js/uikit.min.js"></script>
-	<script src="{{ STATIC_URL }}js/components/slider.min.js"></script>
+    <script src="{% static "js/uikit.min.js" %}"></script>
+    <script src="{% static "js/components/slider.min.js" %}"></script>
 {% endcompress %}
       
       
@@ -63,11 +63,11 @@
                 <article class="uk-comment">
                     <header class="uk-comment-header">
                          {% if artist.headshot %}
-                           {% thumbnail artist.headshot  "150" crop="center" colorspace="GRAY" as headshot %}
-                                <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
+                           {% thumbnail artist.headshot  "200" crop="center" colorspace="GRAY" as headshot %}
+                                <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img  class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
                           {% endthumbnail %}
                         {% endif %}
-                        <h2><a href="{{ artist.get_absolute_url }}">{{artist.name|title}}</a></h2>
+                        <h2 style="margin-bottom:0px;" ><a href="{{ artist.get_absolute_url }}">{{artist.name|title}}</a></h2>
                         <div class="uk-comment-meta"> {{artist.country}} {% if artist.homepage != "" %} <span> <a href="{{artist.homepage}}">{{artist.homepage}}</a></span>{% endif %}</div>
                     </header>
                 </article>

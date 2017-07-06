@@ -49,5 +49,5 @@ class SlideAdmin(admin.ModelAdmin):
     #admin_image_to_use = AdminThumbnail(image_field='image_to_use')
     search_fields = ['title', 'content']
     list_filter = [ 'visible', 'slide_show'] 
-    list_editable = ['order']
+    list_editable = ['order', 'visible',]
 admin.site.register(models.Slide, SlideAdmin)

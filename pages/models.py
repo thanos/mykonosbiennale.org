@@ -70,9 +70,13 @@ class Page(models.Model):
                                       options={'quality': 60})
     url = models.URLField(blank=True, default='')
     visible = models.BooleanField(default=True)
+    in_menubar = models.BooleanField(default=True)
     css = models.TextField(default='')
     javascript = models.TextField(default='')
 
+    @classmethod
+    def menubar(cls):
+        return cls.objects.filter(in_menubar=True, visible=True)
     
     def panels(self):
         return self.panel_set.filter(visible=True)
@@ -161,7 +165,7 @@ class Slide(models.Model):
     
     
     def image_tag(self):
-      return u'<img height="75" src="%s" />' % self.image.url if self.image else ''
+      return u'<img height="175" src="%s" />' % self.image.url if self.image else ''
     image_tag.short_description = 'Image'
     image_tag.allow_tags = True
     

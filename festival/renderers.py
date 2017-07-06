@@ -10,6 +10,9 @@ class ArtFestivalRenderer(StaticSiteRenderer):
         artists = models.Artist.objects.all()
         for artist in artists:
             paths.add(artist.get_absolute_url())
+        for project in models.Project.objects.all():
+            paths.add(project.get_absolute_url())
         return list(paths)
+    
 
 renderers = [ArtFestivalRenderer, ]

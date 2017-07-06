@@ -8,26 +8,26 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% include "seo.html" %}
 
-<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
 
         
 
 <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slideshow.css">
-<link rel="stylesheet" href="/static/css/film_detail.css">
+<link rel="stylesheet" href="{% static "uikit/css/uikit.min.css" %}">
+<link rel="stylesheet" href="{% static "uikit/css/components/slidenav.css" %}">
+<link rel="stylesheet" href="{% static "uikit/css/components/slider.css" %}">
+<link rel="stylesheet" href="{% static "uikit/css/components/slideset.css" %}">
+<link rel="stylesheet" href="{% static "uikit/css/components/slideshow.css" %}">
+<link rel="stylesheet" href="{% static "css/film_detail.css" %}">
  
 
-<script src="/static/js/jquery.js"></script>
-<script src="/static/js/modernizr.js"></script>
-<script src="/static/uikit/js/uikit.min.js"></script>
-<script src="/static/uikit/js/components/slider.js"></script>
-<script src="/static/uikit/js/components/slideset.js"></script>
-<script src="/static/uikit/js/components/slideshow.js"></script>
+<script src="{% static "js/jquery.js" %}"></script>
+<script src="{% static "js/modernizr.js" %}"></script>
+<script src="{% static "uikit/js/uikit.min.js" %}"></script>
+<script src="{% static "uikit/js/components/slider.js" %}"></script>
+<script src="{% static "uikit/js/components/slideset.js" %}"></script>
+<script src="{% static "uikit/js/components/slideshow.js" %}"></script>
 <style>
 .uk-panel {padding: 50px;}
 .page { padding-left:0px; }
@@ -39,7 +39,7 @@
 {% include "nav_bar.html" %}        
             
 <div class="uk-grid mark_red" >
-	<div class="uk-width-medium-1-1  uk-container-center page film ">                           
+  <div class="uk-width-medium-1-1  uk-container-center page film ">                           
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if object.poster %}
@@ -66,11 +66,11 @@
             <ul class="uk-list">
                 {% for actor in cast %}
                 <li> {{ actor }}</li>
-			    {% endfor %}
-					</ul>
+          {% endfor %}
+          </ul>
 {% endif %}
                             
-		<h3> Credits </h3>
+    <h3> Credits </h3>
                             <dl class="uk-description-list-horizontal">
             {% if film.directors %}  <dt>Directors</dt><dd>{{ film.directors }}</dd> {% endif %}
             {% if film.screenwriters %} <dt>Screenwriters</dt><dd> {{ film.screenwriters }}</dd>{% endif %}
@@ -124,8 +124,8 @@
             <ul class="uk-list">
                 {% for screening in screenings %}
                 <li> {{ screening }}</li>
-			    {% endfor %}
-					</ul>
+          {% endfor %}
+          </ul>
         {% endif %}   
         
         

@@ -10,23 +10,23 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% include "seo.html" %}
 
-<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
+<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" charset="utf-8">	
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" charset="utf-8">  
 {% compress css %}
-    <link rel="stylesheet" href="/static/css/uikit.min.css" type="text/css" charset="utf-8">
-	  <link rel="stylesheet" href="/static/css/components/slider.min.css" type="text/css" charset="utf-8">
-    <link rel="stylesheet" href="/static/css/components/slidenav.min.css" type="text/css" charset="utf-8">
-	<link rel="stylesheet" href="/static/css/film_detail.css" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/uikit.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slider.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slidenav.min.css" %}" type="text/css" charset="utf-8">
+  <link rel="stylesheet" href="{% static "css/film_detail.css" %}" type="text/css" charset="utf-8">
 {% endcompress %}
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
-	{% compress js %}
-	<script src="/static/js/lazyload.min.js"></script> 
-	<script src="/static/js/modernizr.js"></script>
-		<script src="/static/uikit/js/uikit.min.js"></script>
-		<script src="/static/uikit/js/components/slider.min.js"></script>
-	{% endcompress %}
-	
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+  {% compress js %}
+  <script src="{% static "js/lazyload.min.js" %}"></script> 
+  <script src="{% static "js/modernizr.js" %}"></script>
+    <script src="{% static "uikit/js/uikit.min.js" %}"></script>
+    <script src="{% static "uikit/js/components/slider.min.js" %}"></script>
+  {% endcompress %}
+  
         
 <style>
 .uk-panel {padding: 50px;}
@@ -44,11 +44,11 @@
 <div class="uk-grid mark_red"  id="film">
     
     
-		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
-            <h1>Mykonos Biennale 2015</h1>
-            <h2>{{seo.sub_title}}</h2>
+    <div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
+            <h1>Mykonos Biennale {{project.festival.title}}</h1>
+            <h2>{{project.title}}</h2>
             <h3>Official Film Selection</h3>
-            <h4>As of {% variable "Official Selection Date" %}</h4>
+           <!--  <h4>As of {% variable "Official Selection Date" %}</h4> -->
 {% for film in object_list  %}
     {% if 0 <= forloop.counter0  and forloop.counter0 < 500 %} 
                                 

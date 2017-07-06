@@ -10,6 +10,8 @@ from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
 from sorl.thumbnail import ImageField
 
+from festival.models import Project
+
 from material.models  import Album
 
 def path_and_rename(instance, filename):
@@ -56,7 +58,7 @@ def document_path(instance, filename, prefix='document',path='documents'):
 class Award(models.Model):
     name = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
-    image  = ImageField (upload_to=image_path,  max_length=256, blank=True)
+    image  = ImageField (upload_to='awards',  max_length=256, blank=True)
     description  = models.TextField()
 
     def __unicode__(self):
@@ -281,6 +283,7 @@ class Film(models.Model):
                                       format='JPEG',
                                       options={'quality': 90})
     stills = models.ForeignKey(Album,  blank=True, null=True) 
+    project = models.ForeignKey(Project, blank=True, null=True)
     def __unicode__(self):
         return self.title
     

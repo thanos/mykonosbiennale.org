@@ -52,7 +52,8 @@ def headshotNamer(instance, filename):
 
 class Festival(models.Model):
     class Meta:
-        ordering = ['title']
+        ordering = ['year', 'title']
+    year = models.IntegerField(default= 2015)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     statement = models.TextField(default='')
@@ -63,18 +64,37 @@ class Festival(models.Model):
         self.slug = slugify(self.title)
         super(Festival, self).save(*args, **kwargs)
 
-class Project(models.Model):
+
+class ProjectSeason(models.Model):
+	festival = models.ForeignKey('Festival')
+	project = models.ForeignKey('ProjectX')
+	def __unicode__(self):
+		return "{} {}".format(self.festival.year, self.project.title)
+	
+class ProjectX(models.Model):
     title = models.CharField(max_length=200)
     slug = AutoSlugField(populate_from='title')
-    festival = models.ForeignKey('Festival')
+    festival = models.ManyToManyField(Festival, through='ProjectSeason')
+    statement = models.TextField(default='')
     def __unicode__(self):
         return self.title
     
     def get_absolute_url(self):
         return reverse('project', args=[self.slug])
+	
+	
+class Project(models.Model):
+    title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='title')
+    festival = models.ForeignKey('Festival')
+    def __unicode__(self):
+        return "{} {}".format(self.festival.year, self.title)
+    
+    def get_absolute_url(self):
+        return reverse('project', args=[self.slug])
     
 
-				
+	
 
 
 class Artist(models.Model):
@@ -98,7 +118,7 @@ class Artist(models.Model):
     )
 
 
-    festival = models.ForeignKey(Festival)
+    #festival = models.ForeignKey(Festival)
     event = models.CharField(max_length=64,
                                       choices=EVENT_CHOICES,
                                       default=TEASURE_HUNT)
@@ -137,8 +157,8 @@ class Artist(models.Model):
     def art_by_project(self):
         projects = collections.defaultdict(list)
         for art in self.art_set.filter(show=True):
-          projects[art.project].append(art)
-        return [ {'project': project, 'art':projects[project]} for project in sorted(projects, key=lambda x:x.title)]
+          projects[art.project_x].append(art)
+        return [ {'project': project, 'art':projects[project]} for project in sorted(projects, key=lambda x:x.project.title)]
 
     def artwork(self):
         try:
@@ -153,6 +173,7 @@ class Artist(models.Model):
 class Art(models.Model):
     artist = models.ForeignKey(Artist)
     project = models.ForeignKey(Project)
+    project_x = models.ForeignKey(ProjectSeason,  blank=True, null=True)
     title = models.CharField(max_length=128, blank=True, default='')
     slug = models.SlugField(max_length=128)
     show = models.BooleanField(default=True)

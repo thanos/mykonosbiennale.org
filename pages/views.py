@@ -16,7 +16,7 @@ class PageView(View):
     def get(self, request, slug):
         page = models.Page.objects.get(slug=slug)
         self.build_path = os.path.join(slug,'index.html')
-        return render_to_response(page.template, {'current_page':page, 'pages': models.Page.objects.filter(visible=True)})
+        return render_to_response(page.template, {'current_page':page, 'pages': models.Page.menubar()})
 
             
 class Redirect2013View(BuildableRedirectView):
@@ -27,7 +27,7 @@ class Redirect2013View(BuildableRedirectView):
 class PageMixin(object):
     def get_context_data(self, **kwargs):
         context = super(PageMixin, self).get_context_data(**kwargs)
-        context['pages'] = models.Page.objects.filter(visible=True)
+        context['pages'] = models.Page.menubar()
         context['breadcrumbs'] = self.breadcrumbs(context)
         context['seo'] = self.seo(context)
         return context
