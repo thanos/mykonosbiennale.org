@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 /* ========================================================================
    Component: Slider
  ========================================================================== */
@@ -44,7 +44,7 @@
  * Dragged
  */
 .uk-slider:not(.uk-drag) {
-  -webkit-transition: -webkit-transform 200ms linear;
+  -webkit-transition: transform 200ms linear;
   transition: transform 200ms linear;
 }
 /*

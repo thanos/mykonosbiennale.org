@@ -1,18 +1,34 @@
 from django.contrib import admin
-import models 
 from django.http import HttpResponse
 
-class FestivalAdmin(admin.ModelAdmin):   
+import models
+
+
+class FestivalAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['title', ]   
 admin.site.register(models.Festival, FestivalAdmin)  
 
+class ProjectAdmin(admin.ModelAdmin):   
+    list_filter = ['festival',] 
+    list_display = ['title', 'festival' ,'slug']   
+admin.site.register(models.Project, ProjectAdmin)  
 
+
+class ProjectXAdmin(admin.ModelAdmin):
+    #list_filter = ['festival',]
+    list_display = ['title','slug']
+admin.site.register(models.ProjectX, ProjectXAdmin)
+
+admin.site.register(models.ProjectSeason) 
 
 class ArtAdmin(admin.ModelAdmin):   
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['artist', 'title',  'photo',  'description', 'text']   
+    list_display = ['artist', 'title',  'project_x', 'project', 'leader', 'image_tag', 'show', 'photo',  'description', 'text']   
     search_fields = ['title', 'description','text']
+    list_filter = ['project', 'leader','show'] 
+    list_editable=['show', 'leader',  ]
+    readonly_fields = ('image_tag',)
 admin.site.register(models.Art, ArtAdmin)        
 
 
@@ -25,13 +41,14 @@ class ArtInline(admin.TabularInline):
 class ArtistAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("name",)}
-    list_display = ['name', 'festival','event', 'headshot', 'country','visible']
+    list_display = ['name', 'event', 'headshot', 'country','visible']
+    #list_display = ['name', 'festival','event', 'headshot', 'country','visible']
     search_fields = ['name', ]
-    list_filter = ['festival', 'event', 'visible'] 
-    list_editable=['visible','event', 'festival', 'country',  'headshot', ]
+    list_filter = ['event', 'visible'] 
+    list_editable=['visible','event',  'country',  'headshot', ]
     inlines = [ArtInline] #PersonInline, , DocumentationInline]
     fieldsets = [
-            (None, {'fields': ['visible', 'festival', 'event', 'name', 'slug', 'email',
+            (None, {'fields': ['visible',  'event', 'name', 'slug', 'email',
     'country', 'phone', 'homepage', 'bio', 'statement']}),
            ('images', {'fields': ['headshot', 'poster']}),
            ('layout', {'fields': ['template', 'css', 'javascript'], 'classes': ['collapse']}),

@@ -1,3 +1,4 @@
+{% load compress %}
 {% load re_tags %}
 {% load thumbnail %}
 {% load staticfiles %}
@@ -9,45 +10,53 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 {% include "seo.html" %}
 
-<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
+<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
+
+{% compress css %}
+    <link rel="stylesheet" href="{% static "css/uikit.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slider.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slidenav.min.css" %}" type="text/css" charset="utf-8">
+{% endcompress %}
+
+  {% compress js %}
+     <script src="{% static "js/jquery.js" %}"></script>
+  <script src="{% static "js/modernizr.js" %}"></script>
+    <script src="{% static "uikit/js/uikit.min.js" %}"></script>
+    <script src="{% static "uikit/js/components/slider.min.js" %}"></script>
+  {% endcompress %}
+  
         
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slideset.css">
-<link rel="stylesheet" href="/static/css/film_detail.css">
- 
-
-<script src="/static/js/jquery.js"></script>
-<script src="/static/uikit/js/uikit.min.js"></script>
-<script src="/static/uikit/js/components/slider.js"></script>
-<script src="/static/uikit/js/components/slideset.js"></script>
 <style>
-.uk-panel {padding: 50px;}
-.page { padding-left:0px; }
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+ li.uk-active>a {
+ 	color: magenta!important;
+ }
 </style>
 </head>
 
 <body class="uk-height-1-1"  id="invite">
-<div class="uk-container uk-height-1-1" >
+<div class="uk-container uk-container-center uk-margin-large">
 {% include "nav_bar.html" %}      
 
 
 
 
-<div class="uk-grid mark_red"  id="film">
+<div class="uk-grid"  id="film">
     
     
-		<div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
-            <h1>Mykonos Biennale 2015</h1>
-            <h2>{{seo.sub_title}}</h2>
+    <div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
+            <h1>Mykonos Biennale {{project.festival.title}}</h1>
+            <h2>{{project.title}}</h2>
             <h3>Official Film Selection</h3>
-            <h4>As of {% variable "Official Selection Date" %}</h4>
+           <!--  <h4>As of {% variable "Official Selection Date" %}</h4> -->
 {% for film in object_list  %}
     {% if 0 <= forloop.counter0  and forloop.counter0 < 500 %} 
                                 

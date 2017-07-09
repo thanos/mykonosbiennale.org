@@ -1,0 +1,107 @@
+{% load compress %}
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load pipeline %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+    <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Mykonos Biennale 2015</title>
+{% include "seo.html" %}
+<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css" type="text/css" charset="utf-8">  
+{% compress css %}
+<link rel="stylesheet" href="{% static "css/uikit.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/components/slidenav.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/components/slider.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/components/slideshow.min.css" %}" type="text/css" charset="utf-8">
+<link rel="stylesheet" href="{% static "css/film_detail.css" %}" type="text/css" charset="utf-8">
+{% endcompress %}
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+{% compress js %}
+<script src="{% static "js/uikit.min.js" %}"></script>
+<script src="{% static "js/components/grid.min.js" %}"></script>
+{% endcompress %}
+
+        <style>
+
+            .uk-panel {
+                padding: 5px;
+                text-align: center;
+            }
+
+            :nth-child(8n-7) > .uk-panelX { height: 100px; background: rgba(0,0,0,0.1); }
+            :nth-child(8n-6) > .uk-panelX { height: 120px; background: rgba(0,0,0,0.15); }
+            :nth-child(8n-5) > .uk-panelX { height: 180px; background: rgba(0,0,0,0.2); }
+            :nth-child(8n-4) > .uk-panelX { height: 140px; background: rgba(0,0,0,0.25); }
+            :nth-child(8n-3) > .uk-panelX { height: 200px; background: rgba(0,0,0,0.3); }
+            :nth-child(8n-2) > .uk-panelX { height: 150px; background: rgba(0,0,0,0.35); }
+            :nth-child(8n-1) > .uk-panelX { height: 170px; background: rgba(0,0,0,0.40); }
+            :nth-child(8n) > .uk-panelX { height: 130px; background: rgba(0,0,0,0.45); }
+
+            .equal-height > * > .uk-panelX { height: 150px; }
+
+        </style>
+
+
+</head>
+
+ <body>
+
+        <div class="uk-container uk-container-center">
+
+            <h1>Mykonos Biennale 2015</h1>
+
+ 
+
+
+
+            <h2></h2>
+                        
+            <ul id="filter" class="uk-subnav">
+                            <li  data-uk-filter=""><a href="#">All</a></li>
+                {%for project in projects %}
+                <li   data-uk-filter="{{project.slug }}"><a href="#">{{project.title }}</a></li>
+                            {% endfor %}
+            </ul>
+
+            <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-grid-width-xlarge-1-5" data-uk-grid="{gutter: 5, controls: '#filter', filter:'{{object.slug}}' }">
+
+                {% for art in art_shown %}
+                            
+                    {% if art.photo %}
+                    <div data-uk-filter="{{art.project_x.project.slug}}" >
+                        {% if art.photo|is_portrait %}
+                            {% thumbnail art.photo "x300"   crop="center" quality=40 as photo %}
+                                <div class="uk-panel" styleX="width:{{photo.width}}px; height:{{photo.height}}px;" >
+                                    <a href="{{  art.artist.get_absolute_url }}"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" Xheight="{{photo.height}}" 
+                                                                                  title="Mykonos Biennale 2015 - Antidote - {{art.artist.name}} - {{art.title}}" 
+                                                                                 alt="Mykonos Biennale 2015 - Film Festival - {{art.artist.name}} {{art.title}}" /></a>
+                                     <h2  class="uk-h6"><a href="{{ art.artist.get_absolute_url }}">{{art.artist.name}}</a></h2>        
+                            </div>
+                            {% endthumbnail %}
+                        {% else %}
+                            {% thumbnail art.photo  "x150"   crop="center" quality=40 as photo %}
+                            <div class="uk-panel" styleX="width:{{photo.width}}px; height:{{photo.height}}px;" >
+                                    <a href="{{  art.artist.get_absolute_url }}"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" Xheight="{{photo.height}}" 
+                                                                                  title="Mykonos Biennale 2015 - Antidote - {{art.artist.name}} - {{art.title}}" 
+                                                                                 alt="Mykonos Biennale 2015 - Film Festival - {{art.artist.name}} {{art.title}}" /></a>
+                             <h2  class="uk-h6"><a href="{{ art.artist.get_absolute_url }}">{{art.artist.name}}</a></h2>    
+                            </div>
+                            {% endthumbnail %}
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                
+
+            </div>
+
+            
+        </div>
+    </body>
+</html>

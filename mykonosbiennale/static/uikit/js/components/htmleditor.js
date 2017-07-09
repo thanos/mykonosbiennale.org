@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -42,10 +42,10 @@
 
                 UI.$('textarea[data-uk-htmleditor]', context).each(function() {
 
-                    var editor = UI.$(this);
+                    var editor = UI.$(this), obj;
 
                     if (!editor.data('htmleditor')) {
-                        UI.htmleditor(editor, UI.Utils.options(editor.attr('data-uk-htmleditor')));
+                        obj = UI.htmleditor(editor, UI.Utils.options(editor.attr('data-uk-htmleditor')));
                     }
                 });
             });
@@ -58,8 +58,8 @@
             this.CodeMirror = this.options.CodeMirror || CodeMirror;
             this.buttons    = {};
 
-            tpl = tpl.replace(/\{:lblPreview}/g, this.options.lblPreview);
-            tpl = tpl.replace(/\{:lblCodeview}/g, this.options.lblCodeview);
+            tpl = tpl.replace(/\{:lblPreview\}/g, this.options.lblPreview);
+            tpl = tpl.replace(/\{:lblCodeview\}/g, this.options.lblCodeview);
 
             this.htmleditor = UI.$(tpl);
             this.content    = this.htmleditor.find('.uk-htmleditor-content');
@@ -91,7 +91,7 @@
 
                 // append custom stylesheet
                 if (typeof(this.options.iframe) === 'string') {
-                    this.preview.container.parent().append('<link rel="stylesheet" href="'+this.options.iframe+'">');
+                   this.preview.container.parent().append('<link rel="stylesheet" href="'+this.options.iframe+'">');
                 }
 
             } else {
@@ -107,13 +107,13 @@
                     if ($this.htmleditor.attr('data-mode') == 'tab') return;
 
                     // calc position
-                    var codeHeight      = codeContent.height() - codeScroll.height(),
-                        previewHeight   = previewContainer[0].scrollHeight - ($this.iframe ? $this.iframe.height() : previewContainer.height()),
-                        ratio           = previewHeight / codeHeight,
-                        previewPosition = codeScroll.scrollTop() * ratio;
+                    var codeHeight       = codeContent.height() - codeScroll.height(),
+                        previewHeight    = previewContainer[0].scrollHeight - ($this.iframe ? $this.iframe.height() : previewContainer.height()),
+                        ratio            = previewHeight / codeHeight,
+                        previewPostition = codeScroll.scrollTop() * ratio;
 
                     // apply new scroll
-                    previewContainer.scrollTop(previewPosition);
+                    previewContainer.scrollTop(previewPostition);
 
                 }, 10));
 
@@ -161,7 +161,7 @@
             this.debouncedRedraw = UI.Utils.debounce(function () { $this.redraw(); }, 5);
 
             this.on('init.uk.component', function() {
-                $this.debouncedRedraw();
+                $this.redraw();
             });
 
             this.element.attr('data-uk-check-display', 1).on('display.uk.check', function(e) {
@@ -181,7 +181,7 @@
 
         replaceInPreview: function(regexp, callback) {
 
-            var editor = this.editor, results = [], value = editor.getValue(), offset = -1, index = 0;
+            var editor = this.editor, results = [], value = editor.getValue(), offset = -1;
 
             this.currentvalue = this.currentvalue.replace(regexp, function() {
 
@@ -206,13 +206,11 @@
                     }
                 };
 
-                var result = typeof(callback) === 'string' ? callback : callback(match, index);
+                var result = callback(match);
 
-                if (!result && result !== '') {
+                if (!result) {
                     return arguments[0];
                 }
-
-                index++;
 
                 results.push(match);
                 return result;
@@ -443,40 +441,28 @@
             addAction('link', '<a href="http://">$1</a>');
             addAction('image', '<img src="http://" alt="$1">');
 
-            var listfn = function(tag) {
+            var listfn = function() {
                 if (editor.getCursorMode() == 'html') {
 
-                    tag = tag || 'ul';
-
-                    var cm        = editor.editor,
-                        doc       = cm.getDoc(),
-                        pos       = doc.getCursor(true),
-                        posend    = doc.getCursor(false),
-                        im        = CodeMirror.innerMode(cm.getMode(), cm.getTokenAt(cm.getCursor()).state),
-                        inList    = im && im.state && im.state.context && ['ul','ol'].indexOf(im.state.context.tagName) != -1;
+                    var cm      = editor.editor,
+                        pos     = cm.getDoc().getCursor(true),
+                        posend  = cm.getDoc().getCursor(false);
 
                     for (var i=pos.line; i<(posend.line+1);i++) {
                         cm.replaceRange('<li>'+cm.getLine(i)+'</li>', { line: i, ch: 0 }, { line: i, ch: cm.getLine(i).length });
                     }
 
-                    if (!inList) {
-                        cm.replaceRange('<'+tag+'>'+"\n"+cm.getLine(pos.line), { line: pos.line, ch: 0 }, { line: pos.line, ch: cm.getLine(pos.line).length });
-                        cm.replaceRange(cm.getLine((posend.line+1))+"\n"+'</'+tag+'>', { line: (posend.line+1), ch: 0 }, { line: (posend.line+1), ch: cm.getLine((posend.line+1)).length });
-                        cm.setCursor({ line: posend.line+1, ch: cm.getLine(posend.line+1).length });
-                    } else {
-                        cm.setCursor({ line: posend.line, ch: cm.getLine(posend.line).length });
-                    }
-
+                    cm.setCursor({ line: posend.line, ch: cm.getLine(posend.line).length });
                     cm.focus();
                 }
-            };
+            }
 
             editor.on('action.listUl', function() {
-                listfn('ul');
+                listfn();
             });
 
             editor.on('action.listOl', function() {
-                listfn('ol');
+                listfn();
             });
 
             editor.htmleditor.on('click', 'a[data-htmleditor-button="fullscreen"]', function() {
@@ -522,7 +508,7 @@
 
         init: function(editor) {
 
-            var parser = editor.options.mdparser || window.marked || null;
+            var parser = editor.options.mdparser || marked || null;
 
             if (!parser) return;
 
@@ -599,7 +585,7 @@
             UI.$.extend(editor, {
 
                 enableMarkdown: function() {
-                    enableMarkdown();
+                    enableMarkdown()
                     this.render();
                 },
                 disableMarkdown: function() {

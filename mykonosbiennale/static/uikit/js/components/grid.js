@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -38,7 +38,7 @@
                     var ele = UI.$(this);
 
                     if(!ele.data("grid")) {
-                        UI.grid(ele, UI.Utils.options(ele.attr('data-uk-grid')));
+                        var plugin = UI.grid(ele, UI.Utils.options(ele.attr('data-uk-grid')));
                     }
                 });
             });
@@ -63,7 +63,7 @@
                 // filter
                 this.controls.on('click', '[data-uk-filter]', function(e){
                     e.preventDefault();
-                    $this.filter(UI.$(this).attr('data-uk-filter'));
+                    $this.filter(UI.$(this).data('ukFilter'));
                 });
 
                 // sort
@@ -88,7 +88,7 @@
                 if ($this.element.is(":visible"))  $this.updateLayout();
             });
 
-            UI.domObserve(this.element, function(e) {
+            UI.$html.on("changed.uk.dom", function(e) {
                 $this.updateLayout();
             });
 
@@ -131,13 +131,14 @@
 
             elements = elements || this.element.children(':visible');
 
-            var children  = elements,
+            var $this     = this,
+                children  = elements,
                 maxwidth  = this.element.width() + (2*this.gutterh) + 2,
                 left      = 0,
                 top       = 0,
                 positions = [],
 
-                item, width, height, pos, i, z, max, size;
+                item, width, height, pos, aX, aY, i, z, max, size;
 
             this.trigger('beforeupdate.uk.grid', [children]);
 
@@ -227,10 +228,6 @@
             this.currentfilter = filter;
 
             filter = filter || [];
-
-            if (typeof(filter) === 'number') {
-                filter = filter.toString();
-            }
 
             if (typeof(filter) === 'string') {
                 filter = filter.split(/,/).map(function(item){ return item.trim(); });

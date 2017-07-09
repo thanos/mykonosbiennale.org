@@ -1,4 +1,5 @@
 from django.db import models
+import collections
 import os
 from uuid import uuid4
 from django.utils.text import slugify
@@ -7,7 +8,7 @@ from django_countries.fields import CountryField
 from phonenumber_field.modelfields import PhoneNumberField
 from imagekit.models import ImageSpecField
 from imagekit.processors import ResizeToFill, ResizeToFit
-
+from autoslug import AutoSlugField
 
 class ImageNamer:
     folder = 'artists'
@@ -21,11 +22,11 @@ class ImageNamer:
 class ArtNamer(ImageNamer):
     def image_name(self, instance, filename):
         artist = instance.artist
-        count = 0
-        return "{}-{}-{}".format(
+        count = instance.artist.art_set.count()
+        return "{}-{}-{}-{}".format(
                 artist.festival, 
                 artist.name, 
-                instance.title)
+                instance.title, count)
 
 def artNamer(instance, filename):
     return ArtNamer()(instance, filename)
@@ -51,7 +52,8 @@ def headshotNamer(instance, filename):
 
 class Festival(models.Model):
     class Meta:
-        ordering = ['title']
+        ordering = ['year', 'title']
+    year = models.IntegerField(default= 2015)
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     statement = models.TextField(default='')
@@ -61,7 +63,38 @@ class Festival(models.Model):
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
         super(Festival, self).save(*args, **kwargs)
-        
+
+
+class ProjectSeason(models.Model):
+	festival = models.ForeignKey('Festival')
+	project = models.ForeignKey('ProjectX')
+	def __unicode__(self):
+		return "{} {}".format(self.festival.year, self.project.title)
+	
+class ProjectX(models.Model):
+    title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='title')
+    festival = models.ManyToManyField(Festival, through='ProjectSeason')
+    statement = models.TextField(default='')
+    def __unicode__(self):
+        return self.title
+    
+    def get_absolute_url(self):
+        return reverse('project', args=[self.slug])
+	
+	
+class Project(models.Model):
+    title = models.CharField(max_length=200)
+    slug = AutoSlugField(populate_from='title')
+    festival = models.ForeignKey('Festival')
+    def __unicode__(self):
+        return "{} {}".format(self.festival.year, self.title)
+    
+    def get_absolute_url(self):
+        return reverse('project', args=[self.slug])
+    
+
+	
 
 
 class Artist(models.Model):
@@ -85,7 +118,7 @@ class Artist(models.Model):
     )
 
 
-    festival = models.ForeignKey(Festival)
+    #festival = models.ForeignKey(Festival)
     event = models.CharField(max_length=64,
                                       choices=EVENT_CHOICES,
                                       default=TEASURE_HUNT)
@@ -121,6 +154,12 @@ class Artist(models.Model):
     def artists(self):
         return self.panel_set.filter(visible=True)
 
+    def art_by_project(self):
+        projects = collections.defaultdict(list)
+        for art in self.art_set.filter(show=True):
+          projects[art.project_x].append(art)
+        return [ {'project': project, 'art':projects[project]} for project in sorted(projects, key=lambda x:x.project.title)]
+
     def artwork(self):
         try:
             return self.art_set.first().photo.url
@@ -133,11 +172,24 @@ class Artist(models.Model):
         
 class Art(models.Model):
     artist = models.ForeignKey(Artist)
+    project = models.ForeignKey(Project)
+    project_x = models.ForeignKey(ProjectSeason,  blank=True, null=True)
     title = models.CharField(max_length=128, blank=True, default='')
     slug = models.SlugField(max_length=128)
+    show = models.BooleanField(default=True)
+    leader = models.BooleanField(default=True)
     description = models.TextField(blank=True, default='')
     text = models.TextField(blank=True, default='')
     photo = models.ImageField (upload_to=artNamer, max_length=256, blank=True)
+
+    def image_tag(self):
+      return u'<img height="75" src="%s" />' % self.photo.url
+    image_tag.short_description = 'Image'
+    image_tag.allow_tags = True
+
+
+  
+    #project = models.ForeignKey('Project')
 
     def __unicode__(self):
         return "{} {}".format(self.artist, self.title)

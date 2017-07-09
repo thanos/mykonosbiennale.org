@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(addon) {
 
     var component;
@@ -20,8 +20,7 @@
     UI.component('formSelect', {
 
         defaults: {
-            'target': '>span:first',
-            'activeClass': 'uk-active'
+            'target': '>span:first'
         },
 
         boot: function() {
@@ -33,7 +32,7 @@
                     var ele = UI.$(this);
 
                     if (!ele.data("formSelect")) {
-                        UI.formSelect(ele, UI.Utils.options(ele.attr("data-uk-form-select")));
+                        var obj = UI.formSelect(ele, UI.Utils.options(ele.attr("data-uk-form-select")));
                     }
                 });
             });
@@ -51,17 +50,8 @@
                 var select = $this.select[0], fn = function(){
 
                     try {
-                        if($this.options.target === 'input')
-                        {
-                            $this.target.val(select.options[select.selectedIndex].text);
-                        }
-                        else
-                        {
-                            $this.target.text(select.options[select.selectedIndex].text);
-                        }
+                        $this.target.text(select.options[select.selectedIndex].text);
                     } catch(e) {}
-
-                    $this.element[$this.select.val() ? 'addClass':'removeClass']($this.options.activeClass);
 
                     return fn;
                 };

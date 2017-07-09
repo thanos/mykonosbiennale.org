@@ -1,86 +1,92 @@
+{% load staticfiles %}
+{% load compress %}
 {% load thumbnail %}
+{% load renderers %}
 <!DOCTYPE html>
 <html class="uk-notouch uk-height-1-1" dir="ltr" lang="en-gb">
 
 <head>
-	<meta charset="utf-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote.">
-<meta property="og:title" content="Mykonos Biennale 2015  - Antidote"/>
-<meta property="og:type" content="website"/>
-        <meta property="og:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png" />
-        <meta property="og:url" content="http://www.mykonosbiennale.com/" />
-        <meta property="og:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." />
-        <meta name="twitter:card" content="summary">
-        <meta name="twitter:url" content="http://www.mykonosbiennale.com/filmfestival/films/">
-        <meta name="twitter:title" content="Mykonos Biennale 2015 - Antidote">
-        <meta name="twitter:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." >
-        <meta name="twitter:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"> 
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote.">
+    <meta property="og:title" content="Mykonos Biennale 2015  - Antidote"/>
+    <meta property="og:type" content="website"/>
+    <meta property="og:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png" />
+    <meta property="og:url" content="http://www.mykonosbiennale.com/" />
+    <meta property="og:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." />
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:url" content="http://www.mykonosbiennale.com/filmfestival/films/">
+    <meta name="twitter:title" content="Mykonos Biennale 2015 - Antidote">
+    <meta name="twitter:description" content="Home page of the this years 2015 Mykonos Biennale  art and short film festival whose theme is Antidote." >
+    <meta name="twitter:image" content="http://www.mykonosbiennale.com/images/mykonos-biennale-logo.png"> 
 
 
-	<title>Mykonos Biennale - 2015 - Antidote</title>
+    <title>Mykonos Biennale - 2015 - Antidote</title>
 
-    <link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-    <link rel="apple-touch-icon-precomposed" href="/static/images/apple-touch-icon.png">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
-    <link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
-    <link rel="stylesheet" href="/static/uikit/js/components/sticky.min.css">
-	  <link rel="stylesheet" href="/static/css/components/slideshow.min.css">
-    <link rel="stylesheet" href="/static/css/components/slidenav.css">
+{% compress css %}
+    <link rel="stylesheet" href="{% static "css/uikit.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/sticky.min.css" %}" type="text/css" charset="utf-8">
+      <link rel="stylesheet" href="{% static "css/components/slideshow.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slidenav.min.css" %}" type="text/css" charset="utf-8">
+{% endcompress %}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+    {% compress js %}
 
-		<script src="/static/js/jquery.js"></script>
-	<script src="/static/js/modernizr.js"></script>
-		<script src="/static/uikit/js/uikit.min.js"></script>
-		<script src="/static/uikit/js/components/grid.min.js"></script>
-		<script src="/static/uikit/js/components/sticky.min.js"></script>
-		<script src="/static/js/components/slideshow.min.js"></script>
-		<script src="/static/js/components/slideshow-fx.js"></script>
-	<style>
-
-
-	.menu {
-
-
-
-	}
-	.pageX {
-		min-height: 700px;
-		max-width: 700px;
-		background-position: 100% 100%; 
-		background-repeat: no-repeat;
-		background-size: cover;
-
-	}
+    <script src="{% static "js/modernizr.js" %}"></script>
+        <script src="{% static "uikit/js/uikit.min.js" %}"></script>
+        <script src="{% static "uikit/js/components/grid.min.js" %}"></script>
+        <script src="{% static "uikit/js/components/sticky.min.js" %}"></script>
+        <script src="{% static "js/components/slideshow.min.js" %}"></script>
+        <script src="{% static "js/components/slideshow-fx.min.js" %}"></script>
+    {% endcompress %}
+    <style>
 
 
-	
+    .menu {
+
+
+
+    }
+    .pageX {
+        min-height: 700px;
+        max-width: 700px;
+        background-position: 100% 100%; 
+        background-repeat: no-repeat;
+        background-size: cover;
+
+    }
+
+
+    
 
 
 .uk-containerX{
-	padding: 0px 0px;
+    padding: 0px 0px;
 
 }
 
 .uk-navbar {
 
-	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
-	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+    background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+    background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
 }
 
 
 
  .homeX {
-	padding: 0px 0px 0px 0x;	
-		background-position: 50% 50%; 
-		background-repeat: no-repeat;
-		background-size: cover;
-		width:100%;
-		min-height: 700px;
-	background-image: url(/static/images/mykonos-biennale-2015-home.jpg);
+    padding: 0px 0px 0px 0x;    
+        background-position: 50% 50%; 
+        background-repeat: no-repeat;
+        background-size: cover;
+        width:100%;
+        min-height: 700px;
+    background-image: url(/static/images/mykonos-biennale-2015-home.jpg);
 }
-		/* unvisited link */
-			
+        /* unvisited link */
+            
 
 .home a:link {
     color: #FFF;
@@ -94,7 +100,7 @@
 /* mouse over link */
 .home a:hover {
     color: #FF00FF;
-	 text-decoration: none;
+     text-decoration: none;
 }
 
 /* selected link */
@@ -112,7 +118,7 @@
 
 .offical_list_links a:hover {
     color: #FF00FF;
-	 text-decoration: none;
+     text-decoration: none;
 }
 </style>
     
@@ -133,84 +139,100 @@
 
 <div class="uk-container uk-container-center">
 
-{% for panel in current_page.panel_set.all %}	
+{% for panel in current_page.panel_set.all %}   
     {% if  panel.order < 0 %} 
         {% if panel.visible %}
-	    <div class="uk-grid mark_red"  id="{{ panel.slug }}" data-uk-scrollspy="{repeat: true}">
-	        {{panel.content|safe }}
-	    </div>	
+        <div class="uk-grid mark_red"  id="{{ panel.slug }}" data-uk-scrollspy="{repeat: true}">
+         {% render panel.content %}
+        </div>  
         {% endif %}
     {% endif %}
 {% endfor %}
 
 
 {% include "nav_bar.html" %}
-		
-{% for panel in current_page.panel_set.all %}	
-	{% if  panel.order >= 0 %} 
-		{% if panel.visible %}
-			<div class="uk-grid"  id="{{ panel.slug }}"  >
-			{% if panel.slide_show %}
-    		<div class="uk-width-1-1" >
-        	<div  data-uk-slideshow="{autoplay:true, autoplayInterval:3000}" >
+        
+{% for panel in current_page.panel_set.all %}   
+    {% if  panel.order >= 0 %} 
+        {% if panel.visible %}
+            <div class="uk-grid"  id="{{ panel.slug }}"  >
+            {% if panel.slide_show %}
+            <div class="uk-width-1-1" >
+            <div  data-uk-slideshow="{autoplay:true, autoplayInterval:{{panel.slide_show.delay}}000}" >
             <div class="uk-slidenav-position" >
                 <ul class="uk-slideshow uk-overlay-active" style="min-height:700px;">
-									{% for slide in panel.slide_show.slide_set.all %}
-										{% if slide.visible %}
-									 <li> 
-										 	{% if slide.image %}
-										       {% thumbnail slide.image  "x800"  crop="noop"  as photo %}
-                        <img   src="{{photo.url|safe }}" style="min-height:700px; max-height:800px;" alt="Mykonos Biennale - {{panel.slide_show.name}} - slide.title "  >
-										      {% endthumbnail %}   
-										 {% endif %}
-										 	{% if slide.video %}
-										 <video width="600" height="400"  loop muted controls class="uk-cover-object uk-position-absolute"  autoplay>
-											 
+                                    {% for slide in panel.slide_show.visible_slides %}
+                                        {% if slide.image %}
+                                     <li> 
+
+                                            {% thumbnail slide.image  "x600"  crop="noop" quality=50 as photo %}
+                        <img   src="{{photo.url|safe }}" style="min-height:700px; max-height:800px;" alt="Mykonos Biennale - {{panel.slide_show.name}} - {{slide.title}} "  >
+                                              {% endthumbnail %}   
+                                    
+                                         <!--   {% if slide.video %}
+                                        <video width="600" height="400"  loop muted controls class="uk-cover-object uk-position-absolute"  autoplay>
+                                             
                                         <source src="{{slide.video.url|safe }}" type="video/mp4">
-											</video>
-										  {% endif %}
-                        <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-bottom " >
-                            <div class="{{panel.slide_show.slug}}" style="{{slide.css|safe}}">
-                           {% if slide.title %}     <h2>{{slide.title|safe }}</h2> {% endif %}
-                                {{slide.content|safe }}
-                            </div>
+                                            </video>
+                                          {% endif %}
+-->
+                        <div class="uk-overlay-panel uk-flex uk-flex-center uk-flex-bottom " >                 
+                        {% if panel.slide_show.static_content %} 
+                            {% cycle 'show' '' as show_hide  silent %}
+                            {% if show_hide %}
+                             <div class="{{panel.slide_show.slug}}" style="{{slide.css|safe}}">
+                                <h2>{{panel.slide_show.title|safe }}</h2>
+                                {{panel.slide_show.content|safe }}
+                             </div>
+                            {% endif %}
+                        {% else %}
+                             <div class="{{panel.slide_show.slug}}" style="{{slide.css|safe}}">
+                                   {% if slide.title %}     <h2>{{slide.title|safe }}</h2> {% endif %}
+                                    {{slide.content|safe }}
+                             </div>           
+                        {% endif %}
+                     
+                            
+                   
+                         
                         </div>
                     </li>
-										{% endif %}
-									{% endfor %}
-							</ul>
-							<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
-							<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
-						</div>
-					</div>
-				</div>
-			{% else %}
-				{{panel.content|safe }}
-			{% endif %}
-	</div>	
+               
+                                        {% endif %}
+                                    {% endfor %}
+                            </ul>
+                            <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous"></a>
+                            <a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next"></a>
+                        </div>
+                    </div>
+                </div>
+            {% else %}
+                    {% render panel.content %}
+            {% endif %}
+    </div>  
       {% endif %}
     {% endif %}
 {% endfor %}
   {% comment %}
  <div class="uk-position-bottom  uk-sticky-init data-uk-sticky " data-uk-sticky="{boundary: '.back', target:nav}"> 
-	 <div class="uk-grid mark_red page">
+     <div class="uk-grid mark_red page">
     <footer class="footie uk-hidden-small">
-		<div class="uk-container uk-container-center">
-			<div class="uk-clearfixc">
-				<div class="uk-align-medium-left">
-					<div class="uk-panel widget_text">Copyright  © Mykonos Biennale 2013,14,15</div>
-				</div>
-				<div class="uk-align-medium-right">
-					<div class="uk-panel widget_text">
-						<a href="#" class="uk-icon-small uk-icon-twitter uk-margin-right"></a>
-						<a href="#" class="uk-icon-small uk-icon-facebook uk-margin-right"></a>
-						<a href="#" class="uk-icon-small uk-icon-pinterest"></a>
-					</div>
-				</div>
-				<a class="tm-totop-scroller uk-text-center" data-uk-smooth-scroll="" href="#"></a>
-			</div>
-		</div>
-	</footer>	
+        <div class="uk-container uk-container-center">
+            <div class="uk-clearfixc">
+                <div class="uk-align-medium-left">
+                    <div class="uk-panel widget_text">Copyright  © Mykonos Biennale 2013,14,15,16,17</div>
+                </div>
+                <div class="uk-align-medium-right">
+                    <div class="uk-panel widget_text">
+                        <a href="#" class="uk-icon-small uk-icon-twitter uk-margin-right"></a>
+                        <a href="#" class="uk-icon-small uk-icon-facebook uk-margin-right"></a>
+                        <a href="#" class="uk-icon-small uk-icon-pinterest"></a>
+                    </div>
+                </div>
+                <a class="tm-totop-scroller uk-text-center" data-uk-smooth-scroll="" href="#"></a>
+            </div>
+        </div>
+    </footer>   
  </div> 
 </div>
     
@@ -226,7 +248,7 @@ $('[data-uk-scrollspy]').on('outview.uk.scrollspy', function(){
 $('[data-uk-scrollspy]').on('inview.uk.scrollspy', function(){
       $('nav').hide();
 });
-	
+    
    $(function() { 
        
 if (Modernizr.video.h264 ) {

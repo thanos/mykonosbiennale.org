@@ -1,4 +1,4 @@
-/*! UIkit 2.26.3 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
+/*! UIkit 2.19.0 | http://www.getuikit.com | (c) 2014 YOOtheme | MIT License */
 (function(UI) {
 
     "use strict";
@@ -19,15 +19,13 @@
                 bar       = element.find(".uk-offcanvas-bar:first"),
                 rtl       = (UI.langdirection == "right"),
                 flip      = bar.hasClass("uk-offcanvas-bar-flip") ? -1:1,
-                dir       = flip * (rtl ? -1 : 1),
-
-                scrollbarwidth =  window.innerWidth - $body.width();
+                dir       = flip * (rtl ? -1 : 1);
 
             scrollpos = {x: window.pageXOffset, y: window.pageYOffset};
 
             element.addClass("uk-active");
 
-            $body.css({"width": window.innerWidth - scrollbarwidth, "height": window.innerHeight}).addClass("uk-offcanvas-page");
+            $body.css({"width": window.innerWidth, "height": window.innerHeight}).addClass("uk-offcanvas-page");
             $body.css((rtl ? "margin-right" : "margin-left"), (rtl ? -1 : 1) * (bar.outerWidth() * dir)).width(); // .width() - force redraw
 
             $html.css('margin-top', scrollpos.y * -1);
@@ -98,10 +96,10 @@
                 Offcanvas.hide();
             });
 
-            element.on("click", "a[href*='#']", function(e){
+            element.on("click", "a[href^='#']", function(e){
 
-                var link = UI.$(this),
-                    href = link.attr("href");
+                var element = UI.$(this),
+                    href = element.attr("href");
 
                 if (href == "#") {
                     return;
@@ -109,20 +107,14 @@
 
                 UI.$doc.one('hide.uk.offcanvas', function() {
 
-                    var target;
-
-                    try {
-                        target = UI.$(link[0].hash);
-                    } catch (e){
-                        target = '';
-                    }
+                    var target = UI.$(href);
 
                     if (!target.length) {
-                        target = UI.$('[name="'+link[0].hash.replace('#','')+'"]');
+                        target = UI.$('[name="'+href.replace('#','')+'"]');
                     }
 
-                    if (target.length && UI.Utils.scrollToElement) {
-                        UI.Utils.scrollToElement(target, UI.Utils.options(link.attr('data-uk-smooth-scroll') || '{}'));
+                    if (UI.Utils.scrollToElement && target.length) {
+                        UI.Utils.scrollToElement(target);
                     } else {
                         window.location.href = href;
                     }

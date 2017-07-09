@@ -3,106 +3,93 @@
 {% load staticfiles %}
 <!DOCTYPE html>
 <html lang="en-gb" dir="ltr">
-    <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     {% include "seo.html" %}
-<link rel="shortcut icon" href="/static/images/favicon.ico" type="image/x-icon">
-<link rel="apple-touch-icon-precomposed" href="images/apple-touch-icon.png">
-        
-        
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+    <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
 
-<link rel="stylesheet" href="/static/uikit/css/uikit.min.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slidenav.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slider.css">
-<link rel="stylesheet" href="/static/uikit/css/components/slideshow.css">
-<link rel="stylesheet" href="/static/css/film_detail.css">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+
+
+    <link rel="stylesheet" href="{% static "uikit/css/uikit.min.css" %}">
+    <link rel="stylesheet" href="{% static "uikit/css/components/slidenav.css" %}">
+    <link rel="stylesheet" href="{% static "uikit/css/components/slider.css" %}">
+    <link rel="stylesheet" href="{% static "uikit/css/components/slideshow.css" %}">
+
+
+
+    <script src="{% static "js/jquery.js" %}"></script>
+    <script src="{% static "uikit/js/uikit.min.js" %}"></script>
+    <script src="{% static "uikit/js/components/slider.js" %}"></script>
+    <script src="{% static "uikit/js/components/slideshow.js" %}"></script>
+    <script src="{% static "uikit/js/components/grid.js" %}"></script>
+    <style>
  
+            .uk-navbar {
 
-<script src="/static/js/jquery.js"></script>
-<script src="/static/uikit/js/uikit.min.js"></script>
-<script src="/static/uikit/js/components/slider.js"></script>
-<script src="/static/uikit/js/components/slideshow.js"></script>
-<style>
-.uk-panel {padding: 50px;}
-.page { padding-left:0px; }
-</style>
+    background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+    background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+    </style>
 </head>
 
 <body class="uk-height-1-1"  id="invite">
-<div class="uk-container uk-height-1-1" >
-{% include "nav_bar.html" %}
+
+<div class="uk-container uk-container-center">
+    {% include "nav_bar.html" %}
+        <div class="uk-grid mark_red"  id="film">
+            <div class="uk-width-medium-1-1  uk-container-center page film ">
+                <article class="uk-comment">
+                    <header class="uk-comment-header">
+                        {% if object.headshot %}
+                        {% thumbnail artist.headshot  "150" crop="center" colorspace="GRAY" as headshot %}
+                        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
+                        {% endthumbnail %}
+                        {% endif %}
+                        <h1>{{object.name|title}}</h1>
+                        <div class="uk-comment-meta">{{object.homepage}}</div>
+                    </header>
 
 
+                    {% if object.statement %}
+                    <h3> Statement </h3>
+                    <div class="uk-comment-body">{{object.statement}}</div>
+                    {% endif %}
 
+                    {% if object.bio %}
+                    <h3> Bio </h3>
+                    <div class="uk-comment-body">{{object.bio}}</div>
+                    {% endif %}
 
-<div class="uk-grid mark_red"  id="film">
-    
-    
-		<div class="uk-width-medium-1-1  uk-container-center page film ">
-                         
-                                
-    <article class="uk-comment">
-    <header class="uk-comment-header">
-         {% if object.headshot %}
-    {% thumbnail artist.headshot  "150" crop="center" colorspace="GRAY" as headshot %}
-        <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{artist.headshot}}" target="_blank"><img class="uk-comment-avatar" src="http://com.mykonosbiennale.static.s3.amazonaws.com/{{headshot}}"    width="{headshot.width}}" height="{{headshot.height}}"  alt="{{artist.name}}"></a>
-          {% endthumbnail %}
-           {% endif %}
-            <h1>{{object.name|title}}</h1>
-            <div class="uk-comment-meta">{{object.homepage}}</div>
-        
-        </header>
-
-
-        {% if object.statement %}
-            <h3> Statement </h3>
-            <div class="uk-comment-body">{{object.statement}}</div>
-        {% endif %}
-
-        {% if object.bio %}
-            <h3> Bio </h3>
-            <div class="uk-comment-body">{{object.bio}}</div>
-        {% endif %}
-        
-        
-        
-        
-          
-
-    <div class="uk-slidenav-position" >
-            <ul class="uk-slideshow" data-uk-slideshow="{animation: 'scroll', autoplay:true, kenburns:true, autoplayInterval:3000}">
-            {% for art in object.art_set.all %}                               
-                {% if art.photo %}
-        {% thumbnail art.photo  "700" crop="center"  quality=60 as photo %}
-            <li><a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" 
-                                                                                                                       title="Mykonos Biennale 2015 - Film Festival -  {{art.title}} - screen shot" 
-                                                                                 alt="Mykonos Biennale 2015 - Film Festival -  {{art.title}} - screen shot" /></a></li>
-                 {% endthumbnail %}   
-            {% endif %}
-            {% endfor %}                       
-           </ul>
-<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
-<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
- </div>
-            
-                               
-</article>
-     
-
-     
+                   
+                    {% for project in object.art_by_project %}
+                                                <h2>
+                                                    {{ project.project }}
+                                                </h2>
+                                                <div class="uk-grid-width-medium-1-1 uk-grid-width-large-1-2" data-uk-grid="{gutter: 50}">
+                                                    {% for art in project.art %}
+                                                        <div class="uk-panel">
+                                                            {% if art.photo %}
+                                                                {% thumbnail art.photo  "700" crop="center"  quality=60 as photo %}
+                                                                <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" 
+                                                                title="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" 
+                                                                alt="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" /></a>
+                                                                {% endthumbnail %}   
+                                                            {% endif %}
+                                                            <h4 class="uk-panel-title">{{art.title}}</h4>
+                                                            {{art.description}}
+                                                            {{art.text}}
+                                                        </div>
+                                                {% endfor %}
+                                            </div>
+                                    {% endfor %}
+                   
+                </article>
+            </div>
         </div>
-     </div>
-     </div>
-    
-    
-
-
- 
-    
-    
-    
-    </body>
+    </div>
+</body>
 </html>
