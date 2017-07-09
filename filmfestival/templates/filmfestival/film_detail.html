@@ -1,3 +1,4 @@
+{% load compress %}
 {% load re_tags %}
 {% load thumbnail %}
 {% load staticfiles %}
@@ -12,34 +13,40 @@
 
 
         
-
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
+{% compress css %}
 <link rel="stylesheet" href="{% static "uikit/css/uikit.min.css" %}">
-<link rel="stylesheet" href="{% static "uikit/css/components/slidenav.css" %}">
-<link rel="stylesheet" href="{% static "uikit/css/components/slider.css" %}">
-<link rel="stylesheet" href="{% static "uikit/css/components/slideset.css" %}">
-<link rel="stylesheet" href="{% static "uikit/css/components/slideshow.css" %}">
-<link rel="stylesheet" href="{% static "css/film_detail.css" %}">
- 
-
+{% endcompress %}
+{% compress js %}
 <script src="{% static "js/jquery.js" %}"></script>
 <script src="{% static "js/modernizr.js" %}"></script>
 <script src="{% static "uikit/js/uikit.min.js" %}"></script>
 <script src="{% static "uikit/js/components/slider.js" %}"></script>
 <script src="{% static "uikit/js/components/slideset.js" %}"></script>
 <script src="{% static "uikit/js/components/slideshow.js" %}"></script>
+<script src="{% static "uikit/js/components/slideshow-fx.js" %}"></script>
+<script src="{% static "uikit/js/components/grid.js" %}"></script>
+{% endcompress %}
 <style>
-.uk-panel {padding: 50px;}
-.page { padding-left:0px; }
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+ li.uk-active>a {
+ 	color: magenta!important;
+ }
 </style>
 </head>
 
 <body class="uk-height-1-1"  id="invite">
-<div class="uk-container uk-height-1-1" >
+<div class="uk-container uk-container-center uk-margin-large">
 {% include "nav_bar.html" %}        
             
-<div class="uk-grid mark_red" >
-  <div class="uk-width-medium-1-1  uk-container-center page film ">                           
+<div class="uk-grid " >
+  <div class="uk-width-medium-1-1 ">
     <article class="uk-comment">
     <header class="uk-comment-header">
          {% if object.poster %}
@@ -58,10 +65,18 @@
                     {{ screening.day.date|date:"F jS"  }}
                 {% endfor %}
                 {% endif %}</div>
-        <div class="uk-comment-body" style="padding-top:10px;">{{film.synopsis}}</div>
+        <div class="uk-comment-body" style="padding-top:10px;">
+            {% if film.synopsis %}
+            {{film.synopsis}}
+            {% else %}
+            {{film.log_line}}
+            {% endif %}
+
+
+        </div>
       
 {% if film.actors %}     
-        {% re_split "\s*,\s*" film.actors as cast %}
+        {% re_split "[\n,]*" film.actors as cast %}
         <h3> Cast </h3>
             <ul class="uk-list">
                 {% for actor in cast %}
@@ -85,13 +100,14 @@
              {% if film.composers %}  <dt>Composers</dt><dd> {{ film.composers }}</dd>{% endif %}
             </dl>
 
-
+        <div class="uk-grid uk-container-center">
+        <div class="uk-align-center">
           {% if film.trailer_embed %}
         {{ film.trailer_embed|safe}}
           {% else %}
         
         {% if film.trailer_url %}
-                <video id="video" controls class="uk-responsive-width" width="700" style="padding:5px 0 50px 0;">
+                <video id="video" controls class="uk-responsive-width uk-container-center"  style="padding:5px 0 50px 0;">
                     <source src="{{film.trailer_url|safe}}" type="video/mp4">
                     <source src="{{film.trailer_url|replace_ext:"WebM"}}" type="video/webm">
                     <source src="{{film.trailer_url|replace_ext:"ogv"}}" type="video/ogg">
@@ -99,9 +115,9 @@
           {% endif %}
 
         {% endif %}
-
-    <div class="uk-slidenav-position" data-uk-slideshow="{animation: 'scroll', autoplay:true}">
-            <ul class="uk-slideshow">
+</div>
+        </div>
+<div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-3 " data-uk-grid="{gutter: 20}">
        
                 
                                             
@@ -109,14 +125,13 @@
                                      
                 {% if image.image %}
              {% thumbnail image.image "x640" crop="center" quality=60 as thum %}
-                    <li><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title}} - screen shot" /></a></li>                   
+                     <div><a href="{{image.image.url}}" target="_blank"><img src="{{thum.url}}" class="uk-responsive-width" width="{{thum.width}}" height="{{thum.height}}" alt="Mykonos Biennale 2015 - Film Festival -  {{image.title}} - screen shot" /></a></div>
                       {% endthumbnail %}    
             {% endif %}
             {% endfor %}                       
-           </ul>
-<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-previous" data-uk-slideshow-item="previous" style="color: rgba(255,255,255,0.4)"></a>
-<a href="#" class="uk-slidenav uk-slidenav-contrast uk-slidenav-next" data-uk-slideshow-item="next" style="color: rgba(255,255,255,0.4)"></a>
- </div>
+
+
+</div>
 
              {% if film.screenings %} 
         <h3> Screenings </h3>

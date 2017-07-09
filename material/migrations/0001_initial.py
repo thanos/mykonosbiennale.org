@@ -1,16 +1,16 @@
 # -*- coding: utf-8 -*-
 from __future__ import unicode_literals
 
-from django.db import models, migrations
 import tagulous.models.fields
 import tagulous.models.models
+from django.db import models, migrations
 
 
 class Migration(migrations.Migration):
 
-    dependencies = [
-        ('photologue', '0011_auto_20170327_0213'),
-    ]
+    # dependencies = [
+    #     ('photologue', '0011_auto_20170327_0213'),
+    # ]
 
     operations = [
         migrations.CreateModel(

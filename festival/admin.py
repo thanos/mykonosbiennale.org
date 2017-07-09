@@ -1,8 +1,10 @@
 from django.contrib import admin
-import models 
 from django.http import HttpResponse
 
-class FestivalAdmin(admin.ModelAdmin):   
+import models
+
+
+class FestivalAdmin(admin.ModelAdmin):
     prepopulated_fields = {"slug": ("title",)}
     list_display = ['title', ]   
 admin.site.register(models.Festival, FestivalAdmin)  
@@ -13,6 +15,10 @@ class ProjectAdmin(admin.ModelAdmin):
 admin.site.register(models.Project, ProjectAdmin)  
 
 
+class ProjectXAdmin(admin.ModelAdmin):
+    #list_filter = ['festival',]
+    list_display = ['title','slug']
+admin.site.register(models.ProjectX, ProjectXAdmin)
 
 admin.site.register(models.ProjectSeason) 
 

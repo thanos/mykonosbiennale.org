@@ -11,11 +11,8 @@ APPEND_SLASH=False
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 import os
 
-
 from boto.s3.connection import OrdinaryCallingFormat
 from django.utils import six
-
-import logging
 
 BASE_DIR = os.path.dirname(os.path.dirname(__file__))
 PROJECT_ROOT = os.path.abspath(os.path.join(os.path.dirname(__file__), os.pardir))
@@ -260,7 +257,7 @@ MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #DEFAULT_FILE_STORAGE = 'mykonosbiennale.s3utils.MediaS3BotoStorage'
-#STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
+STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
@@ -277,10 +274,10 @@ ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 # COMPRESSOR
 # ------------------------------------------------------------------------------
-# COMPRESS_STORAGE = STATICFILES_STORAGE #'storages.backends.s3boto.S3BotoStorage'
-# COMPRESS_URL = STATIC_URL
-# COMPRESS_ENABLED = False
-#COMPRESS_OFFLINE=True
+COMPRESS_STORAGE = STATICFILES_STORAGE #'storages.backends.s3boto.S3BotoStorage'
+COMPRESS_URL = STATIC_URL
+COMPRESS_ENABLED = True
+COMPRESS_OFFLINE=False
 
 
 
@@ -300,7 +297,7 @@ REST_FRAMEWORK = {
 
     'PAGINATE_BY': 100,
 }
-"""
+
 STATICFILES_STORAGE = 'pipeline.storage.PipelineCachedStorage'
 PIPELINE_CSS = {
     'css': {
@@ -325,7 +322,7 @@ PIPELINE_JS = {
     }
 }
 
-"""
+
 
 TWITTER_APP_KEY = 'O296O2xJdwoTuJM1znUPNexsnX'
 TWITTER_APP_SECRET = Passwords.TWITTER_APP_SECRET
@@ -369,4 +366,3 @@ VERSATILEIMAGEFIELD_SETTINGS = {
 	'create_images_on_demand': True
 }
 
-from local_settings import *
