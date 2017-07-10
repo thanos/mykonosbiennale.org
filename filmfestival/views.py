@@ -1,4 +1,4 @@
-from bakery.views import BuildableMixin, BuildableDetailView
+from bakery.views import BuildableDetailView
 from django.shortcuts import render_to_response
 from django.views.generic import View
 
@@ -17,7 +17,7 @@ def send_emails(request):
     return render_to_response('emails.html', {'films':films})#, content_type='text/ascii')
 
 
-class SelectedView(View, BuildableMixin):
+class SelectedView(View):
     def get(self, request, what=models.Film.DRAMATIC_NIGHTS):
         qs = models.Film.objects.filter(status='SELECTED', film_type=what)
         qs.order_by('title')

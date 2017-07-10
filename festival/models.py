@@ -1,14 +1,15 @@
-from django.db import models
 import collections
 import os
-from uuid import uuid4
-from django.utils.text import slugify
-from django.core.urlresolvers import reverse
-from django_countries.fields import CountryField
-from phonenumber_field.modelfields import PhoneNumberField
-from imagekit.models import ImageSpecField
-from imagekit.processors import ResizeToFill, ResizeToFit
+
 from autoslug import AutoSlugField
+from django.core.urlresolvers import reverse
+from django.db import models
+from django.utils.text import slugify
+from django_countries.fields import CountryField
+from imagekit.models import ImageSpecField
+from imagekit.processors import ResizeToFit
+from phonenumber_field.modelfields import PhoneNumberField
+
 
 class ImageNamer:
     folder = 'artists'
@@ -24,7 +25,7 @@ class ArtNamer(ImageNamer):
         artist = instance.artist
         count = instance.artist.art_set.count()
         return "{}-{}-{}-{}".format(
-                artist.festival, 
+            instance.project_x,
                 artist.name, 
                 instance.title, count)
 
@@ -42,8 +43,7 @@ def posterNamer(instance, filename):
     
 class HeadshotNamer(ImageNamer):
     def image_name(self, instance, filename):
-        return "{}-artist-{}".format(
-                instance.festival, 
+        return "mykonos-biennale-artist-{}".format(
                 instance.name)
 
 def headshotNamer(instance, filename):
@@ -57,6 +57,11 @@ class Festival(models.Model):
     title = models.CharField(max_length=200)
     slug = models.SlugField(max_length=200)
     statement = models.TextField(default='')
+
+    @property
+    def label(self):
+        return '{}-{}'.format(self.year, self.title)
+
     def __unicode__(self):
         return self.title
 
@@ -70,12 +75,19 @@ class ProjectSeason(models.Model):
 	project = models.ForeignKey('ProjectX')
 	def __unicode__(self):
 		return "{} {}".format(self.festival.year, self.project.title)
+
 	
 class ProjectX(models.Model):
     title = models.CharField(max_length=200)
     slug = AutoSlugField(populate_from='title')
     festival = models.ManyToManyField(Festival, through='ProjectSeason')
     statement = models.TextField(default='')
+
+
+    @property
+    def label(self):
+        return '{}-{}'.format(self.festival.label, self.title)
+
     def __unicode__(self):
         return self.title
     
@@ -118,7 +130,7 @@ class Artist(models.Model):
     )
 
 
-    #festival = models.ForeignKey(Festival)
+    last_festival = models.IntegerField(default= 2015)
     event = models.CharField(max_length=64,
                                       choices=EVENT_CHOICES,
                                       default=TEASURE_HUNT)

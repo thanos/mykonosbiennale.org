@@ -100,8 +100,8 @@
              {% if film.composers %}  <dt>Composers</dt><dd> {{ film.composers }}</dd>{% endif %}
             </dl>
 
-        <div class="uk-grid uk-container-center">
-        <div class="uk-align-center">
+        <div class="uk-flex uk-flex-middle uk-flex-center">
+        <div class="uk-responsive-width">
           {% if film.trailer_embed %}
         {{ film.trailer_embed|safe}}
           {% else %}
