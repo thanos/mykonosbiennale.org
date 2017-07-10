@@ -1,14 +1,10 @@
 import random
-from django.shortcuts import render
 
-from mock import MagicMock
+from bakery.views import BuildableListView, BuildableDetailView
 from django.http import Http404
-from django.shortcuts import render_to_response
-from django.views.generic import ListView,DetailView
-from bakery.views import BuildableMixin, BuildableRedirectView, BuildableListView, BuildableDetailView
+from django.views.generic import DetailView
+
 import models
-
-
 from pages.views import PageMixin
 
 
@@ -33,7 +29,7 @@ class ProjectDetail(PageMixin, DetailView):
     
     def get_object(self, queryset=None):
         slug = self.kwargs.get('slug', 'all')
-        year= self.kwargs.get('year', '2015')
+        year= self.kwargs.get('year', '2017')
         
         if not queryset:
             queryset = self.queryset
@@ -49,7 +45,9 @@ class ProjectDetail(PageMixin, DetailView):
         context = super(ProjectDetail, self).get_context_data(**kwargs)
         #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
         #a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
-        context['art_shown'] = (art for art in models.Art.objects.filter(leader=True) if art.artist.visible)
+        year = self.kwargs.get('year', '2017')
+        context['year'] = year
+        context['art_shown'] = (art for art in models.Art.objects.filter(leader=True, project_x__festival__year=year) if art.artist.visible)
         #random.shuffle(a)
         context['projects'] = (ps.project for ps in models.ProjectSeason.objects.all() if ps.art_set.count())
         return context
