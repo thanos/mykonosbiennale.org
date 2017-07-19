@@ -1,8 +1,9 @@
+import collections
 import random
 
 from bakery.views import BuildableListView, BuildableDetailView
 from django.http import Http404
-from django.views.generic import DetailView
+from django.views.generic import DetailView, ListView
 
 import models
 from pages.views import PageMixin
@@ -48,8 +49,9 @@ class ProjectDetail(PageMixin, DetailView):
         year = self.kwargs.get('year', '2017')
         context['year'] = year
         context['art_shown'] = (art for art in models.Art.objects.filter(leader=True, project_x__festival__year=year) if art.artist.visible)
-        #random.shuffle(a)
-        context['projects'] = (ps.project for ps in models.ProjectSeason.objects.all() if ps.art_set.count())
+        #random.shuffle(context['art_shown'])
+        context['projects']= (ps.project for ps in models.ProjectSeason.objects.all() if ps.art_set.count())
+        #context['years'] = set(project.year for project in context['projects'] )
         return context
 
 
@@ -77,7 +79,7 @@ class ArtList(PageMixin, BuildableListView):
         
         return context
 
-class ArtistList(PageMixin, BuildableListView):
+class ArtistList(PageMixin, ListView):
     queryset = models.Artist.objects.filter(visible=True).order_by('name')
     def seo(self, context):
         return {
@@ -85,6 +87,60 @@ class ArtistList(PageMixin, BuildableListView):
             'description': "The complete list of artists partisipating in the Mykonos Biennale",
             'url': "/artfestival/artists", 
         }
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtistList, self).get_context_data(**kwargs)
+        #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        #a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        year = self.kwargs.get('year', '2017')
+        context['year'] = year
+        context['artists'] = set(art.artist for art in models.Art.objects.filter(leader=True, project_x__festival__year=year) if art.artist.visible)
+        random.shuffle(list(context['artists']))
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtistList, self).get_context_data(**kwargs)
+        #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        #a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        context['year'] = self.kwargs.get('year')
+        artists = collections.default(set)
+        festivals = set()
+        projects = set()
+        for art in models.Art.objects.filter(leader=True):
+            artists[art.artist].add(art.project_x)
+            artists[art.artist].add(art.project_x.festival)
+            festivals.add(art.project_x.festival)
+            projects.add(art.project_x.project)
+        #if context['year']:
+        #    art_q = art_q.filter(leader=True, project_x__festival__year=context['year'])
+        art = [art for art in art_q]
+        artists = list(set(art.artist for art in art))
+        random.shuffle(artists)
+        context['artists'] = artists
+
+        context['festivals'] = festivals
+        context['projects'] = projects
+        return context
+
+    def get_context_data(self, **kwargs):
+        context = super(ArtistList, self).get_context_data(**kwargs)
+        #a = [(artist, random.choice([ar for ar in artist.art_set.all()])) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        #a = [random.choice([ar for ar in artist.art_set.all()]) for artist in models.Artist.objects.filter(visible=True) if artist.art_set.count()]
+        project = self.kwargs.get('project')
+        year = self.kwargs.get('year', '2017' if project else None)
+        art_q  =  models.Art.objects.all()
+        if year:
+            context['festival'] = models.Festival.objects.filter(year=year)[0]
+            art_q = models.Art.objects.filter(project_x__festival= context['festival'])
+            if project:
+                context['project'] = models.SeasonProject.objects.filter(project_name=project, festival=context['festival'])
+                art_q = models.Art.objects.filter(project_x = context['project'])
+
+        context['artists'] = set(art.artist for art in art_q if art.artist.visible)
+        context['breadcrumbs'] = self.breadcrumbs(context)
+        random.shuffle(list(context['artists']))
+        return context
+
 
 class TreasureHuntArtists(PageMixin, BuildableListView):
     queryset = models.Artist.objects.filter(visible=True, event=models.Artist.TEASURE_HUNT).order_by('name')
@@ -95,13 +151,13 @@ class TreasureHuntArtists(PageMixin, BuildableListView):
             'url': "/artfestival/artists", 
         }
         
-class ArtistDetail(PageMixin, BuildableDetailView):
+class ArtistDetail(PageMixin, DetailView):
     model = models.Artist
 
     def breadcrumbs(self, context):
         artist = context['object']
-        return [ ('/artfestival/artists/', 'artists'), ('', artist.name )]
-        return [('/', artist.festival), ('/artfestival/artists/', 'artists'), ('', artist.name )]
+        return [ ('/', 'Mykonos Biennale'), ('/artfestival/artists/', 'artists'), ('', artist.name )]
+
 
     def seo(self, context):
         artist = self.getObject(context)

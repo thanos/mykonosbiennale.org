@@ -50,7 +50,7 @@
                         {% endthumbnail %}
                         {% endif %}
                         <h1>{{object.name|title}}</h1>
-                        <div class="uk-comment-meta">{{object.homepage}}</div>
+                        <div class="uk-comment-meta"> {{artist.country}}<br /> {% if artist.homepage != "" %} <span> <a href="{{artist.homepage}}">{{artist.homepage}}</a></span>{% endif %}</div>
                     </header>
 
 
@@ -77,7 +77,7 @@
                                                                 <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" 
                                                                 title="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" 
                                                                 alt="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" /></a>
-                                                                {% endthumbnail %}   
+                                                                {% endthumbnail %}
                                                             {% endif %}
                                                             <h4 class="uk-panel-title">{{art.title}}</h4>
                                                             {{art.description}}

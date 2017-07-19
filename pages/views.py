@@ -31,7 +31,7 @@ class PageMixin(object):
     def get_context_data(self, **kwargs):
         context = super(PageMixin, self).get_context_data(**kwargs)
         context['pages'] = models.Page.menubar()
-        #context['breadcrumbs'] = self.breadcrumbs(context)
+        context['breadcrumbs'] = self.breadcrumbs(context)
  #       context['seo'] = self.seo(context)
         return context
 
