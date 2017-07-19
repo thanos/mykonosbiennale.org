@@ -12,7 +12,7 @@
 <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
 
-        
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.3.0/css/font-awesome.min.css">
 {% compress css %}
 <link rel="stylesheet" href="{% static "uikit/css/uikit.min.css" %}">
 {% endcompress %}
@@ -57,6 +57,12 @@
             <h1>{{object.title|title}}</h1>
           </header>
           <div class="uk-comment-meta">
+{% if object.poster %}
+<div class="uk-flex uk-flex-left uk-flex-top uk-margin-bottom">
+    <small><a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{object.poster}}" target="_blank"><i class="uk-icon-download"></i> download poster</a></small>
+</div>
+{% endif %}
+
               dir. by <span style="color:black; font-size:125%;">{{object.dir_by|title}}</span>, {{object.country}}<br/>
                   runtime: {{object.runtime}} min<br/>
               
