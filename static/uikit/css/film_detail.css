@@ -1,0 +1,40 @@
+
+
+	.menu {
+max-width: 700px;
+padding-left:0px;
+
+
+	}
+	.page {
+		min-height: 700px;
+		max-width: 700px;
+		background-position: 100% 100%; 
+		background-repeat: no-repeat;
+		background-size: cover;
+
+	}
+
+
+
+
+
+	
+
+
+.uk-containerX {
+	padding: 0px 0px;
+
+}
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+ li.uk-active>a {
+ 	color: magenta!important;
+ }
+

@@ -13,7 +13,7 @@ class ArtFestivalRenderer(StaticSiteRenderer):
             paths.add(artist.get_absolute_url())
             paths.add('/artfestival/artists/')
         for art in models.Art.objects.all():
-            paths.add('/artfestival/art/'+ art.project_x.project.slug+'/')
+            paths.add('/artfestival/art/{}/{}/'.format(art.project_x.festival.year, art.project_x.project.slug))
         return list(paths)
     
 
