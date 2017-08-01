@@ -1,0 +1,80 @@
+
+		
+		.back {
+			background: url(img_flwr.gif);
+			background-size: cover;
+			background-repeat: no-repeat;
+		}
+		.mark_red {
+/* 			border: 1px solid red; */
+		}
+			.mark_green{
+/* 			border: 1px solid green; */
+		}
+		.wack {
+
+   width:100%;
+    max-width:100%;
+    height: auto;
+}
+.uk-overlayS {
+  display: inline-block;
+  position: relative;
+  max-width: 100%;
+  vertical-align: middle;
+  /* overflow: hidden; */
+  -webkit-transform: translateZ(0);
+  margin: 0;
+}
+		
+		.uk-overlay-panelS {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 20px;
+  color: #fff;
+}
+.footie {
+    z-index: 2;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    height: 60px;
+    margin: 0;
+    background: #ffffff;
+  }
+.page {
+	min-height:700px;  
+	background-size:cover;   
+	background-position:0% 50%;  
+	background-repeat: no-repeat;
+}
+ .block {
+	 height:100%;
+ }
+.crises_paganism {
+	background-image: url("http://www.mykonosbiennale.com/Mykonos_Biennale_2015/2013_files/mykonos_biennale-2013_background.jpg");
+}
+		
+.statement {
+	background-image: url(http://www.mykonosbiennale.com/Mykonos_Biennale_2015/2013_Statement_files/mykonos_biennale_2013-statement.jpg);
+	background-position: 100% 100%; 
+		}
+		
+.black_back {
+	background-color: black;
+		}
+		
+.venues {
+	background-image: url(http://mykonosbiennale.com/Mykonos_Biennale_2015/2013_venues_files/venues_townhall.jpg);
+}
+		
+		.artists {
+		background-image: url(http://www.mykonosbiennale.com/Mykonos_Biennale_2015/2013_artists_files/P8102205%202-r-filtered.jpg);
+				background-position: 0% 0%; 
+				background-size: contain;
+			background-repeat: no-repeat;
+		}

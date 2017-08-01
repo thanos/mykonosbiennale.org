@@ -1,8 +1,11 @@
 from bakery.views import BuildableDetailView
 from django.shortcuts import render_to_response
-from django.views.generic import View
+from django.views.generic import View,ListView
+
+CURRENT_YEAR='2017'
 
 import models
+from festival.models import Festival
 from pages.views import PageMixin, ProjectView, ProjectEntryView
 
 
@@ -24,20 +27,52 @@ class SelectedView(View):
         return render_to_response('selected.html', {'films': qs})
 
 
+class FilmList(ListView):
+    sub_title = ''
+    film_type = models.Film.DRAMATIC_NIGHTS
+    queryset = models.Film.objects.filter(status='SELECTED').order_by('title')
 
+    def get_queryset(self):
+        queryset = super(FilmList, self).get_queryset()
+        queryset = queryset.filter(project__festival__year=int(self.kwargs.get('year', CURRENT_YEAR)))
 
+        return queryset
 
+    def breadcrumbs(self, context):
+        pass
 
-class FilmList(ProjectView):
+    def getObject(self, context):
+        return context['object_list']
+
+    def get_context_data(self, **kwargs):
+        context = super(FilmList, self).get_context_data(**kwargs)
+        context['breadcrumbs'] = self.breadcrumbs(context)
+        context['festival'] = Festival.objects.filter(year=int(self.kwargs.get('year', CURRENT_YEAR))).first()
+        context['seo'] = self.seo(context)
+        return context
+
+    def seo(self, context):
+
+        festival = context['festival']
+        seo_data = {
+            'title': festival.label,
+            'sub_title': '',
+            'description': 'The list of films presented in this years festival, {}'.format(
+                festival),
+            'image': 'http://mykonosbiennale.org/static/images/mykonos-biennale-logo.png',
+        }
+        return seo_data
+
+class FilmProjectList(ProjectView):
     sub_title =''
     film_type = models.Film.DRAMATIC_NIGHTS
     queryset = models.Film.objects.filter(status='SELECTED').order_by('title')
     
     def get_queryset(self):
-        queryset = super(FilmList, self).get_queryset()
+        queryset = super(FilmProjectList, self).get_queryset()
         if 'project' in self.kwargs:
             queryset = queryset.filter(project__slug =self.kwargs['project'])
-        queryset = queryset.filter(project__festival__year=int(self.kwargs.get('year', '2017')))
+        queryset = queryset.filter(project__festival__year=int(self.kwargs.get('year', CURRENT_YEAR)))
         
         return queryset
     
@@ -45,22 +80,14 @@ class FilmList(ProjectView):
 
         return context['object_list']
     
-    def get_context_data(self, **kwargs):
-        context =  super(FilmList, self).get_context_data(**kwargs)
-        # context['project'] = Project.objects.get(slug=self.kwargs['project'],
-        #                                          festival__year=int(self.kwargs.get('year', '2015')))
-        context['seo'] = self.seo(context)
-        return context
-    
-    def seo(self, context):
-        x =  super(FilmList,self).seo(context)
-        project = context.get('project')
-        x.update({
-            'title': 'Mykonos Biennale 2015{}'.format((' - '+ project.title) if project else ''),
-            'sub_title': project.title if project else '',
-            'description': 'The list of films presented in {}'.format(project.title if project else 'this years feestival'),
-        })
-        return x
+    # def get_context_data(self, **kwargs):
+    #     kwargs['project'] = models.Project.objects.get(slug=self.kwargs['project'],
+    #                                                     festival__year=int(self.kwargs.get('year', CURRENT_YEAR)))
+    #     context =  super(FilmList, self).get_context_data(**kwargs)
+    #
+    #     context['seo'] = self.seo(context)
+    #     return context
+
     
 class DramaticNightsFilms(FilmList):
     film_type = models.Film.DRAMATIC_NIGHTS
@@ -102,14 +129,17 @@ class FilmDetail(ProjectEntryView):
     model = models.Film
     def seo(self, context):
         film = self.getObject(context)
-        x = super(FilmDetail,self).seo(context) 
-        x.update({
-            'title': 'Mykonos Biennale 2015 - {}'.format(film.title),
-            'description': film.synopsis,
-        })
+        seo_data =  {
+            'title': '{} - {}'.format(film.project, film.title),
+            'description': film.log_line,
+            'url': film.get_absolute_url(),
+            'description_155': film.log_line[:155],
+            'description_200': film.log_line[:200],
+            'description_300': film.log_line[:300],
+        }
         if film.poster:
-            x['image'] = film.poster.url    
-            return x
+            seo_data['image'] = film.poster.url
+        return seo_data
     
     def breadcrumbs(self, context):
         film = self.getObject(context)

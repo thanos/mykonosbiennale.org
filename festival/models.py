@@ -63,7 +63,7 @@ class Festival(models.Model):
         return '{}-{}'.format(self.year, self.title)
 
     def __unicode__(self):
-        return self.title
+        return self.label
 
     def save(self, *args, **kwargs):
         self.slug = slugify(self.title)
