@@ -1,0 +1,136 @@
+{% load compress %}
+{% load re_tags %}
+{% load thumbnail %}
+{% load staticfiles %}
+{% load variable_tags %}
+<!DOCTYPE html>
+<html lang="en-gb" dir="ltr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+{% include "seo.html" %}
+
+<link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
+
+
+{% compress css %}
+    <link rel="stylesheet" href="{% static "css/uikit.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slider.min.css" %}" type="text/css" charset="utf-8">
+    <link rel="stylesheet" href="{% static "css/components/slidenav.min.css" %}" type="text/css" charset="utf-8">
+{% endcompress %}
+
+  {% compress js %}
+     <script src="{% static "js/jquery.js" %}"></script>
+  <script src="{% static "js/modernizr.js" %}"></script>
+    <script src="{% static "uikit/js/uikit.min.js" %}"></script>
+    <script src="{% static "uikit/js/components/slider.min.js" %}"></script>
+  {% endcompress %}
+  
+        
+<style>
+
+.uk-navbar {
+
+	background: linear-gradient(to bottom, rgba(251, 11, 239, 0.18), #FFFDFF) repeat scroll 0% 0% border-box #F7F7F7;
+	background-color: transparent; border-bottom-color: rgba(0,0,0,.3)!important; border: 0px solid rgba(0,0,0,.1);
+}
+
+
+ li.uk-active>a {
+ 	color: magenta!important;
+ }
+</style>
+</head>
+
+<body class="uk-height-1-1"  id="invite">
+<div class="uk-container uk-container-center uk-margin-large">
+{% include "nav_bar.html" %}      
+
+<ul class="uk-subnav uk-subnav-pill">
+    <li class="uk-active"><a href="#day_one">29<sup>th</sup> July</a></li>
+    <li ><a href="#day_two">30<sup>th</sup> July</a></li>
+</ul>
+
+    <div class="uk-width-medium-1-1 uk-text-justify uk-container-center page film ">
+            <h1>Mykonos Biennale {{project.festival.title}}</h1>
+            <h2>{{project.title}}</h2>
+            <h3>Official Film Selection</h3>
+
+
+<div class="uk-grid"  id="film">
+
+       <div class="uk-width-medium-1-2" >
+   <div class="uk-hidden-small">
+   <h2><a id="day_one">29<sup>th</sup> July</a></h2>
+</div>
+
+
+    
+
+           <!--  <h4>As of {% variable "Official Selection Date" %}</h4> -->
+{% for film in object_list  %}
+    {% if 0 <= forloop.counter0  and forloop.counter0 < 500 %} 
+                                
+           <article class="uk-comment">
+    <header class="uk-comment-header">
+
+
+        <!-- <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/images/mykonos-biennale-2015-film-festival-scrabble-cristian-sulser-poster.jpg" target="_blank"><img class="uk-comment-avatar" src="https://d1fu8ookpa7iv5.cloudfront.net/mykonos-biennale-cachedd/21/dd210e363e0b398d3dfd7b8057bbb25b.jpg" alt="SCRABBLE Poster" width="150" height="211" ></a> -->
+        <a href="films/scrabble-cristian-sulser.html"><img class="uk-comment-avatar" src="https://d1fu8ookpa7iv5.cloudfront.net/mykonos-biennale-cachedd/21/dd210e363e0b398d3dfd7b8057bbb25b.jpg" alt="SCRABBLE Poster" width="150" height="211" ></a>
+
+
+            <h2><a href="films/scrabble-cristian-sulser.html">Scrabble</a></h2>
+
+            <div class="uk-comment-meta"> dir. by <span style="color:black; font-size:125%;">Cristian Sulser</span>, Switzerland<br/>
+                  runtime: 12 min<br/>
+
+              screening:  July 29<sup>th</sup>
+
+
+        </div>
+        <div class="uk-comment-body">Theo lives just such a dull routine in his allotment shed, his passion for his wife Barbara long gone. In secret, he imagines what it would be like to get away from this bleak, empty existence with Barbara.Their weekly Scrabble game presents unexpected opportunities - is it possible that a few simple letters could bring Theo`s dark fantasies to reality? That a chosen word determines fate? Is it possible to murder Barbara?</div>
+        </header>
+
+</article>
+
+
+                                
+                                
+                                
+                                
+    <article class="uk-comment">
+    <header class="uk-comment-header">
+         {% if film.poster %}
+        {% thumbnail film.poster "150" crop="center" as im %}
+        <!-- <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{film.poster}}" target="_blank"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a> -->
+        <a href="/filmfestival/film/{{film.slug}}/"><img class="uk-comment-avatar" src="{{ im.url }}" alt="{{film.title}} Poster" width="{{im.width}}" height="{{im.height}}" ></a>
+        {% endthumbnail %}
+           {% endif %}
+            <h2><a href="/filmfestival/film/{{film.slug}}/">{{film.title|title}}</a></h2>
+     
+            <div class="uk-comment-meta"> dir. by <span style="color:black; font-size:125%;">{{film.dir_by|title}}</span>, {{film.country}}<br/>
+                  runtime: {{film.runtime}} min<br/>
+              
+             {% if film.screening_set.count %} screening: 
+                {% for screening in film.screening_set.all %}
+                    {{ screening.day.date|date:"F jS"  }}
+                {% endfor %}
+                {% endif %}
+        </div>
+        <div class="uk-comment-body">{{film.log_line}}</div>
+        </header>
+       
+</article>
+           {% endif %}   
+
+{% endfor %}   
+        </div>
+     </div>
+     </div>
+    
+    
+    
+    
+    
+    </body>
+</html>

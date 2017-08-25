@@ -71,10 +71,17 @@ class Festival(models.Model):
 
 
 class ProjectSeason(models.Model):
-	festival = models.ForeignKey('Festival')
-	project = models.ForeignKey('ProjectX')
-	def __unicode__(self):
-		return "{} {}".format(self.festival.year, self.project.title)
+    festival = models.ForeignKey('Festival')
+    project = models.ForeignKey('ProjectX')
+
+    def __unicode__(self):
+        return "{} {}".format(self.festival.year, self.project.title)
+
+    def __str__(self):
+        return "{} {}".format(self.festival.year, self.project.title)
+
+    def get_absolute_url(self):
+        return reverse('artist-list-by-project', args=[self.festival.year, self.project.slug])
 
 	
 class ProjectX(models.Model):
@@ -90,7 +97,11 @@ class ProjectX(models.Model):
 
     def __unicode__(self):
         return self.title
-    
+
+    def __str__(self):
+        return "{} {}".format(self.festival, self.title)
+
+
     def get_absolute_url(self):
         return reverse('project', args=[self.slug])
 	

@@ -20,4 +20,4 @@ class Biennale2013Renderer(StaticSiteRenderer):
           
         ]      
       
-renderers = [PagesRenderer, ]
+#renderers = [PagesRenderer, ]

@@ -14,6 +14,8 @@ class ArtFestivalRenderer(StaticSiteRenderer):
             paths.add('/artfestival/artists/')
         for art in models.Art.objects.all():
             paths.add('/artfestival/art/{}/{}/'.format(art.project_x.festival.year, art.project_x.project.slug))
+        for project in models.ProjectSeason.objects.all():
+            paths.add(paths.add(project.get_absolute_url()))
         return list(paths)
     
 

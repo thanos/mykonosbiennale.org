@@ -56,12 +56,12 @@
 
                     {% if object.statement %}
                     <h3> Statement </h3>
-                    <div class="uk-comment-body">{{object.statement}}</div>
+                    <div class="uk-comment-body">{{object.statement|safe}}</div>
                     {% endif %}
 
                     {% if object.bio %}
                     <h3> Bio </h3>
-                    <div class="uk-comment-body">{{object.bio}}</div>
+                    <div class="uk-comment-body">{{object.bio|safe}}</div>
                     {% endif %}
 
                    
