@@ -45,10 +45,10 @@ class DocumentationInline(admin.TabularInline):
 class FilmAdmin(admin.ModelAdmin):
     save_on_top  = True
     prepopulated_fields = {"slug": ("title",)}
-    list_display = ['id', 'film_type', 'project', 'ref', 'status', 'title', 'dir_by' , 'trailer_url', 'trailer_embed', 'projection_copy', 'projection_copy_url', 'film_type', 'present','when',   ] #, 'length']
+    list_display = ['id','ref',  'title', 'projection_copy', 'projection_copy_url', 'dir_by' , 'trailer_url', 'trailer_embed', 'film_type', 'project',  'status', 'film_type', 'present','when',   ] #, 'length']
     search_fields = ['ref','title',  'dir_by', 'synopsis',  ]
     list_editable=['status', 'project', 'trailer_url', 'trailer_embed', 'projection_copy', 'projection_copy_url', 'present','when' ]
-    list_filter = [ 'status','film_type', 'source','projection_copy', 'present']
+    list_filter = [ 'status','film_type', 'source','projection_copy', 'present', 'project']
     inlines = [ImageInline,] #PersonInline, , DocumentationInline]
     actions=['export_emails', 'export_posts', 'export_directors', 'export_titles','send_emails']
     def export_emails(self, request, queryset):

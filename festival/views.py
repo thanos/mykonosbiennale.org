@@ -50,7 +50,7 @@ class ProjectDetail(PageMixin, DetailView):
         context['year'] = year
         context['art_shown'] = (art for art in models.Art.objects.filter(leader=True, project_x__festival__year=year) if art.artist.visible)
         #random.shuffle(context['art_shown'])
-        context['projects']= (ps.project for ps in models.ProjectSeason.objects.all() if ps.art_set.count())
+        context['projects']= (ps.project for ps in models.ProjectSeason.objects.filter(festival__year=year) if ps.art_set.filter(show=True).count())
         #context['years'] = set(project.year for project in context['projects'] )
         return context
 
@@ -129,15 +129,20 @@ class ArtistList(PageMixin, ListView):
         project = self.kwargs.get('project')
         year = self.kwargs.get('year', '2017' if project else None)
         art_q  =  models.Art.objects.all()
+        context['title'] = 'Mykonos Biennale Participants'
         if year:
             context['festival'] = models.Festival.objects.filter(year=year)[0]
             art_q = models.Art.objects.filter(project_x__festival= context['festival'])
+            context['title'] = context['festival']
             if project:
-                context['project'] = models.SeasonProject.objects.filter(project_name=project, festival=context['festival'])
+                context['project'] = models.ProjectSeason.objects.filter(project__slug=project, festival=context['festival'])[0]
+                print context['project']
                 art_q = models.Art.objects.filter(project_x = context['project'])
-
-        context['artists'] = set(art.artist for art in art_q if art.artist.visible)
+                context['title'] = "{} - {}".format(context['project'].festival, context['project'].project.title)
+        print art_q
+        context['artists'] = set(art.artist for art in art_q  if art.artist.visible)
         context['breadcrumbs'] = self.breadcrumbs(context)
+
         random.shuffle(list(context['artists']))
         return context
 

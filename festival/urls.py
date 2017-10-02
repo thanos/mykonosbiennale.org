@@ -12,10 +12,12 @@ urlpatterns = patterns('',
 	url(r'^art/(?P<year>[0-9]+)/(?P<slug>[^/]+)/$', views.ProjectDetail.as_view(), name='project'), 	
 					  
 	
-	url(r'^treasure-hunt-artists/$', views.TreasureHuntArtists.as_view(), name='treasure-hunt'),  
-    url(r'^(?P<slug>[^/]+)/artists/$', views.ArtistList.as_view(), name='artist-list'),  
+	url(r'^treasure-hunt-artists/$', views.TreasureHuntArtists.as_view(), name='treasure-hunt'),
+	url(r'^(?P<slug>[^/]+)/artists/$', views.ArtistList.as_view(), name='artist-list'),
 	url(r'^artists/$', views.ArtistList.as_view(), name='artist-list'),
-	url(r'^artists/(?P<year>[^/]+)/$', views.ArtistList.as_view(), name='artist-list'),  				   
-    url(r'^artist/(?P<slug>[^/]+)/$', views.ArtistDetail.as_view(), name='artist-detail'),
-	 url(r'^artist/(?P<year>[^/]+)/(?P<slug>[^/]+)/$', views.ArtistDetail.as_view(), name='artist-detail'),
+	url(r'^artists/(?P<year>[0-9]+)/$', views.ArtistList.as_view(), name='artist-list'),
+	url(r'^artists/(?P<year>[0-9]+)/(?P<project>[^/]+)/$', views.ArtistList.as_view(), name='artist-list-by-project'),
+	url(r'^artist/(?P<year>[0-9]+)/(?P<slug>[^/]+)/$', views.ArtistDetail.as_view(), name='artist-detail'),
+	url(r'^artist/(?P<slug>[^/]+)/$', views.ArtistDetail.as_view(), name='artist-detail'),
+
 ) 

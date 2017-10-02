@@ -65,7 +65,8 @@
             <ul id="filter" class="uk-subnav">
                             <li  data-uk-filter=""><a href="#">All</a></li>
                 {%for project in projects %}
-                <li   data-uk-filter="{{object.slug }}"><a href="#">{{object.title }}</a></li>
+
+                <li   data-uk-filter="{{project.slug }}"><a href="#">{{project.title }}</a></li>
                             {% endfor %}
             </ul>
 

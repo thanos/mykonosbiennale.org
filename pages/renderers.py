@@ -6,7 +6,7 @@ from . import models
 class PagesRenderer(StaticSiteRenderer):
     def get_paths(self):
         paths = ['']
-        pages = models.Page.objects.filter(visible=True)
+        pages = models.Page.objects.filter(visible=True, slug='2017-trans-allegoria')
         for page in pages:
             paths.append(page.get_absolute_url())
         return paths

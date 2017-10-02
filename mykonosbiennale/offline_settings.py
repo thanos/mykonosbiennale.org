@@ -217,7 +217,7 @@ USE_TZ = True
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
-
+STATIC_URL = '/static/'
 
 
 #
@@ -230,7 +230,7 @@ AWS_SECRET_ACCESS_KEY = Passwords.AWS_SECRET_ACCESS_KEY
 AWS_STORAGE_BUCKET_NAME = 'com.mykonosbiennale.static'
 from S3 import CallingFormat 
 AWS_CALLING_FORMAT = CallingFormat.PATH
-AWS_S3_CUSTOM_DOMAIN = 'd1fu8ookpa7iv5.cloudfront.net'
+#AWS_S3_CUSTOM_DOMAIN = 'd1fu8ookpa7iv5.cloudfront.net'
 
 AWS_IS_GZIPPED=True
 AWS_AUTO_CREATE_BUCKET = True
@@ -257,7 +257,7 @@ MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #DEFAULT_FILE_STORAGE = 'mykonosbiennale.s3utils.MediaS3BotoStorage'
-STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
+# tv STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
 #STATICFILES_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 
@@ -266,15 +266,15 @@ AWS_S3_FILE_OVERWRITE = False
 
 MEDIA_ROOT = '/media/'
 MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = '/static/'
-# tv STATIC_ROOT = '/static/'
+
+# STATIC_ROOT = '/static/'
 #STATIC_URL = 'https://%s.s3.amazonaws.com/static/' % AWS_STORAGE_BUCKET_NAME
-STATIC_URL = 'https://d1fu8ookpa7iv5.cloudfront.net/static/'
+# tv STATIC_URL = 'https://d1fu8ookpa7iv5.cloudfront.net/static/'
 ADMIN_MEDIA_PREFIX = STATIC_URL + 'admin/'
 
 # COMPRESSOR
 # ------------------------------------------------------------------------------
-COMPRESS_STORAGE = STATICFILES_STORAGE #'storages.backends.s3boto.S3BotoStorage'
+# tv COMPRESS_STORAGE = STATICFILES_STORAGE #'storages.backends.s3boto.S3BotoStorage'
 COMPRESS_URL = STATIC_URL
 COMPRESS_ENABLED = True
 COMPRESS_OFFLINE=False
@@ -326,8 +326,7 @@ PIPELINE_JS = {
 
 TWITTER_APP_KEY = 'O296O2xJdwoTuJM1znUPNexsnX'
 TWITTER_APP_SECRET = Passwords.TWITTER_APP_SECRET
-THUMBNAIL_COLORSPACE = None
-THUMBNAIL_PRESERVE_FORMAT = True
+
 THUMBNAIL_DEBUG = False
 THUMBNAIL_PREFIX='mykonos-biennale-cache'
 import logging

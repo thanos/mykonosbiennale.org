@@ -10,7 +10,7 @@
     <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-        <title>Mykonos Biennale {{year}}</title>
+        <title>Mykonos Biennale {{title|safe}}</title>
 {% include "seo.html" %}
 <link rel="shortcut icon" href="{% static "images/favicon.ico" %}" type="image/x-icon">
 
@@ -65,9 +65,12 @@
 
 
 
-<h1>{{festival}}</h1>
-<h2 class="uk-margin-large">{{project.project}}</h2>
-        <div class="uk-width-medium-1-1 uk-container-center page film ">
+<h1 class="uk-h2">{{title|safe}}</h1>
+
+        <div class="uk-width-medium-1-1 uk-margin-large  uk-container-center page film ">
+            <div class="uk-width-medium-1-1 uk-margin-large">
+{{project.project.statement|safe}}
+            </div>
     <div class="uk-grid-width-small-1-2 uk-grid-width-medium-1-3 uk-grid-width-large-1-4 uk-grid-width-xlarge-1-5" data-uk-grid="{gutter: 5, controls: '#filter', filter:'{{choice.slug}}' }">
     {% for artist in artists %}
         <div data-uk-filter="{{art.project_x.project.slug}}" >
