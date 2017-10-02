@@ -73,8 +73,8 @@
                                                     {% for art in project.art %}
                                                         <div class="uk-panel">
                                                             {% if art.photo %}
-                                                                {% thumbnail art.photo  "700" crop="center"  quality=60 as photo %}
-                                                                <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" class="uk-responsive-width" width="{{photo.width}}" height="{{photol.height}}" 
+                                                                {% thumbnail art.photo  "400"   crop="noop" padding=False  quality=60 as photo %}
+                                                                <a href="http://com.mykonosbiennale.static.s3.amazonaws.com/{{art.photo}}" target="_blank"><img src="{{ photo.url }}" width="{{photo.width}}" height="{{photo.height}}"class="uk-responsive-width"
                                                                 title="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" 
                                                                 alt="Mykonos Biennale {{art.artist.festival}} -  {{art.title}} - screen shot" /></a>
                                                                 {% endthumbnail %}

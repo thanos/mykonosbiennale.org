@@ -254,7 +254,7 @@ AWS_S3_OBJECT_PARAMETERS = {
 # URL that handles the media served from MEDIA_ROOT, used for managing
 # stored files.
 MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
-# tv DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
+DEFAULT_FILE_STORAGE = 'storages.backends.s3boto.S3BotoStorage'
 
 #DEFAULT_FILE_STORAGE = 'mykonosbiennale.s3utils.MediaS3BotoStorage'
 # tv STATICFILES_STORAGE = 'mykonosbiennale.s3utils.StaticS3BotoStorage'
@@ -264,7 +264,7 @@ MEDIA_URL = 'https://s3.amazonaws.com/%s/' % AWS_STORAGE_BUCKET_NAME
 
 AWS_S3_FILE_OVERWRITE = False
 
-MEDIA_ROOT = './media/'
+MEDIA_ROOT = '/media/'
 MEDIA_URL = 'https://%s.s3.amazonaws.com/media/' % AWS_STORAGE_BUCKET_NAME
 
 # STATIC_ROOT = '/static/'

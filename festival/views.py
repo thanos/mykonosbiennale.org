@@ -50,7 +50,7 @@ class ProjectDetail(PageMixin, DetailView):
         context['year'] = year
         context['art_shown'] = (art for art in models.Art.objects.filter(leader=True, project_x__festival__year=year) if art.artist.visible)
         #random.shuffle(context['art_shown'])
-        context['projects']= (ps.project for ps in models.ProjectSeason.objects.all() if ps.art_set.count())
+        context['projects']= (ps.project for ps in models.ProjectSeason.objects.filter(festival__year=year) if ps.art_set.filter(show=True).count())
         #context['years'] = set(project.year for project in context['projects'] )
         return context
 
