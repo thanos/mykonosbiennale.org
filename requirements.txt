@@ -43,7 +43,7 @@ flake8==3.3.0
 flake8-polyfill==1.0.1
 funcsigs==1.0.2
 futures==2.2.0
-gunicorn==19.3.0
+gunicorn
 html5lib==0.999
 jmespath==0.7.1
 jsmin==2.1.1
