@@ -63,7 +63,7 @@ pathlib==1.0.1
 pbr==2.0.0
 phonenumbers==7.0.5
 pilkit==1.1.13
-Pillow==3.0.0
+Pillow==8.1.1
 ply==3.6
 progressbar2==3.10.1
 #psycopg2==2.4.5
