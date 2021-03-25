@@ -1,7 +1,7 @@
 Django==1.8.2
 ExifRead==2.1.2
 Pillow==3.0.0
-PyYAML==3.11
+PyYAML==5.4
 Unidecode==0.04.18
 Wand==0.4.1
 argparse==1.2.1
