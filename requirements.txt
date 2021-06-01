@@ -85,7 +85,7 @@ sorl-thumbnail==12.3
 static3==0.7.0
 supervisor==3.2.2
 twython==3.2.0
-urllib3==1.7.1
+urllib3==1.26.5
 virtualenv==1.11.6
 whitenoise==3.3.0
 wsgiref==0.1.2
