@@ -58,7 +58,7 @@ msgpack-python==0.4.6
 nameparser==0.5.2
 netifaces==0.10.4
 oauthlib==0.7.2
-paramiko==2.2.1
+paramiko==2.10.1
 pathlib==1.0.1
 pbr==2.0.0
 phonenumbers==7.0.5
