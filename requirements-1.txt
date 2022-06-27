@@ -82,7 +82,7 @@ queuelib==1.2.2
 radon==1.4.2
 rcssmin==1.0.6
 redis==2.10.3
-reportlab==2.4
+reportlab==3.5.55
 requests==2.10.0
 requests-oauthlib==0.5.0
 rjsmin==1.0.12
