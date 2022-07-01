@@ -83,7 +83,7 @@ slimit==0.8.1
 snakefood==1.4
 sorl-thumbnail==12.3
 static3==0.7.0
-supervisor==3.2.2
+supervisor==3.2.4
 twython==3.2.0
 urllib3==1.7.1
 virtualenv==1.11.6
